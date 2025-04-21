@@ -1,0 +1,58 @@
+@extends('admin.include.app')
+@section('main-content')
+    <div class="row">
+        <!-- Lightbox -->
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title mb-0">Program Discipline</h4>
+                </div>
+                <div class="card-body">
+                    <div class="wizard">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" role="tabpanel" id="step1"
+                                aria-labelledby="step1-tab">
+                                <div class="mb-4 title-section-adss">
+                                    <h3>Add Program Discipline</h3>
+                                </div>
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                <form action="{{ route('store-program-discipline') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+
+                                    <div class="form-group input-group-adss">
+                                        <label for="name">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" required>
+                                        @error('name')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    </div>
+
+                                    <div class="form-group input-group-adss">
+                                        <label for="status">Status</label>
+                                        <select name="status" id="status" class="form-control" required>
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+                                        </select>
+                                        @error('status')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                    </div>
+
+                                    
+                                </form>
+                                <div class="form-group col-12 d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary w-25">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+

@@ -1,0 +1,612 @@
+
+nav {
+
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    position: relative;
+    height: 60px;
+
+}
+
+.nav_links {
+    list-style: none;
+    gap: 40px;
+}
+
+.oel-logo img {
+    width: 80px;
+    height: auto;
+}
+
+.main-oel {
+    background: #F7F9FF;
+}
+
+.nav_menu_btn {
+    display: none;
+}
+
+.counter_item h1 {
+    font-size: 2.2rem;
+    color: #224099;
+}
+
+.icon_flag {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.students_img {
+    margin-top: -13px;
+}
+
+.oel_main_title {
+    background-color: #070758;
+    padding: .1rem;
+    font-family: Inter;
+}
+
+.navbar_section {
+    position: fixed;
+    top: 30px;
+    width: 100%;
+    background-color: #F7F9FF;
+}
+
+.lady_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nav_menu_btn {
+    display: none;
+}
+
+.sign_flower_ints,
+.sign_flower_int {
+    z-index: -1;
+}
+
+
+.icon_social {
+    position: absolute;
+    z-index: -1;
+    top: -450px;
+}
+
+.footer-title {
+    position: relative;
+}
+
+
+.containers {
+    overflow: hidden;
+}
+
+.marquee_section video {
+    width: 100%;
+    height: auto;
+}
+
+.main_google_int .gz_up h4 {
+    font-weight: 600;
+    font-family: 'Rubik';
+    font-size: 18px;
+}
+
+.nav-sec-title {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.all_media_icon {
+    position: fixed;
+    right: 0px;
+    z-index: 999;
+}
+
+.course_name ul li a img {
+    width: 12px;
+    height: auto;
+}
+
+
+.marquee_section_text marquee {
+    background: orange;
+    padding: 6px;
+}
+
+
+.over_edu_title span {
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    color: #505050;
+}
+
+
+.program_title_honors {
+    margin-top: 30px;
+}
+
+
+.admission-login {
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+
+
+.gallery-title img {
+    width: 100%;
+    height: auto;
+}
+
+.duration-feature span {
+    font-size: 15px;
+}
+
+.accomadation .head-4 p {
+    width: 100% !important;
+}
+
+.form-input {
+    display: flex;
+}
+
+
+
+.rs-testimonial,
+.card {
+    margin-top: 20px;
+}
+
+
+.step-4 ul li a {
+    display: ruby-text;
+}
+
+.program_subdiscipline_list {
+    list-style: none;
+    display: flex;
+}
+
+.tabs-box {
+    margin-top: 10px;
+}
+
+.blog-full,
+.bs-img img {
+    width: 100%;
+    height: auto;
+}
+
+.oel-logo img {
+    width: 80px;
+    height: auto;
+}
+
+.courses_int_img {
+    margin-top: 30px;
+}
+
+.foundation_ttile img {
+    width: 70px;
+    height: 70px;
+    object-fit: scale-down;
+}
+
+/* programs */
+.program_title_honors {
+    height: 600px;
+}
+
+/* check-eligibility */
+.modal-content h4 {
+    padding-top: 10px;
+}
+
+.nav-tabs .nav-link:hover {}
+
+/* university-details */
+.ehl-logo img {
+    width: 80px;
+    height: auto;
+}
+
+.secong-ehl-text {
+    margin-top: 20px;
+}
+
+
+
+/* register */
+.submit-btn {
+    border: none;
+    background: #112958;
+    color: #fff;
+    padding: 10px 50px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.register-box,
+.sec-title {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* contact-us */
+
+.universities_heading {
+    margin-top: 50px;
+}
+
+
+.card-body img {
+    width: 200px;
+    height: auto;
+}
+
+/* model */
+.modal-header button {
+    background: none;
+    font-size: 20px;
+    border: 1px solid #bfbfbf;
+    border-radius: 100%;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+}
+
+/* appply-form */
+.course_card_logo_sec a {
+    /* color: #000; */
+    text-decoration: none;
+}
+
+.img-mx {
+    height: 410px;
+}
+
+
+@media(max-width:1400px) and (min-width:1025px) {
+    .last_search h4 {
+        font-size: 21px;
+    }
+
+    .nav_links {
+        list-style: none;
+        gap: 30px !important;
+    }
+}
+
+@media(max-width:1199px) and (min-width:1025px) {
+    ul.nav_links a {
+        font-size: .6rem;
+    }
+
+    .tab-content {
+        margin-top: 35px;
+    }
+
+    .nav_links .fn {
+        /* background-color: #070758; */
+        font-size: .5rem;
+    }
+}
+
+@media(max-width:1024px) and (min-width:992px) {
+    .tab-content {
+        margin-top: 35px;
+    }
+}
+
+
+@media(max-width:1024px) {
+    .nav_links {
+        list-style: none;
+        gap: 20px;
+    }
+
+    .right-brand-st p {
+        font-size: 13px;
+
+    }
+}
+
+@media(max-width:991px) {
+    nav ul {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        text-align: center;
+        background-color: #070758;
+        gap: 0;
+        overflow: hidden;
+        z-index: 1;
+        padding: 0px 20px;
+
+    }
+
+    ul.nav_links a {
+        font-size: 16px;
+    }
+
+    #nav_links {
+        transition: all .5s linear;
+    }
+
+    nav ul li {
+        border: 1px solid #bfbfbf;
+        padding: 10px;
+    }
+
+    .nav_menu_btn {
+        display: block;
+    }
+
+    .main-oel .nav_links {
+        list-style: none;
+        gap: 0px;
+
+    }
+
+
+    .nav_menu_btn span {
+        border: 1px solid #9999;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .buddy_icon {
+        margin-top: 30px;
+    }
+
+    .main_google_int {
+        margin-top: 30px;
+    }
+
+    .b-flv {
+        flex-direction: column-reverse;
+    }
+
+    .over_edu_title {
+        margin-bottom: 30px;
+    }
+
+    .mission_title_orgo {
+        margin-top: 30px;
+    }
+
+    .courses_int_img {
+        margin-top: 30px !important;
+        width: 100%;
+    }
+
+    .full-direction {
+        flex-direction: column;
+    }
+
+
+    .int_cheating_role {
+        margin-top: 30px;
+    }
+
+    .agriculture_title .agri_sub ul a {
+        font-size: 1rem;
+    }
+
+    .bn-st--student {
+        border-radius: 0px !important;
+        padding: 20px;
+
+    }
+
+    .bn-st--student {
+        flex-direction: column !important;
+    }
+
+    .cn-counselling {
+        text-align: center;
+    }
+
+    .main-brand {
+        flex-direction: column;
+    }
+
+
+    .all_overses_edu .all_img_education_int img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media(max-width:768px) {
+    .form-control {
+        width: 100% !important;
+    }
+
+    .courses_heading_k h1 {
+        font-size: 30px;
+        white-space: nowrap;
+    }
+
+    .fr-home-test {
+        flex-direction: column;
+    }
+
+    .card-body {
+        height: inherit;
+    }
+
+    .marquee_section {
+        margin-top: 0px;
+    }
+
+    ul.nav_links a {
+        font-size: 14px;
+    }
+
+    .main-oel .nav_links {
+        list-style: none;
+        gap: 0;
+        text-align: start;
+    }
+}
+
+@media(max-width:767px) and (min-width:426px) {
+    .courses_int_img img {
+        max-height: 100% !important;
+    }
+
+    .courses_int_img {
+        height: inherit;
+
+    }
+
+    .country-alix {
+        flex-direction: column;
+    }
+
+
+    .main-oel .nav_links {
+        list-style: none;
+        gap: 0;
+        text-align: start;
+    }
+
+    .sub-left {
+        display: flex;
+    }
+
+    .courses_heading_k h1 {
+        font-size: 20px;
+    }
+
+    .courses_heading_k p {
+        font-size: 18px;
+    }
+
+    .marquee_section {
+        margin-top: 0px;
+    }
+
+    .tabs-mp {
+        gap: 5px;
+    }
+
+    .tabing-tab {
+        margin-top: 20px;
+    }
+
+    .tab-content {
+        margin-top: 35px;
+    }
+
+    .connect-text {
+        width: 390px !important;
+        margin: auto;
+    }
+
+    .text-mobi,
+    .noida-title-address {
+        margin-top: 20px;
+    }
+
+    .info-title {
+        width: 390px !important;
+        margin: auto;
+    }
+}
+
+
+@media(max-width:425px) {
+    .connect-text {
+        width: 350px !important;
+        margin: auto;
+    }
+
+    .text-mobi,
+    .noida-title-address {
+        margin-top: 20px;
+    }
+
+    .info-title {
+        width: 350px !important;
+        margin: auto;
+    }
+
+    .courses_int_img img {
+        max-height: 100% !important;
+    }
+
+    .courses_int_img {
+        height: inherit;
+
+    }
+
+    .nav_links {
+        padding: 0;
+    }
+
+    .styled-form,
+    .form-group {
+        box-shadow: inherit !important;
+        margin-bottom: 10px;
+    }
+
+    .courses_heading_k h1 {
+        font-size: 13px;
+    }
+
+    .courses_heading_k p {
+        font-size: 12px;
+    }
+
+    .course_card_logo_sec {
+        flex-direction: column;
+    }
+
+    .airplane-gif img {
+        width: 100%;
+        height: auto;
+    }
+
+    .marquee_section_text marquee {
+        background: orange;
+        padding: 0px;
+    }
+}
+
+@media(max-width:320px) {
+    .connect-text {
+        width: 270px !important;
+        margin: auto;
+    }
+
+    .text-mobi,
+    .noida-title-address {
+        margin-top: 20px;
+    }
+
+    .info-title {
+        width: 270px !important;
+        margin: auto;
+    }
+
+    .location-visit {
+        font-size: 12px;
+    }
+}
