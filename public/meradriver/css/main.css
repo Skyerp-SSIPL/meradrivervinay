@@ -7077,7 +7077,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   pointer-events: auto;
   transform: translate(-50%, 20%) scale(1) !important;
 }
-}
+}   
 
 @media (max-width:425px){
   .main-download-link-app-wdgt, .naukri-swiper-wdgt{
