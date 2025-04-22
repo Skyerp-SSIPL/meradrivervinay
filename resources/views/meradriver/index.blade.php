@@ -442,6 +442,150 @@
                                           </div>
                                     </div>
                                  </div>
+                                 <div class="swiper-slide" style="width: 233.333px; margin-right: 20px;">
+                                    <div class="tuple premium "
+                                       data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
+                                       data-name="Expleo" data-val="3" tabindex="0" id="4666991">
+                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                             class="logoImage"></div>
+                                       <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
+                                          <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
+                                                href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo">Outstation
+                                                drivers</a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star">
+                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                             </span>
+                                             
+                                          </div>
+                                       </div>
+                                    
+                                          <div class="mt-3">
+                                             <li><label for="toggle-login" class="ticker-btn-login" id="cta" style="cursor: pointer;">Book Now</label></li>
+                                          </div>
+                                    </div>
+                                 </div>
+                                 <div class="swiper-slide" style="width: 233.333px; margin-right: 20px;">
+                                    <div class="tuple premium "
+                                       data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
+                                       data-name="Expleo" data-val="3" tabindex="0" id="4666991">
+                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                             class="logoImage"></div>
+                                       <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
+                                          <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
+                                                href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo">Outstation
+                                                drivers</a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star">
+                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                             </span>
+                                             
+                                          </div>
+                                       </div>
+                                    
+                                          <div class="mt-3">
+                                             <li><label for="toggle-login" class="ticker-btn-login" id="cta" style="cursor: pointer;">Book Now</label></li>
+                                          </div>
+                                    </div>
+                                 </div>
+                                 <div class="swiper-slide" style="width: 233.333px; margin-right: 20px;">
+                                    <div class="tuple premium "
+                                       data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
+                                       data-name="Expleo" data-val="3" tabindex="0" id="4666991">
+                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                             class="logoImage"></div>
+                                       <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
+                                          <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
+                                                href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo">Outstation
+                                                drivers</a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star">
+                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                             </span>
+                                             
+                                          </div>
+                                       </div>
+                                    
+                                          <div class="mt-3">
+                                             <li><label for="toggle-login" class="ticker-btn-login" id="cta" style="cursor: pointer;">Book Now</label></li>
+                                          </div>
+                                    </div>
+                                 </div>
+                                 <div class="swiper-slide" style="width: 233.333px; margin-right: 20px;">
+                                    <div class="tuple premium "
+                                       data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
+                                       data-name="Expleo" data-val="3" tabindex="0" id="4666991">
+                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                             class="logoImage"></div>
+                                       <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
+                                          <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
+                                                href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo">Outstation
+                                                drivers</a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star">
+                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                             </span>
+                                             
+                                          </div>
+                                       </div>
+                                    
+                                          <div class="mt-3">
+                                             <li><label for="toggle-login" class="ticker-btn-login" id="cta" style="cursor: pointer;">Book Now</label></li>
+                                          </div>
+                                    </div>
+                                 </div>
+                                 <div class="swiper-slide" style="width: 233.333px; margin-right: 20px;">
+                                    <div class="tuple premium "
+                                       data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
+                                       data-name="Expleo" data-val="3" tabindex="0" id="4666991">
+                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                             class="logoImage"></div>
+                                       <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
+                                          <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
+                                                href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo">Outstation
+                                                drivers</a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star">
+                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                             </span>
+                                             
+                                          </div>
+                                       </div>
+                                    
+                                          <div class="mt-3">
+                                             <li><label for="toggle-login" class="ticker-btn-login" id="cta" style="cursor: pointer;">Book Now</label></li>
+                                          </div>
+                                    </div>
+                                 </div>
+                                 <div class="swiper-slide" style="width: 233.333px; margin-right: 20px;">
+                                    <div class="tuple premium "
+                                       data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
+                                       data-name="Expleo" data-val="3" tabindex="0" id="4666991">
+                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                             class="logoImage"></div>
+                                       <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
+                                          <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
+                                                href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo">Outstation
+                                                drivers</a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star">
+                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                             </span>
+                                             
+                                          </div>
+                                       </div>
+                                    
+                                          <div class="mt-3">
+                                             <li><label for="toggle-login" class="ticker-btn-login" id="cta" style="cursor: pointer;">Book Now</label></li>
+                                          </div>
+                                    </div>
+                                 </div>
                                  
                          
 
@@ -822,6 +966,354 @@
                                        </div>
                                     </div>
                                  </div>
+                                 <div class="swiper-slide" style="width: 265px; margin-right: 20px;">
+                                    <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
+                                       data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
+                                       <div class="imagewrap">
+                                          <img src="img/pages/car_image.png"
+                                             alt="AutoShift Mobility" class="logoImage">
+                                       </div>
+                                       <div class="contentwrap">
+                                          <h3 class="main-4 title" style="-webkit-line-clamp: 1;">
+                                             <a class="compName ellipsis right-arrow"
+                                                href="https://www.meradriver.com/company/autoshift">
+                                                AutoShift Mobility
+                                             </a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                                   class="starImage"></span>
+                                             <span class="main-2 rating">4.0</span>
+                                             <span class="main-2 reviews">890 reviews</span>
+                                          </div>
+                                          <div class="tagswrap">
+                                             <span class="cardtag">Transport</span>
+                                             <span class="cardtag">B2B</span>
+                                             <span class="cardtag">Private</span>
+                                             <span class="cardtag">Fleet Operations</span>
+                                          </div>
+                                       </div>
+                                    </div>
+
+                                    <div class="tuple standard row-2"
+                                       data-href="https://www.meradriver.com/company/driversecure"
+                                       data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
+                                       <div class="imagewrap">
+                                          <img src="img/pages/car_image.png"
+                                             alt="DriverSecure" class="logoImage">
+                                       </div>
+                                       <div class="contentwrap">
+                                          <h3 class="main-4 title" style="-webkit-line-clamp: 1;">
+                                             <a class="compName ellipsis right-arrow"
+                                                href="https://www.meradriver.com/company/driversecure">
+                                                DriverSecure
+                                             </a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                                   class="starImage"></span>
+                                             <span class="main-2 rating">3.9</span>
+                                             <span class="main-2 reviews">430 reviews</span>
+                                          </div>
+                                          <div class="tagswrap">
+                                             <span class="cardtag">Driver Safety</span>
+                                             <span class="cardtag">Corporate</span>
+                                             <span class="cardtag">Tech-Enabled</span>
+                                             <span class="cardtag">Security</span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="swiper-slide" style="width: 265px; margin-right: 20px;">
+                                    <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
+                                       data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
+                                       <div class="imagewrap">
+                                          <img src="img/pages/car_image.png"
+                                             alt="AutoShift Mobility" class="logoImage">
+                                       </div>
+                                       <div class="contentwrap">
+                                          <h3 class="main-4 title" style="-webkit-line-clamp: 1;">
+                                             <a class="compName ellipsis right-arrow"
+                                                href="https://www.meradriver.com/company/autoshift">
+                                                AutoShift Mobility
+                                             </a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                                   class="starImage"></span>
+                                             <span class="main-2 rating">4.0</span>
+                                             <span class="main-2 reviews">890 reviews</span>
+                                          </div>
+                                          <div class="tagswrap">
+                                             <span class="cardtag">Transport</span>
+                                             <span class="cardtag">B2B</span>
+                                             <span class="cardtag">Private</span>
+                                             <span class="cardtag">Fleet Operations</span>
+                                          </div>
+                                       </div>
+                                    </div>
+
+                                    <div class="tuple standard row-2"
+                                       data-href="https://www.meradriver.com/company/driversecure"
+                                       data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
+                                       <div class="imagewrap">
+                                          <img src="img/pages/car_image.png"
+                                             alt="DriverSecure" class="logoImage">
+                                       </div>
+                                       <div class="contentwrap">
+                                          <h3 class="main-4 title" style="-webkit-line-clamp: 1;">
+                                             <a class="compName ellipsis right-arrow"
+                                                href="https://www.meradriver.com/company/driversecure">
+                                                DriverSecure
+                                             </a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                                   class="starImage"></span>
+                                             <span class="main-2 rating">3.9</span>
+                                             <span class="main-2 reviews">430 reviews</span>
+                                          </div>
+                                          <div class="tagswrap">
+                                             <span class="cardtag">Driver Safety</span>
+                                             <span class="cardtag">Corporate</span>
+                                             <span class="cardtag">Tech-Enabled</span>
+                                             <span class="cardtag">Security</span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="swiper-slide" style="width: 265px; margin-right: 20px;">
+                                    <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
+                                       data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
+                                       <div class="imagewrap">
+                                          <img src="img/pages/car_image.png"
+                                             alt="AutoShift Mobility" class="logoImage">
+                                       </div>
+                                       <div class="contentwrap">
+                                          <h3 class="main-4 title" style="-webkit-line-clamp: 1;">
+                                             <a class="compName ellipsis right-arrow"
+                                                href="https://www.meradriver.com/company/autoshift">
+                                                AutoShift Mobility
+                                             </a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                                   class="starImage"></span>
+                                             <span class="main-2 rating">4.0</span>
+                                             <span class="main-2 reviews">890 reviews</span>
+                                          </div>
+                                          <div class="tagswrap">
+                                             <span class="cardtag">Transport</span>
+                                             <span class="cardtag">B2B</span>
+                                             <span class="cardtag">Private</span>
+                                             <span class="cardtag">Fleet Operations</span>
+                                          </div>
+                                       </div>
+                                    </div>
+
+                                    <div class="tuple standard row-2"
+                                       data-href="https://www.meradriver.com/company/driversecure"
+                                       data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
+                                       <div class="imagewrap">
+                                          <img src="img/pages/car_image.png"
+                                             alt="DriverSecure" class="logoImage">
+                                       </div>
+                                       <div class="contentwrap">
+                                          <h3 class="main-4 title" style="-webkit-line-clamp: 1;">
+                                             <a class="compName ellipsis right-arrow"
+                                                href="https://www.meradriver.com/company/driversecure">
+                                                DriverSecure
+                                             </a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                                   class="starImage"></span>
+                                             <span class="main-2 rating">3.9</span>
+                                             <span class="main-2 reviews">430 reviews</span>
+                                          </div>
+                                          <div class="tagswrap">
+                                             <span class="cardtag">Driver Safety</span>
+                                             <span class="cardtag">Corporate</span>
+                                             <span class="cardtag">Tech-Enabled</span>
+                                             <span class="cardtag">Security</span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="swiper-slide" style="width: 265px; margin-right: 20px;">
+                                    <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
+                                       data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
+                                       <div class="imagewrap">
+                                          <img src="img/pages/car_image.png"
+                                             alt="AutoShift Mobility" class="logoImage">
+                                       </div>
+                                       <div class="contentwrap">
+                                          <h3 class="main-4 title" style="-webkit-line-clamp: 1;">
+                                             <a class="compName ellipsis right-arrow"
+                                                href="https://www.meradriver.com/company/autoshift">
+                                                AutoShift Mobility
+                                             </a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                                   class="starImage"></span>
+                                             <span class="main-2 rating">4.0</span>
+                                             <span class="main-2 reviews">890 reviews</span>
+                                          </div>
+                                          <div class="tagswrap">
+                                             <span class="cardtag">Transport</span>
+                                             <span class="cardtag">B2B</span>
+                                             <span class="cardtag">Private</span>
+                                             <span class="cardtag">Fleet Operations</span>
+                                          </div>
+                                       </div>
+                                    </div>
+
+                                    <div class="tuple standard row-2"
+                                       data-href="https://www.meradriver.com/company/driversecure"
+                                       data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
+                                       <div class="imagewrap">
+                                          <img src="img/pages/car_image.png"
+                                             alt="DriverSecure" class="logoImage">
+                                       </div>
+                                       <div class="contentwrap">
+                                          <h3 class="main-4 title" style="-webkit-line-clamp: 1;">
+                                             <a class="compName ellipsis right-arrow"
+                                                href="https://www.meradriver.com/company/driversecure">
+                                                DriverSecure
+                                             </a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                                   class="starImage"></span>
+                                             <span class="main-2 rating">3.9</span>
+                                             <span class="main-2 reviews">430 reviews</span>
+                                          </div>
+                                          <div class="tagswrap">
+                                             <span class="cardtag">Driver Safety</span>
+                                             <span class="cardtag">Corporate</span>
+                                             <span class="cardtag">Tech-Enabled</span>
+                                             <span class="cardtag">Security</span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="swiper-slide" style="width: 265px; margin-right: 20px;">
+                                    <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
+                                       data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
+                                       <div class="imagewrap">
+                                          <img src="img/pages/car_image.png"
+                                             alt="AutoShift Mobility" class="logoImage">
+                                       </div>
+                                       <div class="contentwrap">
+                                          <h3 class="main-4 title" style="-webkit-line-clamp: 1;">
+                                             <a class="compName ellipsis right-arrow"
+                                                href="https://www.meradriver.com/company/autoshift">
+                                                AutoShift Mobility
+                                             </a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                                   class="starImage"></span>
+                                             <span class="main-2 rating">4.0</span>
+                                             <span class="main-2 reviews">890 reviews</span>
+                                          </div>
+                                          <div class="tagswrap">
+                                             <span class="cardtag">Transport</span>
+                                             <span class="cardtag">B2B</span>
+                                             <span class="cardtag">Private</span>
+                                             <span class="cardtag">Fleet Operations</span>
+                                          </div>
+                                       </div>
+                                    </div>
+
+                                    <div class="tuple standard row-2"
+                                       data-href="https://www.meradriver.com/company/driversecure"
+                                       data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
+                                       <div class="imagewrap">
+                                          <img src="img/pages/car_image.png"
+                                             alt="DriverSecure" class="logoImage">
+                                       </div>
+                                       <div class="contentwrap">
+                                          <h3 class="main-4 title" style="-webkit-line-clamp: 1;">
+                                             <a class="compName ellipsis right-arrow"
+                                                href="https://www.meradriver.com/company/driversecure">
+                                                DriverSecure
+                                             </a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                                   class="starImage"></span>
+                                             <span class="main-2 rating">3.9</span>
+                                             <span class="main-2 reviews">430 reviews</span>
+                                          </div>
+                                          <div class="tagswrap">
+                                             <span class="cardtag">Driver Safety</span>
+                                             <span class="cardtag">Corporate</span>
+                                             <span class="cardtag">Tech-Enabled</span>
+                                             <span class="cardtag">Security</span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="swiper-slide" style="width: 265px; margin-right: 20px;">
+                                    <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
+                                       data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
+                                       <div class="imagewrap">
+                                          <img src="img/pages/car_image.png"
+                                             alt="AutoShift Mobility" class="logoImage">
+                                       </div>
+                                       <div class="contentwrap">
+                                          <h3 class="main-4 title" style="-webkit-line-clamp: 1;">
+                                             <a class="compName ellipsis right-arrow"
+                                                href="https://www.meradriver.com/company/autoshift">
+                                                AutoShift Mobility
+                                             </a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                                   class="starImage"></span>
+                                             <span class="main-2 rating">4.0</span>
+                                             <span class="main-2 reviews">890 reviews</span>
+                                          </div>
+                                          <div class="tagswrap">
+                                             <span class="cardtag">Transport</span>
+                                             <span class="cardtag">B2B</span>
+                                             <span class="cardtag">Private</span>
+                                             <span class="cardtag">Fleet Operations</span>
+                                          </div>
+                                       </div>
+                                    </div>
+
+                                    <div class="tuple standard row-2"
+                                       data-href="https://www.meradriver.com/company/driversecure"
+                                       data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
+                                       <div class="imagewrap">
+                                          <img src="img/pages/car_image.png"
+                                             alt="DriverSecure" class="logoImage">
+                                       </div>
+                                       <div class="contentwrap">
+                                          <h3 class="main-4 title" style="-webkit-line-clamp: 1;">
+                                             <a class="compName ellipsis right-arrow"
+                                                href="https://www.meradriver.com/company/driversecure">
+                                                DriverSecure
+                                             </a>
+                                          </h3>
+                                          <div class="additionalDetails">
+                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                                   class="starImage"></span>
+                                             <span class="main-2 rating">3.9</span>
+                                             <span class="main-2 reviews">430 reviews</span>
+                                          </div>
+                                          <div class="tagswrap">
+                                             <span class="cardtag">Driver Safety</span>
+                                             <span class="cardtag">Corporate</span>
+                                             <span class="cardtag">Tech-Enabled</span>
+                                             <span class="cardtag">Security</span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
 
 
                               </div>
@@ -939,7 +1431,7 @@
                                              <div class="feature-card-image-overlay"></div>
                                              <div class="feature-card-date-rewards-container">
 
-<div class="ribbon-2">
+                                                <div class="ribbon-2">
                                                    <p class="rewards-label">Hiring</p>
                                                 </div>
                                              </div>
@@ -1208,7 +1700,7 @@
                                              
                                           </div>
 
-</div>
+                                      </div>
                                     </div>
                                  </div>
                                  <div class="swiper-slide tupple swiper-slide-next"
@@ -1292,7 +1784,7 @@
                                              <div class="feature-card-image-overlay"></div>
                                              <div class="feature-card-date-rewards-container">
 
-<div class="ribbon-2">
+                                                 <div class="ribbon-2">
                                                    <p class="rewards-label">Hiring</p>
                                                 </div>
                                              </div>
