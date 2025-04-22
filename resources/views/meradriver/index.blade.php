@@ -203,8 +203,7 @@
                                           <img class="ntc__chip-arrow" src="{{asset('meradriver')}}/img/pages/arrow.2b55815e.svg"
                                              alt="arrow-icon">
                                        </div>
-                                       <span class="industry-company">50+ drivers required for delivery & finance
-                                          roles</span>
+                                       <span class="industry-company">50+ drivers required for delivery </span>
                                           <div class="industry_widget_logos">
                                           <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola3.gif"
                                                 class="companyLogo" alt="" height="" width=""></div>
@@ -232,7 +231,7 @@
                                           <img class="ntc__chip-arrow" src="{{asset('meradriver')}}/img/pages/arrow.2b55815e.svg"
                                              alt="arrow-icon">
                                        </div>
-                                       <span class="industry-company">200+ drivers hiring for retail & logistics</span>
+                                       <span class="industry-company">200+ drivers hiring </span>
                                        <div class="industry_widget_logos">
                                           <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola4.gif"
                                                 class="companyLogo" alt="" height="" width=""></div>
