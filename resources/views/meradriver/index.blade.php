@@ -747,7 +747,7 @@
                                        data-href="https://www.naukri.com/meradriver-overview-9999999?src=standardLogo"
                                        data-name="MeraDriver" data-val="0" tabindex="0" id="9999999">
                                        <div class="imagewrap">
-                                            <img src="{{asset('meradriver')}}/img/pages/logo97.gif"
+                                            <img src="{{asset('meradriver')}}/img/pages/logo88.gif"
                                              class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -807,7 +807,7 @@
                                        data-href="https://www.meradriver.com/company/meradriver-tech"
                                        data-name="MeraDriver Technologies" data-val="1" tabindex="0" id="mdtech1">
                                        <div class="imagewrap">
-                                          <img src="{{asset('meradriver')}}/img/pages/logo97.gif"
+                                             <img src="{{asset('meradriver')}}/img/pages/logo90.gif"
                                              class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -985,7 +985,7 @@
                                     <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
                                        data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
                                        <div class="imagewrap">
-                                          <img src="{{asset('meradriver')}}/img/pages/logo97.gif"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo68.gif"
                                              alt="AutoShift Mobility" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
