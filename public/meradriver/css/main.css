@@ -7400,5 +7400,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 .form-content h2{
   font-size: 20px;
 }
+git 
 
-
+.nav-menu a:hover{
+  color: #49e4fa;
+}
