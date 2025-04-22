@@ -2214,6 +2214,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   .section-title p br {
     display: none;
   }
+
 }
 
 .p1-gradient-bg, .banner-area .overlay-bg, .sidebar .single-slidebar .cat-list li:hover, .callto-action-area, .single-price:hover .price-bottom, .single-service:hover, .submit-right, .submit-left, .contact-btns, .form-area .primary-btn {
@@ -3609,6 +3610,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   .team-area .thumb div p {
     bottom: -15px;
   }
+
 }
 
 .team-area .thumb:hover div {
@@ -6997,6 +6999,12 @@ body.mobile-nav-active #mobile-nav-toggle {
     position: inherit !important;
    
 }
+#toggle-login:checked ~ #login-form {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 20%) scale(1) !important;
+}
 }
 
 
@@ -7062,6 +7070,12 @@ body.mobile-nav-active #mobile-nav-toggle {
   transform: translate(0%, 0%) !important;
   position: inherit !important;
  
+}
+#toggle-login:checked ~ #login-form {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 20%) scale(1) !important;
 }
 }
 
@@ -7142,6 +7156,12 @@ body.mobile-nav-active #mobile-nav-toggle {
   position: inherit !important;
  
 }
+#toggle-login:checked ~ #login-form {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 20%) scale(1) !important;
+}
 }
 
 /* #register-form,
@@ -7164,6 +7184,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     width: 90% !important;
     top: 10% !important;
   }
+  
 }
 
 /* .footer-area {
@@ -7399,8 +7420,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .form-content h2{
   font-size: 20px;
-}
-git 
+} 
 
 .nav-menu a:hover{
   color: #49e4fa;
