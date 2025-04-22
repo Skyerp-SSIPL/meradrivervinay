@@ -1909,12 +1909,12 @@
                            <a class="wdgt-app-icon"
                               href="https://play.google.com/store/apps/details?id=com.meradriver.app"
                               title="Get it on Google Play" target="_blank">
-                              <img src="img/pages/car_image.png" height="32" width="109"
+                              <img src="{{asset('meradriver')}}/img/pages/GplayOneThemeHd.png" height="32" width="109"
                                  alt="Google Play">
                            </a>
                            <a class="wdgt-app-icon" href="https://apps.apple.com/in/app/meradriver/id1234567890"
                               title="Download on App Store" target="_blank">
-                              <img src="https://meradriver.com/public/frontend/assets/common-image/app-mer-driver.png" height="32" width="109"
+                              <img src="{{asset('meradriver')}}/img/pages/AppstoreOneThemeHd.png" height="32" width="109"
                                  alt="App Store">
                            </a>
                         </div>

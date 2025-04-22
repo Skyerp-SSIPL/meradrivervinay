@@ -5591,7 +5591,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   cursor: pointer;
 }
 .download-wdgt-footer .wdgt-download-app-link .wdgt-app-icon img {
-  height: 109px;
+  height: 32px;
   width: 109px;
   vertical-align: middle;
 }
