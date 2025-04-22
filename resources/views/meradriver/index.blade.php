@@ -60,7 +60,7 @@
             <div class="row">
                <div class="col-lg-12">
                   <div class="single-banner">
-                     <img src="{{asset('meradriver')}}/img/help_v1.png" alt="help">
+                     <img src="{{asset('meradriver')}}/img/pages/Group 1.png" alt="help">
                   </div>
                </div>
             </div>
@@ -97,14 +97,13 @@
                                              alt="arrow-icon">
                                        </div>
                                        <div class="industry_widget_logos">
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/ola.png"
-                                                class="companyLogo" alt="Ola">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/uber.png"
-                                                class="companyLogo" alt="Uber">
-                                          </div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola8.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola9.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/loa10.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                         
                                        </div>
                                        <span class="industry-company">1.8K drivers needed now</span>
                                     </span>
@@ -124,18 +123,15 @@
                                        </div>
                                        <span class="industry-company">2.3K+ drivers hiring</span>
                                        <div class="industry_widget_logos">
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola4.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola2.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola8.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
                                           <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/delhivery.png"
-                                                class="companyLogo" alt="Delhivery">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/ekart.png"
-                                                class="companyLogo" alt="Ekart">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/amazon.png"
-                                                class="companyLogo" alt="Amazon">
-                                          </div>
+                                            <img src="{{asset('meradriver')}}/img/pages/ola.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
                                        </div>
                                     </span>
                                  </div>
@@ -154,22 +150,15 @@
                                        </div>
                                        <span class="industry-company">500+ drivers required now</span>
                                        <div class="industry_widget_logos">
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola4.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola7.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola8.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
                                           <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/srt.png"
-                                                class="companyLogo" alt="SRT Logistics">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/sharma.png"
-                                                class="companyLogo" alt="Sharma Transport">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/mahindra-logistics.png"
-                                                class="companyLogo" alt="Mahindra Logistics">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/vrln.png"
-                                                class="companyLogo" alt="VRL Logistics">
-                                          </div>
+                                            <img src="{{asset('meradriver')}}/img/pages/ola.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
                                        </div>
                                     </span>
                                  </div>
@@ -188,22 +177,15 @@
                                        </div>
                                        <span class="industry-company">150+ drivers hiring</span>
                                        <div class="industry_widget_logos">
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola9.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola10.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola11.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
                                           <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/taj.png"
-                                                class="companyLogo" alt="Taj Hotels">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/itc.png"
-                                                class="companyLogo" alt="ITC Hotels">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/marriott.png"
-                                                class="companyLogo" alt="Marriott">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/radisson.png"
-                                                class="companyLogo" alt="Radisson Blu">
-                                          </div>
+                                            <img src="{{asset('meradriver')}}/img/pages/ola1.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
                                        </div>
                                     </span>
                                  </div>
@@ -223,23 +205,16 @@
                                        </div>
                                        <span class="industry-company">50+ drivers required for delivery & finance
                                           roles</span>
-                                       <div class="industry_widget_logos">
+                                          <div class="industry_widget_logos">
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola3.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola2.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola1.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
                                           <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/phonepe.png"
-                                                class="companyLogo" alt="PhonePe">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/paytm.png"
-                                                class="companyLogo" alt="Paytm">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/razorpay.png"
-                                                class="companyLogo" alt="Razorpay">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/softbank.png"
-                                                class="companyLogo" alt="SoftBank">
-                                          </div>
+                                            <img src="{{asset('meradriver')}}/img/pages/ola.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
                                        </div>
                                     </span>
                                  </div>
@@ -259,22 +234,15 @@
                                        </div>
                                        <span class="industry-company">200+ drivers hiring for retail & logistics</span>
                                        <div class="industry_widget_logos">
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola4.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola7.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola9.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
                                           <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/dmart.png"
-                                                class="companyLogo" alt="DMart">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/flipkart.png"
-                                                class="companyLogo" alt="Flipkart">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/reliance.png"
-                                                class="companyLogo" alt="Reliance Retail">
-                                          </div>
-                                          <div class="chip-image">
-                                             <img src="https://www.meradriver.com/assets/logos/bigbasket.png"
-                                                class="companyLogo" alt="BigBasket">
-                                          </div>
+                                            <img src="{{asset('meradriver')}}/img/pages/ola.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
                                        </div>
                                     </span>
                                  </div>
@@ -302,6 +270,54 @@
                                                 class="companyLogo" alt="" height="" width=""></div>
                                           <div class="chip-image"><img
                                                 src="https://img.naukimg.com/logo_images/groups/v1/4961339.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                       </div>
+                                    </span>
+                                 </div>
+                                 <div class="swiper-slide tupple" style="width: 233.123px; margin-right: 16px;">
+                                    <span class="industry-card "
+                                       link="https://www.naukri.com/startup-companies-in-india-cat103?title=Startups+actively+hiring&amp;src=discovery_orgExploreCompanies_homepage_srch"
+                                       index="7" name="Startups">
+                                       <div class="chip-heading-div"><a class="industry-name"
+                                             href="https://www.naukri.com/startup-companies-in-india-cat103?title=Startups+actively+hiring&amp;src=discovery_orgExploreCompanies_homepage_srch">Startups</a>
+                                          <img class="ntc__chip-arrow" src="{{asset('meradriver')}}/img/pages/arrow.2b55815e.svg"
+                                             alt="arrow-icon">
+                                       </div>
+                                       <span class="industry-company">624
+                                          are actively hiring</span>
+                                          <div class="industry_widget_logos">
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola3.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola2.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola1.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image">
+                                            <img src="{{asset('meradriver')}}/img/pages/ola.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                       </div>
+                                    </span>
+                                 </div>
+                                  <div class="swiper-slide tupple" style="width: 233.123px; margin-right: 16px;">
+                                    <span class="industry-card "
+                                       link="https://www.naukri.com/startup-companies-in-india-cat103?title=Startups+actively+hiring&amp;src=discovery_orgExploreCompanies_homepage_srch"
+                                       index="7" name="Startups">
+                                       <div class="chip-heading-div"><a class="industry-name"
+                                             href="https://www.naukri.com/startup-companies-in-india-cat103?title=Startups+actively+hiring&amp;src=discovery_orgExploreCompanies_homepage_srch">Startups</a>
+                                          <img class="ntc__chip-arrow" src="{{asset('meradriver')}}/img/pages/arrow.2b55815e.svg"
+                                             alt="arrow-icon">
+                                       </div>
+                                       <span class="industry-company">624
+                                          are actively hiring</span>
+                                       <div class="industry_widget_logos">
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola11.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola10.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image"><img src="{{asset('meradriver')}}/img/pages/ola9.gif"
+                                                class="companyLogo" alt="" height="" width=""></div>
+                                          <div class="chip-image">
+                                            <img src="{{asset('meradriver')}}/img/pages/ola.gif"
                                                 class="companyLogo" alt="" height="" width=""></div>
                                        </div>
                                     </span>
@@ -349,7 +365,7 @@
                                        data-href="https://www.naukri.com/amazon-overview-398058?src=premiumLogo"
                                        data-name="Amazon" data-val="0" tabindex="0" id="398058">
                                        <div class="imagewrap">
-                                          <img src="/img/pages/service_1.png" alt="Amazon" class="logoImage">
+                                          <img src="{{asset('meradriver')}}/img/pages/service_1.png" alt="Amazon" class="logoImage">
                                        </div>
                                        <div class="contentwrap" style="background-color: rgba(244, 157, 44, 0.03);">
                                           <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
@@ -358,7 +374,7 @@
                                           </h3>
                                           <div class="additionalDetails">
                                              <span class="star">
-                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/car_image.png" alt="rating" class="starImage">
                                              </span>
 
                                           </div>
@@ -375,7 +391,7 @@
                                        data-href="https://www.naukri.com/cognizant-overview-4156?src=premiumLogo"
                                        data-name="Cognizant" data-val="1" tabindex="0" id="4156">
                                        <div class="imagewrap">
-                                          <img src="img/pages/service_2.png" alt="Cognizant" class="logoImage">
+                                          <img src="{{asset('meradriver')}}/img/pages/service_2.png" alt="Cognizant" class="logoImage">
                                        </div>
                                        <div class="contentwrap" style="background-color: rgba(11, 46, 134, 0.03);">
                                           <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
@@ -383,7 +399,7 @@
                                                 drivers</a>
                                           </h3>
                                           <div class="additionalDetails"><span class="star">
-                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/car_image.png" alt="rating" class="starImage">
                                              </span>
                                              
                                           </div>
@@ -398,7 +414,7 @@
                                     <div class="tuple premium "
                                        data-href="https://www.naukri.com/hitachi-energy-overview-5935206?src=premiumLogo"
                                        data-name="Hitachi Energy" data-val="2" tabindex="0" id="5935206">
-                                       <div class="imagewrap"><img src="img/pages/service_3.png" alt="Hitachi Energy"
+                                       <div class="imagewrap"><img src="{{asset('meradriver')}}/img/pages/service_3.png" alt="Hitachi Energy"
                                              class="logoImage"></div>
                                        <div class="contentwrap" style="background-color: rgba(255, 0, 42, 0.03);">
                                           <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
@@ -407,7 +423,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails"><span class="star">
-                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/car_image.png" alt="rating" class="starImage">
                                              </span>
                                            
                                           </div>
@@ -422,7 +438,7 @@
                                     <div class="tuple premium "
                                        data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
                                        data-name="Expleo" data-val="3" tabindex="0" id="4666991">
-                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                       <div class="imagewrap"><img src="{{asset('meradriver')}}/img/pages/service_4.png" alt="Expleo"
                                              class="logoImage"></div>
                                        <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
                                           <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
@@ -431,7 +447,7 @@
                                           </h3>
                                           <div class="additionalDetails">
                                              <span class="star">
-                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/car_image.png" alt="rating" class="starImage">
                                              </span>
                                              
                                           </div>
@@ -446,7 +462,7 @@
                                     <div class="tuple premium "
                                        data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
                                        data-name="Expleo" data-val="3" tabindex="0" id="4666991">
-                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                       <div class="imagewrap"><img src="{{asset('meradriver')}}/img/pages/service_4.png" alt="Expleo"
                                              class="logoImage"></div>
                                        <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
                                           <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
@@ -455,7 +471,7 @@
                                           </h3>
                                           <div class="additionalDetails">
                                              <span class="star">
-                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/car_image.png" alt="rating" class="starImage">
                                              </span>
                                              
                                           </div>
@@ -470,7 +486,7 @@
                                     <div class="tuple premium "
                                        data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
                                        data-name="Expleo" data-val="3" tabindex="0" id="4666991">
-                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                       <div class="imagewrap"><img src="{{asset('meradriver')}}/img/pages/service_4.png" alt="Expleo"
                                              class="logoImage"></div>
                                        <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
                                           <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
@@ -479,7 +495,7 @@
                                           </h3>
                                           <div class="additionalDetails">
                                              <span class="star">
-                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/car_image.png" alt="rating" class="starImage">
                                              </span>
                                              
                                           </div>
@@ -494,7 +510,7 @@
                                     <div class="tuple premium "
                                        data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
                                        data-name="Expleo" data-val="3" tabindex="0" id="4666991">
-                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                       <div class="imagewrap"><img src="{{asset('meradriver')}}/img/pages/service_4.png" alt="Expleo"
                                              class="logoImage"></div>
                                        <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
                                           <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
@@ -503,7 +519,7 @@
                                           </h3>
                                           <div class="additionalDetails">
                                              <span class="star">
-                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/car_image.png" alt="rating" class="starImage">
                                              </span>
                                              
                                           </div>
@@ -518,7 +534,7 @@
                                     <div class="tuple premium "
                                        data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
                                        data-name="Expleo" data-val="3" tabindex="0" id="4666991">
-                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                       <div class="imagewrap"><img src="{{asset('meradriver')}}/img/pages/service_4.png" alt="Expleo"
                                              class="logoImage"></div>
                                        <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
                                           <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
@@ -527,7 +543,7 @@
                                           </h3>
                                           <div class="additionalDetails">
                                              <span class="star">
-                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/car_image.png" alt="rating" class="starImage">
                                              </span>
                                              
                                           </div>
@@ -542,7 +558,7 @@
                                     <div class="tuple premium "
                                        data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
                                        data-name="Expleo" data-val="3" tabindex="0" id="4666991">
-                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                       <div class="imagewrap"><img src="{{asset('meradriver')}}/img/pages/service_4.png" alt="Expleo"
                                              class="logoImage"></div>
                                        <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
                                           <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
@@ -551,7 +567,7 @@
                                           </h3>
                                           <div class="additionalDetails">
                                              <span class="star">
-                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/car_image.png" alt="rating" class="starImage">
                                              </span>
                                              
                                           </div>
@@ -566,7 +582,7 @@
                                     <div class="tuple premium "
                                        data-href="https://www.naukri.com/expleo-overview-4666991?src=premiumLogo"
                                        data-name="Expleo" data-val="3" tabindex="0" id="4666991">
-                                       <div class="imagewrap"><img src="img/pages/service_4.png" alt="Expleo"
+                                       <div class="imagewrap"><img src="{{asset('meradriver')}}/img/pages/service_4.png" alt="Expleo"
                                              class="logoImage"></div>
                                        <div class="contentwrap" style="background-color: rgba(105, 70, 196, 0.03);">
                                           <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
@@ -575,7 +591,7 @@
                                           </h3>
                                           <div class="additionalDetails">
                                              <span class="star">
-                                                <img src="img/pages/car_image.png" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/car_image.png" alt="rating" class="starImage">
                                              </span>
                                              
                                           </div>
@@ -620,7 +636,7 @@
                      <div class="role-collection-wdgt">
                         <div class="card-container">
                            <div class="left-section">
-                              <img src="img/pages/car_image.png" class="role-img"
+                              <img src="{{asset('meradriver')}}/img/pages/role-collection-ot.png" class="role-img"
                                  alt="meradriver role-collection" height="175" width="389">
                               <p class="heading">Explore Driving Roles Near You</p>
                               <p class="sub-heading">Choose a role and see job openings that match your experience!</p>
@@ -732,7 +748,7 @@
                                        data-href="https://www.naukri.com/meradriver-overview-9999999?src=standardLogo"
                                        data-name="MeraDriver" data-val="0" tabindex="0" id="9999999">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png" alt="MeraDriver"
+                                            <img src="{{asset('meradriver')}}/img/pages/logo97.gif"
                                              class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -742,7 +758,7 @@
                                           </h3>
                                           <div class="additionalDetails">
                                              <span class="star">
-                                                <img src="img/pages/star.svg" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating" class="starImage">
                                              </span>
                                              <span class="main-2 rating">4.5</span>
                                              <span class="main-2 reviews">1.2K+ reviews</span>
@@ -760,7 +776,7 @@
                                        data-href="https://www.naukri.com/meradriver-fleet-overview-9999998?src=standardLogo"
                                        data-name="MeraDriver Fleet Services" data-val="1" tabindex="0" id="9999998">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                           <img src="{{asset('meradriver')}}/img/pages/logo32.gif"
                                              alt="MeraDriver Fleet Services" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -792,7 +808,7 @@
                                        data-href="https://www.meradriver.com/company/meradriver-tech"
                                        data-name="MeraDriver Technologies" data-val="1" tabindex="0" id="mdtech1">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png" alt="MeraDriver"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo97.gif"
                                              class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -803,7 +819,7 @@
                                           </h3>
                                           <div class="additionalDetails">
                                              <span class="star">
-                                                <img src="img/pages/star.svg" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating" class="starImage">
                                              </span>
                                              <span class="main-2 rating">4.5</span>
                                              <span class="main-2 reviews">980 reviews</span>
@@ -822,7 +838,7 @@
                                        data-href="https://www.meradriver.com/company/roadrunners"
                                        data-name="RoadRunners Inc." data-val="2" tabindex="0" id="rrinc2">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                           <img src="{{asset('meradriver')}}/img/pages/logo88.gif"
                                              alt="RoadRunners Inc." class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -833,7 +849,7 @@
                                           </h3>
                                           <div class="additionalDetails">
                                              <span class="star">
-                                                <img src="img/pages/star.svg" alt="rating" class="starImage">
+                                                <img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating" class="starImage">
                                              </span>
                                              <span class="main-2 rating">4.2</span>
                                              <span class="main-2 reviews">760 reviews</span>
@@ -854,7 +870,7 @@
                                        data-href="https://www.meradriver.com/company/meradriver-solutions"
                                        data-name="MeraDriver Solutions" data-val="8" tabindex="0" id="md-008">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                            <img src="{{asset('meradriver')}}/img/pages/logo78.gif"
                                              alt="MeraDriver" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -865,7 +881,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">4.6</span>
                                              <span class="main-2 reviews">1.2K+ reviews</span>
@@ -883,7 +899,7 @@
                                        data-href="https://www.meradriver.com/company/rapidgo" data-name="RapidGo Fleet"
                                        data-val="9" tabindex="0" id="md-009">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                        <img src="{{asset('meradriver')}}/img/pages/logo68.gif"
                                              alt="RapidGo" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -894,7 +910,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">4.3</span>
                                              <span class="main-2 reviews">620 reviews</span>
@@ -912,7 +928,7 @@
                                     <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
                                        data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                           <img src="{{asset('meradriver')}}/img/pages/logo90.gif"
                                              alt="AutoShift Mobility" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -923,7 +939,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">4.0</span>
                                              <span class="main-2 reviews">890 reviews</span>
@@ -941,7 +957,7 @@
                                        data-href="https://www.meradriver.com/company/driversecure"
                                        data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                            <img src="{{asset('meradriver')}}/img/pages/logo91.gif"
                                              alt="DriverSecure" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -952,7 +968,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">3.9</span>
                                              <span class="main-2 reviews">430 reviews</span>
@@ -970,7 +986,7 @@
                                     <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
                                        data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo97.gif"
                                              alt="AutoShift Mobility" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -981,7 +997,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">4.0</span>
                                              <span class="main-2 reviews">890 reviews</span>
@@ -999,7 +1015,7 @@
                                        data-href="https://www.meradriver.com/company/driversecure"
                                        data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo69.gif"
                                              alt="DriverSecure" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -1010,7 +1026,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">3.9</span>
                                              <span class="main-2 reviews">430 reviews</span>
@@ -1028,7 +1044,7 @@
                                     <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
                                        data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo91.gif"
                                              alt="AutoShift Mobility" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -1039,7 +1055,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">4.0</span>
                                              <span class="main-2 reviews">890 reviews</span>
@@ -1057,7 +1073,7 @@
                                        data-href="https://www.meradriver.com/company/driversecure"
                                        data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo90.gif"
                                              alt="DriverSecure" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -1068,7 +1084,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">3.9</span>
                                              <span class="main-2 reviews">430 reviews</span>
@@ -1086,7 +1102,7 @@
                                     <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
                                        data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo88.gif"
                                              alt="AutoShift Mobility" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -1097,7 +1113,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">4.0</span>
                                              <span class="main-2 reviews">890 reviews</span>
@@ -1115,7 +1131,7 @@
                                        data-href="https://www.meradriver.com/company/driversecure"
                                        data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo78.gif"
                                              alt="DriverSecure" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -1126,7 +1142,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">3.9</span>
                                              <span class="main-2 reviews">430 reviews</span>
@@ -1144,7 +1160,7 @@
                                     <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
                                        data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo68.gif"
                                              alt="AutoShift Mobility" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -1155,7 +1171,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">4.0</span>
                                              <span class="main-2 reviews">890 reviews</span>
@@ -1173,7 +1189,7 @@
                                        data-href="https://www.meradriver.com/company/driversecure"
                                        data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo66.gif"
                                              alt="DriverSecure" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -1184,7 +1200,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">3.9</span>
                                              <span class="main-2 reviews">430 reviews</span>
@@ -1202,7 +1218,7 @@
                                     <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
                                        data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo57.gif"
                                              alt="AutoShift Mobility" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -1213,7 +1229,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">4.0</span>
                                              <span class="main-2 reviews">890 reviews</span>
@@ -1231,7 +1247,7 @@
                                        data-href="https://www.meradriver.com/company/driversecure"
                                        data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                          <img src="{{asset('meradriver')}}img/pages/logo46.gif"
                                              alt="DriverSecure" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -1242,7 +1258,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">3.9</span>
                                              <span class="main-2 reviews">430 reviews</span>
@@ -1260,7 +1276,7 @@
                                     <div class="tuple standard" data-href="https://www.meradriver.com/company/autoshift"
                                        data-name="AutoShift Mobility" data-val="10" tabindex="0" id="md-010">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo45.gif"
                                              alt="AutoShift Mobility" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -1271,7 +1287,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">4.0</span>
                                              <span class="main-2 reviews">890 reviews</span>
@@ -1289,7 +1305,7 @@
                                        data-href="https://www.meradriver.com/company/driversecure"
                                        data-name="DriverSecure" data-val="11" tabindex="0" id="md-011">
                                        <div class="imagewrap">
-                                          <img src="img/pages/car_image.png"
+                                          <img src="{{asset('meradriver')}}/img/pages/logo32.gif"
                                              alt="DriverSecure" class="logoImage">
                                        </div>
                                        <div class="contentwrap">
@@ -1300,7 +1316,7 @@
                                              </a>
                                           </h3>
                                           <div class="additionalDetails">
-                                             <span class="star"><img src="img/pages/star.svg" alt="rating"
+                                             <span class="star"><img src="{{asset('meradriver')}}/img/pages/star.svg" alt="rating"
                                                    class="starImage"></span>
                                              <span class="main-2 rating">3.9</span>
                                              <span class="main-2 reviews">430 reviews</span>
@@ -1348,7 +1364,7 @@
                      <div class="naukri-swiper-wdgt naukri-events-swiper">
                         <div class="logo-container">
                            <h4 class="heading">Happy Drivers</h4>
-                           <img src="https://static.naukimg.com/s/0/0/i/Events/eventsSwiperLeft-ot.png" class="logo"
+                           <img src="{{asset('meradriver')}}/img/pages/Isolation_Mode.png" class="logo"
                               alt="swiper placeholder" height="181" width="180">
                         </div>
                         <div class="swiper-box" style="width: 700px;">
@@ -1360,8 +1376,7 @@
                                     <div class="feature-card-container desktop-homepage-events-wdgt">
                                        <div class="feature-card-header-image-container">
                                           <div class="feature-card-image-container">
-                                             <img
-                                                src="https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/cba_srvcs/contest_banner_2411.jpg"
+                                             <img src="{{asset('meradriver')}}/img/pages/man-car-driving.jpg"
                                                 class="feature-card-image" alt="feature-card" height="" width="">
                                              <div class="feature-card-image-overlay"></div>
                                              <div class="feature-card-date-rewards-container">
@@ -1425,8 +1440,8 @@
                                     <div class="feature-card-container desktop-homepage-events-wdgt">
                                        <div class="feature-card-header-image-container">
                                           <div class="feature-card-image-container">
-                                             <img
-                                                src="https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/cba_srvcs/contest_banner_2106.jpg"
+                                          
+                                          <img src="{{asset('meradriver')}}/img/pages/driver2.jpg"
                                                 class="feature-card-image" alt="feature-card" height="" width="">
                                              <div class="feature-card-image-overlay"></div>
                                              <div class="feature-card-date-rewards-container">
@@ -1497,8 +1512,7 @@
                                     <div class="feature-card-container desktop-homepage-events-wdgt">
                                        <div class="feature-card-header-image-container">
                                           <div class="feature-card-image-container">
-                                             <img
-                                                src="https://do-hackathon-company-assets-prod.s3.ap-southeast-1.amazonaws.com/firstsrc_sol/contest_banner_2381.jpg"
+                                             <img src="{{asset('meradriver')}}/img/pages/driver3.jpg"
                                                 class="feature-card-image" alt="feature-card" height="" width="">
                                              <div class="feature-card-image-overlay"></div>
                                              <div class="feature-card-date-rewards-container">
@@ -1565,8 +1579,7 @@
                                     <div class="feature-card-container desktop-homepage-events-wdgt">
                                        <div class="feature-card-header-image-container">
                                           <div class="feature-card-image-container">
-                                             <img
-                                                src="https://static.naukimg.com/s/0/0/i/Events/bannerFallback/eventsBannerFallback_3.png"
+                                             <img src="{{asset('meradriver')}}/img/pages/driver4.jpg"
                                                 class="feature-card-image" alt="feature-card" height="" width=""
                                                 iserrored="true">
                                              <div class="feature-card-image-overlay"></div>
@@ -1637,8 +1650,7 @@
                                     <div class="feature-card-container desktop-homepage-events-wdgt">
                                        <div class="feature-card-header-image-container">
                                           <div class="feature-card-image-container">
-                                             <img
-                                                src="https://static.naukimg.com/s/0/0/i/Events/bannerFallback/eventsBannerFallback_4.png"
+                                             <img src="{{asset('meradriver')}}/img/pages/driver5.jpg"
                                                 class="feature-card-image" alt="feature-card" height="" width=""
                                                 iserrored="true">
                                              <div class="feature-card-image-overlay"></div>
@@ -1708,8 +1720,7 @@
                                     <div class="feature-card-container desktop-homepage-events-wdgt">
                                        <div class="feature-card-header-image-container">
                                           <div class="feature-card-image-container">
-                                             <img
-                                                src="https://static.naukimg.com/s/0/0/i/Events/bannerFallback/eventsBannerFallback_6.png"
+                                             <img src="{{asset('meradriver')}}/img/pages/man-car-driving (1).jpg"
                                                 class="feature-card-image" alt="feature-card" height="" width=""
                                                 iserrored="true">
                                              <div class="feature-card-image-overlay"></div>
@@ -1777,8 +1788,7 @@
                                     <div class="feature-card-container desktop-homepage-events-wdgt">
                                        <div class="feature-card-header-image-container">
                                           <div class="feature-card-image-container">
-                                             <img
-                                                src="https://static.naukimg.com/s/0/0/i/Events/bannerFallback/eventsBannerFallback_4.png"
+                                               <img src="{{asset('meradriver')}}/img/pages/driver6.jpg"
                                                 class="feature-card-image" alt="feature-card" height="" width=""
                                                 iserrored="true">
                                              <div class="feature-card-image-overlay"></div>
@@ -1920,8 +1930,8 @@
                   </div>
 
                   <div class="left-side-image" style="margin-left:50px">
-                     <img class="background-half-image" height="282" width="525"
-                        src="https://meradriver.com/public/frontend/assets/common-image/app-mer-driver.png">
+                     <img class="background-half-image" height="" width=""
+                      src="{{asset('meradriver')}}/img/pages/app-mer-driver.png">
                   </div>
 
                   <span class="wdgt-track-view" data-ga-view="Get App Link|MeraDriver Home Page"
