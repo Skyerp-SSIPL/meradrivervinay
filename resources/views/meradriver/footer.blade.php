@@ -1,4 +1,4 @@
-<footer class="footer-area section-gap">
+<footer class="footer-area section-gap mt-5">
       <div class="container">
          <div class="row">
             <div class="col-lg-3  col-md-12">
