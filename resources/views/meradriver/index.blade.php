@@ -349,7 +349,7 @@
                                        data-href="https://www.naukri.com/amazon-overview-398058?src=premiumLogo"
                                        data-name="Amazon" data-val="0" tabindex="0" id="398058">
                                        <div class="imagewrap">
-                                          <img src="img/pages/service_1.png" alt="Amazon" class="logoImage">
+                                          <img src="/img/pages/service_1.png" alt="Amazon" class="logoImage">
                                        </div>
                                        <div class="contentwrap" style="background-color: rgba(244, 157, 44, 0.03);">
                                           <h3 class="main-6 title" style="-webkit-line-clamp: 2;"><a class="compName "
