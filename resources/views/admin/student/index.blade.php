@@ -10,9 +10,9 @@
                 <div class="col-md-10">
                     <ol class="breadcrumb text-muted mb-0">
                         <li class="breadcrumb-item">
-                            <a href="index.php"> Student</a>
+                            <a href="index.php"> Driver</a>
                         </li>
-                        <li class="breadcrumb-item text-muted">Manage All Students</li>
+                        <li class="breadcrumb-item text-muted">Manage All Driver</li>
                     </ol>
                 </div>
             </div>
@@ -28,15 +28,15 @@
                     <div class="row">
                         <div class="col-md-4">
                             <input type="text" class="form-control  formmrgin" name="name"
-                                value="{{ request()->get('name') }}" placeholder="Student Name ">
+                                value="{{ request()->get('name') }}" placeholder="Driver Name ">
                         </div>
                         <div class="col-md-4">
                             <input type="text" class="form-control  formmrgin" name="email"
-                                value="{{ request()->get('email') }}" placeholder="Student Email">
+                                value="{{ request()->get('email') }}" placeholder="Driver Email">
                         </div>
                         <div class="col-md-4">
                             <input type="text" class="form-control  formmrgin" name="phone_number"
-                                value="{{ request()->get('phone_number') }}" placeholder="Student Phone Number">
+                                value="{{ request()->get('phone_number') }}" placeholder="Driver Phone Number">
                         </div>
                         <div class="col-md-4">
                             <input type="text" class="form-control  formmrgin" name="zip"
@@ -120,7 +120,7 @@
                         <td class="txt-oflo">
                             @if ($user && $user->email !== null && $user->password !== null)
                             @if(!(Session::has('admin_user')))
-                            @if ($users->hasRole('Administrator') || $users->hasRole('visa') || $users->hasRole('agent') || $users->hasRole('sub_agent') || $users->hasRole('Application Punching'))
+                            @if ($users->hasRole('Administrator') || $users->hasRole('visa') || $users->hasRole('Franchise') || $users->hasRole('sub_agent') || $users->hasRole('Application Punching'))
                             <a class="btn btn-info" data-toggle="tooltip" title="Login as Student" href="{{ route('impersonate', $user) }}" style="margin-top: 5px;">
                                 <i class="fa fa-sign-in-alt"></i>
                             </a>

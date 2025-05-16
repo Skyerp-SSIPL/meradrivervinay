@@ -763,7 +763,7 @@
                                                     <select class="form-select" id="fee_payment_by" name="fee_payment_by">
                                                         <option value="">-Select -</option>
                                                         <option value="agent"
-                                                            {{ isset($threesixtee) && $threesixtee->fee_payment_by == 'agent' ? 'selected' : '' }}>
+                                                            {{ isset($threesixtee) && $threesixtee->fee_payment_by == 'Franchise' ? 'selected' : '' }}>
                                                             Agent</option>
                                                         <option value="direct"
                                                             {{ isset($threesixtee) && $threesixtee->fee_payment_by == 'direct' ? 'selected' : '' }}>
@@ -845,7 +845,7 @@
                                                             {{ isset($threesixtee) && $threesixtee->visa_document == 'direct' ? 'selected' : '' }}>
                                                             Direct</option>
                                                         <option value="agent"
-                                                            {{ isset($threesixtee) && $threesixtee->visa_document == 'agent' ? 'selected' : '' }}>
+                                                            {{ isset($threesixtee) && $threesixtee->visa_document == 'Franchise' ? 'selected' : '' }}>
                                                             Agent</option>
                                                         <option value="manual"
                                                             {{ isset($threesixtee) && $threesixtee->visa_document == 'manual' ? 'selected' : '' }}>
@@ -1753,7 +1753,7 @@
             get_lead_360_images();
             $('#visa_document').on('change', function() {
                 var selectedValue = $(this).val();
-                if (selectedValue == 'agent') {
+                if (selectedValue == 'Franchise') {
                     $('#agent').show();
                     $('#manual').hide();
                 } else if (selectedValue == 'manual') {
@@ -1766,7 +1766,7 @@
             });
             $('#fee_payment_by').on('change', function() {
                 var selectedValue = $(this).val();
-                if (selectedValue == 'agent') {
+                if (selectedValue == 'Franchise') {
                     $('#feeagent').show();
                 } else {
                     $('#feeagent').hide();

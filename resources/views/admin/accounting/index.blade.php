@@ -283,6 +283,9 @@
             }]
         });
         chart.render();
+
+
+         
     </script>
     </div>
 @endsection

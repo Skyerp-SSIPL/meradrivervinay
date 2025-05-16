@@ -4,20 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\{
     Country,
-    EducationLane,
+    DocumentType,
     Faq,
-    Intrested,
+    VechileType,
     MasterService,
     Program,
     Province,
-    Source,
-    Specialisations,
+    DriverType,
+    JobType,
     SubService,
     VasService,
     VisaDocument,
     VisaSubDocument,
     VisaType,
     LeadQuality,
+    LicenseType,
+    Source,
     ExpectedSalary
 };
 use Illuminate\Http\Request;
@@ -34,7 +36,7 @@ class OtherMasterDataController extends Controller
      */
     public function job_type(Request $request)
     {
-        $specilization=Specialisations::when($request->name, function ($query) use ($request) {
+        $specilization=JobType::when($request->name, function ($query) use ($request) {
             $query->where('name', 'like', '%'.$request->name.'%');
         })
         ->when($request->status, function ($query) use ($request) {
@@ -44,11 +46,11 @@ class OtherMasterDataController extends Controller
         return view('admin.othermaster.job-type.index',compact('specilization'));
     }
 
-    public function specializations_create()
+    public function job_type_create()
     {
         return view('admin.othermaster.job-type.create');
     }
-    public function specializations_store(Request $request)
+    public function job_type_store(Request $request)
     {
         $request->validate([
             'name' => 'required|max:233',
@@ -57,40 +59,43 @@ class OtherMasterDataController extends Controller
         $input = $request->except('_token');
         $input['created_by'] = auth()->user()->id;
         $input['updated_by'] = auth()->user()->id;
-        Specialisations::create($input);
+        JobType::create($input);
         return redirect()->route('job-type')
-            ->with('success', 'Specialization created successfully.');
+            ->with('success', 'Job Type created successfully.');
     }
-    public function specializations_edit($id)
+    public function job_type_edit($id)
     {
-        $specialization = Specialisations::find($id);
+        $specialization = JobType::find($id);
         return view('admin.othermaster.job-type.edit', compact('specialization'));
     }
 
-    public function specializations_update(Request $request, $id)
+    public function job_type_update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
             'status'=>'required'
         ]);
-        $specialization = Specialisations::find($id);
+        $specialization = JobType::find($id);
         $specialization->name = $request->name;
         $specialization->status = $request->status;
         $input['updated_by'] = auth()->user()->id;
         $specialization->save();
         return redirect()->route('job-type')
-            ->with('success', 'Specialization updated successfully');
+            ->with('success', 'Job Type updated successfully');
     }
 
-    public function specializations_delete(Request $request)
+    public function job_type_delete(Request $request)
     {
-        $specialization = Specialisations::find($request->id);
+        $specialization = JobType::find($request->id);
         $specialization->delete();
         return redirect()->route('job-type')
-            ->with('success', 'Specialization deleted successfully');
+            ->with('success', 'Job Type deleted successfully');
     }
 
-    // source
+
+    /// driver source
+
+
     public function source(Request $request)
     {
         $source=Source::when($request->name, function ($query) use ($request) {
@@ -145,6 +150,64 @@ class OtherMasterDataController extends Controller
         $source = Source::find($request->id);
         $source->delete();
         return redirect()->route('source')
+            ->with('success', 'Source deleted successfully');
+    }
+
+    // Driver Type
+    public function driver_type(Request $request)
+    {
+        $source=DriverType::when($request->name, function ($query) use ($request) {
+            $query->where('name', 'like', '%'.$request->name.'%');
+        })
+        ->when($request->status, function ($query) use ($request) {
+            $query->where('status', $request->status);
+        })
+        ->paginate(12);
+        return view('admin.othermaster.driver-types.index',compact('source'));
+    }
+
+    public function driver_create()
+    {
+        return view('admin.othermaster.driver-types.create');
+    }
+    public function driver_store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:233',
+            'status'=>'required'
+        ]);
+        $input = $request->except('_token');
+        $input['created_by'] = auth()->user()->id;
+        $input['updated_by'] = auth()->user()->id;
+        DriverType::create($input);
+        return redirect()->route('driver-type')
+            ->with('success', 'Source created successfully.');
+    }
+    public function driver_edit($id)
+    {
+        $source = DriverType::find($id);
+        return view('admin.othermaster.driver-types.edit', compact('source'));
+    }
+
+    public function driver_update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'status'=>'required'
+        ]);
+        $source = DriverType::find($id);
+        $source->name = $request->name;
+        $source->status = $request->status;
+        $source->save();
+        return redirect()->route('driver-type')
+            ->with('success', 'Source updated successfully');
+    }
+
+    public function driver_delete(Request $request)
+    {
+        $source = DriverType::find($request->id);
+        $source->delete();
+        return redirect()->route('driver-type')
             ->with('success', 'Source deleted successfully');
     }
 
@@ -219,9 +282,9 @@ class OtherMasterDataController extends Controller
 
 
     // interested
-    public function interested(Request $request)
+    public function vechicle_type(Request $request)
     {
-        $interested=Intrested::when($request->name, function ($query) use ($request) {
+        $interested=VechileType::when($request->name, function ($query) use ($request) {
             $query->where('name', 'like', '%'.$request->name.'%');
         })
         ->when($request->status, function ($query) use ($request) {
@@ -231,11 +294,11 @@ class OtherMasterDataController extends Controller
         return view('admin.othermaster.vechile-type.index',compact('interested'));
     }
 
-    public function interested_create()
+    public function vechicle_type_create()
     {
         return view('admin.othermaster.vechile-type.create');
     }
-    public function interested_store(Request $request)
+    public function vechicle_type_store(Request $request)
     {
         $request->validate([
             'name' => 'required|max:233',
@@ -244,35 +307,35 @@ class OtherMasterDataController extends Controller
         $input = $request->except('_token');
         $input['created_by'] = auth()->user()->id;
         $input['updated_by'] = auth()->user()->id;
-        Intrested::create($input);
-        return redirect()->route('interested')
+        VechileType::create($input);
+        return redirect()->route('vechicle-type')
             ->with('success', 'Interested created successfully.');
     }
-    public function interested_edit($id)
+    public function vechicle_type_edit($id)
     {
-        $interested = Intrested::find($id);
+        $interested = VechileType::find($id);
         return view('admin.othermaster.vechile-type.edit', compact('interested'));
     }
 
-    public function interested_update(Request $request, $id)
+    public function vechicle_type_update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
             'status'=>'required'
         ]);
-        $interested = Intrested::find($id);
+        $interested = VechileType::find($id);
         $interested->name = $request->name;
         $interested->status = $request->status;
         $interested->save();
-        return redirect()->route('interested')
+        return redirect()->route('vechicle-type')
             ->with('success', 'Intrested updated successfully');
     }
 
-    public function interested_delete(Request $request)
+    public function vechicle_type_delete(Request $request)
     {
-        $interested = Intrested::find($request->id);
+        $interested = VechileType::find($request->id);
         $interested->delete();
-        return redirect()->route('interested')
+        return redirect()->route('vechicle-type')
             ->with('success', 'interested deleted successfully');
     }
 
@@ -563,48 +626,48 @@ class OtherMasterDataController extends Controller
       }
 
 
-      public function education_lane(Request $request)
+      public function document_type(Request $request)
       {
-          $education_lane=EducationLane::when($request->name, function ($query) use ($request) {
+          $education_lane=DocumentType::when($request->name, function ($query) use ($request) {
                          $query->where('name', 'like', '%'.$request->name.'%');
                      })
           ->paginate(12);
           return view('admin.othermaster.document-type.index',compact('education_lane'));
       }
-      public function education_lane_create()
+      public function document_type_create()
       {
           return view('admin.othermaster.document-type.create');
       }
-      public function education_lane_store(Request $request)
+      public function document_type_store(Request $request)
       {
           $request->validate([
               'name' => 'required',
               'details' => 'required',
           ]);
           $input = $request->except('_token');
-          EducationLane::create($input);
-          return redirect()->route('education-lane')
+          DocumentType::create($input);
+          return redirect()->route('document-type')
               ->with('success', 'Education lane created successfully.');
       }
-      public function education_lane_edit($id)
+      public function document_type_edit($id)
       {
-          $education_lane = EducationLane::find($id);
+          $education_lane = DocumentType::find($id);
           return view('admin.othermaster.document-type.edit', compact('education_lane'));
       }
-      public function education_lane_update(Request $request, $id)
+      public function document_type_update(Request $request, $id)
       {
           $input = $request->except('_token');
-          $education_lane = EducationLane::find($id);
+          $education_lane = DocumentType::find($id);
           $education_lane->update($input);
-          return redirect()->route('education-lane')
+          return redirect()->route('document-type')
               ->with('success', 'Education updated successfully');
       }
-      public function education_lane_delete(Request $request)
+      public function document_type_delete(Request $request)
       {
-          $education_lane = EducationLane::find($request->id);
+          $education_lane = DocumentType::find($request->id);
           if($education_lane){
               $education_lane->delete();
-              return redirect()->route('education-lane')
+              return redirect()->route('document-type')
                   ->with('success', 'Education lane deleted successfully');
           }else{
               return redirect()->route('education-lane')
@@ -613,52 +676,53 @@ class OtherMasterDataController extends Controller
       }
 
     //  Visa Document type
-      public function visa_document_type(Request $request)
+      public function license_type(Request $request)
       {
-        $visa_document_type=VisaDocument::when($request->name, function ($query) use ($request) {
+       
+        $visa_document_type=LicenseType::when($request->name, function ($query) use ($request) {
                     $query->where('name', 'like', '%'.$request->name.'%');
                 })
                 ->latest()->paginate(12);
           return view('admin.othermaster.license-type.index',compact('visa_document_type'));
       }
-      public function visa_document_type_create()
+      public function license_type_create()
       {
           return view('admin.othermaster.license-type.create');
       }
-      public function visa_document_type_store(Request $request)
+      public function license_type_store(Request $request)
       {
           $request->validate([
               'name' => 'required|max:200',
               'status' => 'required',
           ]);
           $input = $request->except('_token');
-          VisaDocument::create($input);
-          return redirect()->route('visa-document-type')
-              ->with('success', 'Visa Document Type created successfully.');
+          LicenseType::create($input);
+          return redirect()->route('license-type')
+              ->with('success', 'License type created successfully.');
       }
-      public function visa_document_type_edit($id)
+      public function license_type_edit($id)
       {
-          $visa_document_type = VisaDocument::find($id);
+          $visa_document_type = LicenseType::find($id);
           return view('admin.othermaster.license-type.edit', compact('visa_document_type'));
       }
-      public function visa_document_type_update(Request $request, $id)
+      public function license_type_update(Request $request, $id)
       {
           $input = $request->except('_token');
-          $visa_document_type = VisaDocument::find($id);
+          $visa_document_type = LicenseType::find($id);
           $visa_document_type->update($input);
-          return redirect()->route('visa-document-type')
-              ->with('success', 'Visa Document Type updated successfully');
+          return redirect()->route('license-type')
+              ->with('success', 'License type updated successfully');
       }
-      public function visa_document_type_delete(Request $request)
+      public function license_type_delete(Request $request)
       {
-          $visa_document_type = VisaDocument::find($request->id);
+          $visa_document_type = LicenseType::find($request->id);
           if($visa_document_type){
               $visa_document_type->delete();
-              return redirect()->route('visa-document-type')
-                  ->with('success', 'Visa Document Type deleted successfully');
+              return redirect()->route('license-type')
+                  ->with('success', 'license type Type deleted successfully');
           }else{
               return redirect()->route('visa-document-type')
-                  ->with('error', 'Visa Document Type not found');
+                  ->with('error', 'license  Type not found');
           }
       }
 
@@ -741,7 +805,7 @@ class OtherMasterDataController extends Controller
           if (!$master_service) {
               return redirect()->route('master_service')->with('error','Data Not Found');
           }
-          return view('admin.othermaster.expected-salary.edit', compact('master_service'));
+          return view('admin.othermaster.master-service.edit', compact('master_service'));
       }
       public function master_service_update(Request $request,$id)
       {
@@ -778,7 +842,7 @@ class OtherMasterDataController extends Controller
           if ($request->name) {
               $master_service = MasterService::where('name', 'LIKE', "%{$request->name}%")->paginate(12);
           }
-          return view('admin.othermaster.expected-salary.index', compact('master_service'));
+          return view('admin.othermaster.master-service.index', compact('master_service'));
       }
 
       public function sub_service(Request $request, $id = null)

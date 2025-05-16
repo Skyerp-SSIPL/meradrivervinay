@@ -24,7 +24,7 @@ class LearningTrainingController extends Controller
         }elseif(request()->route()->getName() == 'learning-agent.index'){
             $data=LearningFAS::when($request->name, function ($query) use ($request) {
                 $query->where('name', 'like', '%'.$request->name.'%');
-            })->where('learning_user','agent')->paginate(12);
+            })->where('learning_user','Franchise')->paginate(12);
             return view('admin.learning.agent.index',compact('data'));
         }
     }
@@ -45,7 +45,7 @@ class LearningTrainingController extends Controller
             $data=LearningFAS::where('learning_user','student')->where('id',$id)->first();
             return view('admin.learning.student.edit',compact('data'));
         }elseif(request()->route()->getName() == 'learning-agent.edit'){
-            $data=LearningFAS::where('learning_user','agent')->where('id',$id)->first();
+            $data=LearningFAS::where('learning_user','Franchise')->where('id',$id)->first();
             return view('admin.learning.agent.edit',compact('data'));
         }
     }
@@ -184,7 +184,7 @@ class LearningTrainingController extends Controller
             $data=RequestTraining::where('learning_user','student')->paginate(12);
             return view('admin.trainingrequest.student.index',compact('data'));
         }elseif(request()->route()->getName() == 'agents-training.index'){
-            $data=RequestTraining::where('learning_user','agent')->paginate(12);
+            $data=RequestTraining::where('learning_user','Franchise')->paginate(12);
             return view('admin.trainingrequest.agent.index',compact('data'));
         }
     }

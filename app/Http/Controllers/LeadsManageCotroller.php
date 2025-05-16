@@ -9,20 +9,24 @@ use App\Imports\LeadsExcelSheetImport;
 use Illuminate\Support\Facades\Mail;
 use Log;
 use App\Models\User;
+use App\Models\DriverCategoryStatus;
+
 use App\Models\MasterService;
 use App\Models\VisaType;
-
+use App\Models\EducationLane;
 use App\Models\Specialisations;
-
+use App\Models\LicenseType;
 use App\Models\Student;
 use App\Models\StudentByAgent;
 use App\Models\MasterLeadStatus;
 use App\Models\ProgramPaymentCommission;
 use Spatie\Permission\Models\Role;
 use App\Models\Caste;
+use App\Models\DriversList;
+
 use App\Models\VisaSubDocument;
 use App\Models\LeadStatusQuality;
-
+use App\Models\DocumentType;
 use App\Models\Subject;
 use App\Models\Country;
 use App\Models\Currency;
@@ -57,11 +61,14 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Mail\PaymentLinkEmail;
+use App\Models\DriverType;
 use App\Models\ExpectedSalary;
+use App\Models\JobType;
 use App\Models\LeadQuality;
 use App\Models\ProgramLevel;
 use App\Models\VisaDocument;
 use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Gate;
@@ -95,7 +102,7 @@ class LeadsManageCotroller extends Controller
         if ($user->hasRole('Administrator')) {
             $next_leads = StudentByAgent::where('next_calling_date', '>=', date('Y-m-d\TH:i:s', strtotime('created_at')))->where('next_calling_date', '>', $currentDateTime)
                 ->paginate(12);
-        } else if ($user->hasRole('agent') || $user->hasRole('sub_agent') || $user->hasRole('visa')) {
+        } else if ($user->hasRole('Franchise') || $user->hasRole('sub_agent') || $user->hasRole('visa')) {
             $next_leads = StudentByAgent::where('next_calling_date', '>=', date('Y-m-d\TH:i:s', strtotime('created_at')))
                 ->where('user_id', Auth::user()->id)->where('next_calling_date', '>', $currentDateTime)
                 ->paginate(12);
@@ -110,22 +117,26 @@ class LeadsManageCotroller extends Controller
         $users = DB::table('users')->WHERE('id', $id)->first();
         $user_type = $users->admin_type;
         $user_ids = $users->id;
-        // Total Leads
+
+        $verified = 'Verified (KYC & Payment done)';
+        $unverified = 'Unverified (KYC & Payment not done)';
+        $blocked = 'Blocked';
+        $high_rated = 'High Rated Driver (5*)';
+        $payment_done = 'Verified (Payment done & KYC not done)';
+        $kyc_done = 'Verified (KYC done & Payment not done)';
+        
         $total_leads = 0;
         if ($user_type == 'Administrator') {
             $total_leads = StudentByAgent::count();
-
-          
-        } else if ($user_type == 'agent') {
-
-
+         
+        } 
+        else if ($user_type == 'Franchise') {
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_ids");
             $commaList = null;
             foreach ($agents as $agent) {
                 $commaList .= $agent->id . ',';
             }
             $user = $commaList . $user_ids;
-
             $query = StudentByAgent::whereRaw("assigned_to IN($user)");
             $total_leads = $query->get();
             $total_leads = count($total_leads);
@@ -135,12 +146,12 @@ class LeadsManageCotroller extends Controller
             $total_leads = StudentByAgent::where("assigned_to", $user_ids)->orwhere('user_id', $user_ids)->count();
         }
         // Cold Lead
-        $lead_status = MasterLeadStatus::where("name", "Cold")->first();
+        $lead_status = DriverCategoryStatus::where("name", "Verified (KYC & Payment done)")->first();
         $lead_status_id = $lead_status ? $lead_status->id : null;
-        $total_cold_leads = 0;
+        $verified = 0;
         if ($user_type == 'Administrator') {
-            $total_cold_leads = StudentByAgent::where('lead_status', $lead_status_id)->count();
-        } else if ($user_type == 'agent') {
+            $verified = StudentByAgent::where('driver_category_status', $lead_status_id)->count();
+        } else if ($user_type == 'Franchise') {
 
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_ids");
             $commaList = null;
@@ -149,23 +160,24 @@ class LeadsManageCotroller extends Controller
             }
             $user = $commaList . $user_ids;
             $query = StudentByAgent::whereRaw("assigned_to IN($user)");
-            $query->where('lead_status', $lead_status_id)->get();
-            $total_cold_leads =  $query->count();
+            $query->where('driver_category_status', $lead_status_id)->get();
+            $verified =  $query->count();
 
          
         } else if ($user_type == 'sub_agent'  || $user_type == 'visa' || $user_type == 'Digital Marketing' || $user_type == 'Data oprator') {
-            $total_cold_leads = StudentByAgent::where(function ($q) use ($user_ids) {
+            $verified = StudentByAgent::where(function ($q) use ($user_ids) {
                 return $q->where("assigned_to", $user_ids)
                     ->orWhere('user_id', $user_ids);
             })->where('lead_status', $lead_status_id)->count();
         }
+
         // Hot Lead
-        $lead_status = MasterLeadStatus::where("name", "Hot")->first();
+        $lead_status = DriverCategoryStatus::where("name", "Unverified (KYC & Payment not done)")->first();
         $lead_status_hot_id = $lead_status ? $lead_status->id : null;
-        $total_hot_leads = 0;
+        $unverified = 0;
         if ($user_type == 'Administrator') {
-            $total_hot_leads = StudentByAgent::where('lead_status', $lead_status_hot_id)->count();
-        } else if ($user_type == 'agent') {
+            $unverified = StudentByAgent::where('driver_category_status', $lead_status_hot_id)->count();
+        } else if ($user_type == 'Franchise') {
 
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_ids");
             $commaList = null;
@@ -174,22 +186,22 @@ class LeadsManageCotroller extends Controller
             }
             $user = $commaList . $user_ids;
             $query = StudentByAgent::whereRaw("assigned_to IN($user)");
-            $query->where('lead_status', $lead_status_hot_id)->get();
-            $total_hot_leads =  $query->count();
+            $query->where('driver_category_status', $lead_status_hot_id)->get();
+            $unverified =  $query->count();
 
         } else if ($user_type == 'sub_agent'  || $user_type == 'visa' || $user_type == 'Digital Marketing' || $user_type == 'Data oprator') {
-            $total_hot_leads = StudentByAgent::where(function ($q) use ($user_ids) {
+            $unverified = StudentByAgent::where(function ($q) use ($user_ids) {
                 return $q->where("assigned_to", $user_ids)
                     ->orWhere('user_id', $user_ids);
-            })->where('lead_status', $lead_status_hot_id)->count();
+            })->where('driver_category_status', $lead_status_hot_id)->count();
         }
         // Future Lead
-        $lead_status = MasterLeadStatus::where("name", "Future Lead")->first();
+        $lead_status = DriverCategoryStatus::where("name", "Blocked")->first();
         $lead_status_future_id = $lead_status ? $lead_status->id : null;
-        $total_future_leads = 0;
+        $blocked = 0;
         if ($user_type == 'Administrator') {
-            $total_future_leads = StudentByAgent::where('lead_status', $lead_status_future_id)->count();
-        } else if ($user_type == 'agent') {
+            $blocked = StudentByAgent::where('driver_category_status', $lead_status_future_id)->count();
+        } else if ($user_type == 'Franchise') {
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_ids");
             $commaList = null;
             foreach ($agents as $agent) {
@@ -197,24 +209,23 @@ class LeadsManageCotroller extends Controller
             }
             $user = $commaList . $user_ids;
             $query = StudentByAgent::whereRaw("assigned_to IN($user)");
-            $query->where('lead_status', $lead_status_future_id)->get();
-            $total_future_leads =  $query->count();
+            $query->where('driver_category_status', $lead_status_future_id)->get();
+            $blocked =  $query->count();
 
         } else if ($user_type == 'sub_agent'  || $user_type == 'visa' || $user_type == 'Digital Marketing' || $user_type == 'Data oprator') {
-            $total_future_leads = StudentByAgent::where(function ($q) use ($user_ids) {
+            $blocked = StudentByAgent::where(function ($q) use ($user_ids) {
                 return $q->where("assigned_to", $user_ids)
                     ->orWhere('user_id', $user_ids);
-            })->where('lead_status', $lead_status_future_id)->count();
+            })->where('driver_category_status', $lead_status_future_id)->count();
         }
         // New Lead
-        $lead_status = MasterLeadStatus::where("name", "New")->first();
+        $lead_status = DriverCategoryStatus::where("name", "High Rated Driver (5*)")->first();
         $lead_status_new_id = $lead_status ? $lead_status->id : null;
-        // $lead_status_new_id = MasterLeadStatus::where("name", "New")->first()->id;
        
-        $total_new_leads = 0;
+        $high_rated = 0;
         if ($user_type == 'Administrator') {
-            $total_new_leads = StudentByAgent::where('lead_status', $lead_status_new_id)->count();
-        } else if ($user_type == 'agent') {
+            $high_rated = StudentByAgent::where('driver_category_status', $lead_status_new_id)->count();
+        } else if ($user_type == 'Franchise') {
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_ids");
             $commaList = null;
             foreach ($agents as $agent) {
@@ -224,25 +235,25 @@ class LeadsManageCotroller extends Controller
 
 
             $query = StudentByAgent::whereRaw("assigned_to IN($user)");
-            $query->where('lead_status', $lead_status_new_id);
-            $total_new_leads = $query->get();
+            $query->where('driver_category_status', $lead_status_new_id);
+            $high_rated = $query->get();
 
-            $total_new_leads = count($total_new_leads);
+            $high_rated = count($high_rated);
 
-            // dd($total_new_leads);
+            // dd($high_rated);
         } else if ($user_type == 'sub_agent'  || $user_type == 'visa' || $user_type == 'Digital Marketing' || $user_type == 'Data oprator') {
-            $total_new_leads = StudentByAgent::where(function ($q) use ($user_ids) {
+            $high_rated = StudentByAgent::where(function ($q) use ($user_ids) {
                 return $q->where("assigned_to", $user_ids)
                     ->orWhere('user_id', $user_ids);
-            })->where('lead_status', $lead_status_new_id)->count();
+            })->where('driver_category_status', $lead_status_new_id)->count();
         }
-        $lead_status = MasterLeadStatus::where("name", "Not Useful")->first();
+        $lead_status = DriverCategoryStatus::where("name", "Verified (Payment done & KYC not done)")->first();
         $lead_status_not_userful_id = $lead_status ? $lead_status->id : null;
         
-        $total_not_useful_leads = 0;
+        $payment_done = 0;
         if ($user_type == 'Administrator') {
-            $total_not_useful_leads = StudentByAgent::where('lead_status', $lead_status_not_userful_id)->count();
-        } else if ($user_type == 'agent') {
+            $payment_done = StudentByAgent::where('driver_category_status', $lead_status_not_userful_id)->count();
+        } else if ($user_type == 'Franchise') {
 
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_ids");
             $commaList = null;
@@ -251,24 +262,24 @@ class LeadsManageCotroller extends Controller
             }
             $user = $commaList . $user_ids;
             $query = StudentByAgent::whereRaw("assigned_to IN($user)");
-            $query->where('lead_status', $lead_status_not_userful_id)->get();
-            $total_not_useful_leads =  $query->count();
+            $query->where('driver_category_status', $lead_status_not_userful_id)->get();
+            $payment_done =  $query->count();
 
 
         } else if ($user_type == 'sub_agent'  || $user_type == 'visa' || $user_type == 'Digital Marketing' || $user_type == 'Data oprator') {
-            $total_not_useful_leads = StudentByAgent::where(function ($q) use ($user_ids) {
+            $payment_done = StudentByAgent::where(function ($q) use ($user_ids) {
                 return $q->where("assigned_to", $user_ids)
                     ->orWhere('user_id', $user_ids);
-            })->where('lead_status', $lead_status_not_userful_id)->count();
+            })->where('driver_category_status', $lead_status_not_userful_id)->count();
         }
         // Warm Lead
-        $lead_status = MasterLeadStatus::where("name", "Warm")->first();
+        $lead_status = DriverCategoryStatus::where("name", "Verified (KYC done & Payment not done)")->first();
         $lead_status_warm_id = $lead_status ? $lead_status->id : null;
         
-        $total_warm_leads = 0;
+        $kyc_done = 0;
         if ($user_type == 'Administrator') {
-            $total_warm_leads = StudentByAgent::where('lead_status', $lead_status_warm_id)->count();
-        } else if ($user_type == 'agent') {
+            $kyc_done = StudentByAgent::where('driver_category_status', $lead_status_warm_id)->count();
+        } else if ($user_type == 'Franchise') {
 
 
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_ids");
@@ -278,23 +289,23 @@ class LeadsManageCotroller extends Controller
             }
             $user = $commaList . $user_ids;
             $query = StudentByAgent::whereRaw("assigned_to IN($user)");
-            $query->where('lead_status', $lead_status_warm_id)->get();
-            $total_warm_leads =  $query->count();
+            $query->where('driver_category_status', $lead_status_warm_id)->get();
+            $kyc_done =  $query->count();
 
 
         } else if ($user_type == 'sub_agent'  || $user_type == 'visa' || $user_type == 'Digital Marketing' || $user_type == 'Data oprator') {
-            $total_warm_leads = StudentByAgent::where(function ($q) use ($user_ids) {
+            $kyc_done = StudentByAgent::where(function ($q) use ($user_ids) {
                 return $q->where("assigned_to", $user_ids)
                     ->orWhere('user_id', $user_ids);
-            })->where('lead_status', $lead_status_warm_id)->count();
+            })->where('driver_category_status', $lead_status_warm_id)->count();
         }
         // Closed Leads
-        $lead_status = MasterLeadStatus::where("name", "Closed")->first();
+        $lead_status = DriverCategoryStatus::where("name", "Closed")->first();
         $lead_status_closed_id = $lead_status ? $lead_status->id : null;
         $total_closed_leads = 0;
         if ($user_type == 'Administrator') {
-            $total_closed_leads = StudentByAgent::where('lead_status', $lead_status_closed_id)->count();
-        } else if ($user_type == 'agent') {
+            $total_closed_leads = StudentByAgent::where('driver_category_status', $lead_status_closed_id)->count();
+        } else if ($user_type == 'Franchise') {
 
 
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_ids");
@@ -304,21 +315,21 @@ class LeadsManageCotroller extends Controller
             }
             $user = $commaList . $user_ids;
             $query = StudentByAgent::whereRaw("assigned_to IN($user)");
-            $query->where('lead_status', $lead_status_closed_id)->get();
+            $query->where('driver_category_status', $lead_status_closed_id)->get();
             $total_closed_leads =  $query->count();
 
         } else if ($user_type == 'sub_agent'  || $user_type == 'visa' || $user_type == 'Digital Marketing' || $user_type == 'Data oprator') {
             $total_closed_leads = StudentByAgent::where(function ($q) use ($user_ids) {
                 return $q->where("assigned_to", $user_ids)
                     ->orWhere('user_id', $user_ids);
-            })->where('lead_status', $lead_status_closed_id)->count();
+            })->where('driver_category_status', $lead_status_closed_id)->count();
         }
 
         // Total Assigned Leads --
         $total_assigned_leads = 0;
         if ($user_type == 'Administrator') {
             $total_assigned_leads = StudentByAgent::whereNotNull("assigned_to")->count();
-        } else if ($user_type == 'agent') {
+        } else if ($user_type == 'Franchise') {
 
 
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_ids");
@@ -341,7 +352,7 @@ class LeadsManageCotroller extends Controller
         $total_non_allocated_leads = 0;
         if ($user_type == 'Administrator') {
             $total_non_allocated_leads = StudentByAgent::whereNull('added_by_agent_id')->count();
-        } else if ($user_type == 'agent') {
+        } else if ($user_type == 'Franchise') {
 
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_ids");
             $commaList = null;
@@ -366,18 +377,27 @@ class LeadsManageCotroller extends Controller
         if ($user_type == 'Administrator') {
 
             $next_leads_query = StudentByAgent::where(DB::raw('next_calling_date'), '>', $currentDateTime)->where('lead_status', '<>', '5')->where('lead_status', '<>', '7')->orderBy('next_calling_date', 'asc');
-        } else if ($user_type == 'agent') {
+       
+        } 
+        else if ($user_type == 'Franchise' || $user_type == 'Verification') {
 
+            // dd($user_type);
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_ids");
             $commaList = null;
             foreach ($agents as $agent) {
                 $commaList .= $agent->id . ',';
             }
             $user = $commaList . $user_ids;
-            $next_leads_query = StudentByAgent::whereRaw("assigned_to IN($user)")->where(DB::raw('next_calling_date'), '>', $currentDateTime)->where('lead_status', '<>', '5')->where('lead_status', '<>', '7')->orderBy('next_calling_date', 'asc');
-        } elseif ($user_type == 'sub_agent' || $user_type == 'visa' || $user_type == 'Digital Marketing' || $user_type == 'Data oprator') {
+            // $next_leads_query = StudentByAgent::whereRaw("assigned_to IN($user)")->where(DB::raw('next_calling_date'), '>', $currentDateTime)->where('lead_status', '<>', '5')->where('lead_status', '<>', '7')->orderBy('next_calling_date', 'asc');
+            $next_leads_query = StudentByAgent::first();
+       
+            // dd($next_leads_query);
+       
+        } 
+        elseif ($user_type == 'sub_agent' || $user_type == 'visa' || $user_type == 'Digital Marketing' || $user_type == 'Data oprator') {
             $next_leads_query = StudentByAgent::where(DB::raw('next_calling_date'), '>', $currentDateTime)->where('lead_status', '<>', '5')->where('lead_status', '<>', '7')->Where('assigned_to', $user_ids)->orderBy('next_calling_date', 'asc');
         }
+
         $next_leads = $next_leads_query->paginate(10, ['*'], 'upcoming_lead_page');
         $total_upcoming_leads = $next_leads_query->count();
 
@@ -388,7 +408,7 @@ class LeadsManageCotroller extends Controller
 
 
 
-        } elseif ($user_type == 'agent') {
+        } elseif ($user_type == 'Franchise' || $user_type == 'Verification') {
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_ids");
             $commaList = null;
             foreach ($agents as $agent) {
@@ -404,19 +424,12 @@ class LeadsManageCotroller extends Controller
                 ->get();
         }
         $count_next_leads_miss = $next_leads_missed->count();
-
-
-        
-        
-       
-           
-           
         $baseQuery = StudentByAgent::orderBy('id', 'desc');
 
         // Apply role-based filtering to base query
         if ($user_type == 'Administrator') {
             // No filter needed
-        } elseif ($user_type == 'agent') {
+        } elseif ($user_type == 'Franchise') {
             $agents = DB::table('users')->where('added_by', $user_ids)->pluck('id')->toArray();
             $agents[] = $user_ids;
             $baseQuery->whereIn('assigned_to', $agents);
@@ -441,38 +454,16 @@ class LeadsManageCotroller extends Controller
             $q->where('total_status', '>', $mediumLimit);
         })->count();
         
-        // Output or return
-       
-        
-        // return response()->json([
-        //     'Low' => $counts_quality_low,
-        //     'Medium' => $counts_quality_medium,
-        //     'High' => $counts_quality_high,
-        // ]);
-        
-       
-        
-        // $lowStatuses = 5; // Define Low Quality
-        // $mediumStatuses = 7.5; // Define Medium Quality
-        // $highStatuses = 10; // Define High Quality
-
-        // $counts_quality = [
-        //     'Low' => LeadStatusQuality::where('total_status', '<=', $lowStatuses)->count(),
-           
-        //     'High' => LeadStatusQuality::where('total_status', '>', $mediumStatuses)->count(),
-        // ];
-
-
         $data = array(
             "total_leads" => $total_leads,
             'total_upcoming_leads' => $total_upcoming_leads,
             'count_next_leads_miss' => $count_next_leads_miss,
-            "total_cold_leads" => $total_cold_leads,
-            "total_hot_leads" => $total_hot_leads,
-            "total_future_leads" => $total_future_leads,
-            "total_new_leads" => $total_new_leads,
-            "total_not_useful_leads" => $total_not_useful_leads,
-            "total_warm_leads" => $total_warm_leads,
+            "verified" => $verified,
+            "unverified" => $unverified,
+            "blocked" => $blocked,
+            "high_rated" => $high_rated,
+            "payment_done" => $payment_done,
+            "kyc_done" => $kyc_done,
             "total_closed_leads" => $total_closed_leads,
             "total_assigned_leads" => $total_assigned_leads,
             "total_non_allocated_leads" => $total_non_allocated_leads,
@@ -490,48 +481,44 @@ class LeadsManageCotroller extends Controller
     {
 
         $user = auth()->user();
-        $castes = Caste::where("status", 1)->get();
-        $subjects = Program::where('is_approved', 1)
-            ->select('id', 'name')
-            ->get();
+       
         $countries = Country::where('is_active', 1)->get();
         $lead_status = MasterLeadStatus::where("status", 1)->orderBy('name', 'ASC')->get();
-        $source = Source::where("status", 1)->orderBy('name', 'ASC')->get();
-        // $progLabel = EducationLevel::All();
-        $progLabel = ProgramLevel::All();
-        $preproLabel = Fieldsofstudytype::All();
-        $interested = Intrested::WHERE('is_deleted', '0')->get();
-
-        $job_type = Specialisations::where("status", 1)->orderBy('name', 'ASC')->get();
-        $driver_type = VisaType::orderBy('name', 'ASC')->get();
+        $driver_type = DriverType::where("status", 1)->orderBy('name', 'ASC')->get();
+        $source=Source::where("status", 1)->orderBy('name', 'ASC')->get();
+        $job_type = JobType::where("status", 1)->orderBy('name', 'ASC')->get();
+        $driver_type = DriverType::orderBy('name', 'ASC')->get();
         $total_exp = VisaType::orderBy('name', 'ASC')->get();
-        $expected_sallery = MasterService::orderBy('name', 'ASC')->get();
-
-        return view('admin.leads.add_lead', compact('preproLabel','expected_sallery', 'castes', 'interested', 'subjects', 'countries', 'lead_status', 'source', 'progLabel', 'job_type','driver_type'));
+        $expected_sallery = ExpectedSalary::orderBy('name', 'ASC')->get();
+        $licensetype = LicenseType::orderBy('name', 'ASC')->get();
+        $documentType =  DocumentType::orderBy('name', 'ASC')->get();
+        $driverCtagoryStatus =  DriverCategoryStatus::orderBy('name', 'ASC')->get();
+       
+        return view('admin.leads.add_lead', compact('documentType','driverCtagoryStatus','expected_sallery', 'countries', 'lead_status', 'source',  'job_type','driver_type','licensetype'));
     }
 
     public function edit_lead_data(Request $request, $id)
     {
 
         $user = auth()->user();
-        $castes = Caste::where("status", 1)->get();
-        $subjects = Program::where('is_approved', 1)
-            ->select('id', 'name')
-            ->get();
+       
         $countries = Country::where('is_active', 1)->get();
         $lead_status = MasterLeadStatus::where("status", 1)->orderBy('name', 'ASC')->get();
-        $source = Source::where("status", 1)->orderBy('name', 'ASC')->get();
-        $progLabel = EducationLevel::All();
-        $preproLabel = Fieldsofstudytype::All();
-        $interested = Intrested::WHERE('is_deleted', '0')->get();
+        $driver_type = DriverType::where("status", 1)->orderBy('name', 'ASC')->get();
+        $source=Source::where("status", 1)->orderBy('name', 'ASC')->get();
         $studentData = StudentByAgent::where('id', $id)->first();
-        $job_type = Specialisations::where("status", 1)->orderBy('name', 'ASC')->get();
-        $driver_type = VisaType::orderBy('name', 'ASC')->get();
+
+        // dd($studentData);
+        $job_type = JobType::where("status", 1)->orderBy('name', 'ASC')->get();
+        $driver_type = DriverType::orderBy('name', 'ASC')->get();
         $total_exp = VisaType::orderBy('name', 'ASC')->get();
         $expected_sallery = ExpectedSalary::orderBy('name', 'ASC')->get();
+        $licensetype = LicenseType::orderBy('name', 'ASC')->get();
+        $documentType =  DocumentType::orderBy('name', 'ASC')->get();
+        $driverCtagoryStatus =  DriverCategoryStatus::orderBy('name', 'ASC')->get();
 
-        // dd($studentData->phone_number);
-        return view('admin.leads.edit_lead', compact('studentData', 'expected_sallery','preproLabel', 'castes', 'interested', 'subjects', 'countries', 'lead_status', 'source', 'progLabel', 'job_type','driver_type'));
+       
+        return view('admin.leads.edit_lead', compact('documentType','driverCtagoryStatus','source','licensetype','studentData', 'expected_sallery',  'countries', 'lead_status',  'job_type','driver_type'));
     }
 
 
@@ -544,26 +531,28 @@ class LeadsManageCotroller extends Controller
 
     public function add_lead_data(Request $request)
     {
+
+        //  dd($request->all());
        
         $users = Auth::user();
         if ($request->tab1) {
             if ($request->id) {
                 $validator = Validator::make($request->all(), [
                     'first_name' => 'required|regex:/^[a-zA-Z\s]+$/',              
-                    'phone_number' => 'required',
-                    'source' => 'required',
-                  
+                    'phone_number' => 'required',  
+                    'source' => 'required', 
+                    'driver_category_status' => 'required',
+                    'driver_type' => 'required',            
+
                 ]);
             } else {
                 $validator = Validator::make($request->all(), [
-                    'first_name' => 'required|regex:/^[a-zA-Z\s]+$/',
-                    // 'email' => [
-                    //     'required',
-                    //     'unique:users,email',
-                    //     'unique:student_by_agent,email'
-                    // ],
-                    'phone_number' => 'required',
-                    'source' => 'required',
+                    'first_name' => 'required|regex:/^[a-zA-Z\s]+$/',                  
+                    'phone_number' => 'required',   
+                    'source' => 'required', 
+                    'driver_category_status' => 'required',
+                    'driver_type' => 'required',                 
+
                 ]);
             }
             if ($validator->fails()) {
@@ -577,19 +566,32 @@ class LeadsManageCotroller extends Controller
             $StudentAgent = StudentByAgent::updateOrCreate(
                 ['id' => $request->id],
                 [
-                    "user_id" => $user_id,
                     "source" => $request->source ?? null,
-                    "lead_status" => $request->lead_status ?? null,
-                    "name" => $request->first_name,
-                    "middle_name" => $request->middle_name ?? null,
+                    "driver_category_status" => $request->driver_category_status ?? null,
+                    "driver_type" => $request->driver_type ?? null,
+                    "first_name" => $request->first_name ?? null,
                     "last_name" => $request->last_name ?? null,
                     "father_name" => $request->father_name ?? null,
-                    "email" => $request->email,
-                    "phone_number" => $request->phone_number,
-                    "phone_number_one" => $request->phone_number1 ?? null,
+                    "mother_name" => $request->mother_name ?? null,
+                    "email" => $request->email ?? null,
+                    "phone_number" => $request->phone_number ?? null,
+                    "emergency_no" => $request->emergency_no ?? null,
                     "dob" => $request->dob ?? null,
-                    "assigned_to" => $user_id ?? null
+                    "martial_status" => $request->martial_status ?? null,
+                    "gender" => $request->gender ?? null,
+                    "passport_number" => $request->passport_number ?? null,
+                    "religion" => $request->religion ?? null,
+                    "color" => $request->color ?? null,
+                    "language" => $request->language ?? null,
+                    "age" => $request->age ?? null,
+                    "height" => $request->height ?? null,
+                    "weight" => $request->weight ?? null,
+                    "country_id" => $request->country_id ?? null,
+                    "province_id" => $request->province_id ?? null,
+                    "zip" => $request->zip ?? null,
+                    "address" => $request->address ?? null,
                 ]
+                
             );
             $data = [
                 'id' => $StudentAgent->id,
@@ -600,14 +602,21 @@ class LeadsManageCotroller extends Controller
             ];
             return response()->json($data);
         } elseif ($request->tab2 && $request->id) {
+         
             $studentAgent = StudentByAgent::where('id', $request->id)->first();
             $studentAgent->update([
-                "cand_working" => $request->cand_working ?? null,
-                "caste" => $request->caste,
-                "country_id" => $request->country_id,
-                "province_id" => $request->province_id,
-                "zip" => $request->zip,
+            "education_level" => $request->education_level ?? null,
+            "driver_training" => $request->vechile_driver_training ?? null,
+            "driver_certificate" => $request->driver_certificate ?? null,
+            "eye_vision" => $request->eye_vision ?? null,
+         
+            "health_insurance_status" => $request->health_insurance_status ?? null,
+          
+            "blood_group"=> $request->blood_group ?? null,
+            
+                     
             ]);
+
             $data = [
                 'student_agent' => $studentAgent,
                 'tab2' => 'tab2',
@@ -616,136 +625,128 @@ class LeadsManageCotroller extends Controller
             ];
             return response()->json($data);
         } elseif ($request->tab3) {
-           
+         
             $studentAgent = StudentByAgent::where('id', $request->id)->first();
+
+                // if ($request->hasFile('document_upload')) {
+                //     $file = $request->file('document_upload');
+                //     $filename = time() . '_' . $file->getClientOriginalName();
+                //     $uploadPath = 'meradriver/documents/' . $filename;
+                
+                //     // Move file to public path
+                //     $file->move(public_path('meradriver/documents/'), $filename);
+                
+                //     // Check if document already exists
+                //      $existingDoc = DB::table('driver_documents')
+                //     ->where('driver_id', $studentAgent->id)
+                //     ->where('document_type', $request->document_type)
+                //     ->first();
+                
+                //     if ($existingDoc) {
+                //         // Delete old file if it exists
+                //         $oldPath = public_path($existingDoc->document_path);
+                //         if (file_exists($oldPath)) {
+                //             unlink($oldPath);
+                //         }
+                
+                //         // Update existing record
+                //         DB::table('driver_documents')
+                //             ->where('id', $existingDoc->id)
+                //             ->update([
+                //                 'document_path' => $uploadPath,
+                //                 'updated_at' => now(),
+                //             ]);
+
+                //     } else {
+
+                //         // Insert new document
+                //         DB::table('driver_documents')->insert([
+                //             'driver_id' => $studentAgent->id,
+                //             'document_type' => $request->document_type,
+                //             'document_path' => $uploadPath,
+                //             'created_at' => now(),
+                //             'updated_at' => now(),
+                //         ]);
+                //     }
+                // }
+                
             $studentAgent->update([
-                "program_label" => $request->job_type ?? null,
-                "interested" => $request->interested ?? null,
-                "driver_type" => $request->driver_type ?? null,
-                "licence_type" => $request->licence_type ?? "",
-                "school" => $request->school ?? "",
-                "course" => $request->course ?? "",
-                "preferred_country_id" => $request->preferred_country_id ?? "",
-                "stream" => $request->stream,
-                "status_study" => $request->status_study,
-                "document_type" => $request->document_type,
+                "license_type" => $request->licence_type ?? null,
+                "vechicle_type" => $request->vechicle_type ?? null,
+                "license_no" => $request->license_no ?? null,
+                "license_issue_date" => $request->license_issue_date ?? null,
+                "license_exp_date" => $request->license_exp_date ?? null,               
+                "pulice_verification_status" => $request->police_verification_status ?? null,          
+                "pulice_verification_no" => $request->pulice_verification_no ?? null,        
+               
+                "job_type" => $request->job_type ?? null,
+                "total_exp" => $request->total_experiance ?? null,
+                "current_salary" => $request->current_sallery ?? null,
+                "expected_salary" => $request->expected_sallery ?? null,                
             ]);
+
             $data = [
                 'student_agent' => $studentAgent,
                 'tab3' => 'tab3',
                 'status' => true,
-                'message' => 'Leads Updated Successfully',
+                'message' => 'Driver Profile Updated Successfully',
             ];
+          
             return response()->json($data);
         } elseif ($request->tab4) {
-            
+          
             $studentAgent = StudentByAgent::where('id', $request->id)->first();
             $studentAgent->update([
-
-                "next_calling_date" => $request->next_calling_date ?? null,
-                "interested_in" => $request->interested_in ?? null,
-                "intake" => $request->total_experiance ?? null,
-                "intake_year" => $request->expected_sallery ?? null,
-                "profile_created" => $request->profile_create ?? null,
-                "student_comment" => $request->comment ?? null,
+                "payment_mode" => $request->payment_mode ?? null,
+                "amount" => $request->amount ?? null,
+                "payment_receipt_date" => $request->payment_receipt_date ?? null,
+                "bank_name" => $request->bank_name ?? null,
+                "bank_account" => $request->bank_account_no ?? null,
+                "ifsc_code" => $request->ifsc_code ?? null,
+                "branch_name" => $request->branch_name ?? null,
+                "upi_id" => $request->upi_id ?? null,
+                "comments" => $request->remarks ?? null,
             ]);
             $data = [
                 'student_agent' => $studentAgent,
                 'tab4' => 'tab4',
                 'status' => true,
-                'message' => 'Leads Updated Successfully',
+                'message' => 'Driver Profile Updated Successfully',
             ];
-            if ($request->profile_create == 'yes') {
-                $input['is_active'] = 1;
-                $input['name'] = $studentAgent->name;
-                $input['password'] = Hash::make($studentAgent->name);
-                $input['admin_type'] = 'student';
-                $input['email'] = $studentAgent->email;
-                $input['phone_number'] = $request->phone_number;
-                $input['added_by'] = Auth::user()->id;
-                $userInserted = DB::table('users')->insert($input);
-                if ($userInserted) {
-                    $user = User::where('email', $studentAgent->email)->first();
-                    if (!isset($studentAgent->dob) || empty($studentAgent->dob)) {
-                        $dob = null;
-                    } else {
-                        $dob = $studentAgent->dob;
-                    }
-                    if (!isset($studentAgent->preferred_country_id) || empty($studentAgent->preferred_country_id)) {
-                        $preferred_country_id = null;
-                    } else {
-                        $preferred_country_id = $studentAgent->preferred_country_id;
-                    }
-                    $student_data = [
-                        'user_id' => $user->id,
-                        'first_name' => $studentAgent->name ?? null,
-                        'middle_name' => $studentAgent->middle_name ?? null,
-                        'last_name' => $studentAgent->last_name ?? null,
-                        'country_id' => $studentAgent->country_id ?? null,
-                        'gender' => $studentAgent->gender ?? null,
-                        'dob' => $dob,
-                        'province_id' => $studentAgent->province_id ?? null,
-                        'zip' => $studentAgent->zip ?? null,
-                        'email' => $studentAgent->email ?? null,
-                        'phone_number' => $studentAgent->phone_number ?? null,
-                        'country_preference_completed' => $preferred_country_id,
-                        'pref_subjects' => $studentAgent->subject ?? null,
-                        'added_by' => Auth::user()->id,
-                    ];
-                    DB::table('student')->insert($student_data);
-                    $studentAgent->update([
-                        "student_user_id" => $user->id ?? null,
-                    ]);
-                    $role = Role::where('name', 'student')->first();
-                    if ($role) {
-                        $user->assignRole([$role->id]);
-                    }
-                }
-            }
             return response()->json($data);
         }
     }
 
     public function filterLeads($request)
     {
-        // dd($request->all());
-        // Ensure the user is authenticated and is a User object
+        // dd  ($request->all());
         $user = Auth::user();
-
         if (!$user) {
-            // Handle the case where the user is not authenticated
             return response()->json(['error' => 'User not authenticated'], 403);
         }
-
         $user_id = $user->id;
-
-        // Start with the base query for StudentByAgent
         $lead_list = StudentByAgent::orderBy('id', 'desc');
-
-        if ($user->hasRole('agent')) {
+        if ($user->hasRole('Franchise') || $user->hasRole('Verification')) {
             $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = ?", [$user_id]);
             $commaList = '';
             foreach ($agents as $agent) {
                 $commaList .= $agent->id . ',';
             }
             $user_ids = rtrim($commaList, ',') . ',' . $user_id;
-
             $lead_list->where(function ($query) use ($user_ids) {
                 $query->whereIn('assigned_to', explode(',', $user_ids));
             });
         }
-
-        // Handling different roles
+         // Handling different roles
         if ($user->hasRole('visa') || $user->hasRole('Digital Marketing') || $user->hasRole('Application Punching') || $user->hasRole('sub_agent')) {
             $lead_list->where(function ($query) use ($user_id) {
                 $query->where('assigned_to', $user_id)
                     ->orWhere('user_id', $user_id);
             });
         }
-
         // Apply filters from the request
         if ($request->name) {
-            $lead_list->where('name', 'LIKE', '%' . $request->name . '%');
+            $lead_list->where('first_name', 'LIKE', '%' . $request->name . '%');
         }
         if ($request->email) {
             $lead_list->where('email', 'LIKE', '%' . $request->email . '%');
@@ -753,17 +754,17 @@ class LeadsManageCotroller extends Controller
         if ($request->phone_number) {
             $lead_list->where('phone_number', 'LIKE', '%' . $request->phone_number . '%');
         }
-        if ($request->zip) {
-            $lead_list->where('zip', 'LIKE', '%' . $request->zip . '%');
+        // if ($request->driver_category) {
+        //     $lead_list->where('driver_category_status', 'LIKE', '%' . $request->driver_category . '%');
+        // }
+        if ($request->source) {
+            $lead_list->where('source', $request->source);
         }
-        if ($request->country_id) {
-            $lead_list->where('country_id', $request->country_id);
+        if ($request->driver_type) {
+            $lead_list->where('driver_type', $request->driver_type);
         }
-        if ($request->province_id) {
-            $lead_list->where('province_id', $request->province_id);
-        }
-        if ($request->lead_status) {
-            $lead_list->where('lead_status', $request->lead_status);
+        if ($request->driver_category) {
+            $lead_list->where('driver_category_status', $request->driver_category);
         }
         if ($request->assigned_status) {
             if ($request->assigned_status == 'allocated') {
@@ -772,18 +773,7 @@ class LeadsManageCotroller extends Controller
                 $lead_list->whereNull('added_by_agent_id');
             }
         }
-        if ($request->intakeMonth) {
-            $lead_list->where('intake', $request->intakeMonth);
-        }
-        if ($request->intake_year) {
-            $lead_list->where('intake_year', $request->intake_year);
-        }
-        if ($request->sub_agent) {
-            $lead_list->where('assigned_to', $request->sub_agent);
-        }
-        if ($request->source) {
-            $lead_list->where('source', $request->source);
-        }
+       
         if ($request->from_date && $request->to_date) {
             $lead_list->whereBetween('created_at', [
                 Carbon::parse($request->from_date)->startOfDay(),
@@ -791,26 +781,20 @@ class LeadsManageCotroller extends Controller
             ]);
         }
 
-        $currentDateTime = now()->toDateTimeString(); // Get current date and time in 'YYYY-MM-DD HH:MM:SS' format
-
-        // Handling missed leads
+        $currentDateTime = now()->toDateTimeString(); 
         if ($request->missed_leads) {
             if ($user->hasRole('Administrator')) {
                 $lead_list->where(DB::raw('next_calling_date'), '<', $currentDateTime)
                     ->where('lead_status', '<>', '5')
                     ->where('lead_status', '<>', '7')
                     ->orderBy('next_calling_date', 'asc');
-            } elseif ($user->hasRole('agent')) {
+            } elseif ($user->hasRole('Franchise')) {
                 $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_id");
                 $commaList = null;
                 foreach ($agents as $agent) {
                     $commaList .= $agent->id . ',';
                 }
                 $user = $commaList . $user_ids;
-
-                // $query = StudentByAgent::whereRaw("assigned_to IN($user)");
-                // $query->whereNull("added_by_agent_id")->get();        
-                // $total_non_allocated_leads=  $query->count();
 
 
                 $lead_list->whereRaw("assigned_to IN($user)")->where(DB::raw('next_calling_date'), '<', $currentDateTime)
@@ -827,14 +811,16 @@ class LeadsManageCotroller extends Controller
             }
         }
 
-        // Handling upcoming leads
+         // Handling upcoming leads
+
         if ($request->uppcoming_leads) {
+
             if ($user->hasRole('Administrator')) {
                 $lead_list->where(DB::raw('next_calling_date'), '>', $currentDateTime)
                     ->where('lead_status', '<>', '5')
                     ->where('lead_status', '<>', '7')
                     ->orderBy('next_calling_date', 'asc');
-            } elseif ($user->hasRole('agent')) {
+            } elseif ($user->hasRole('Franchise')) {
 
                 $agents = DB::select("SELECT id FROM `users` WHERE `added_by` = $user_id");
                 $commaList = null;
@@ -859,9 +845,8 @@ class LeadsManageCotroller extends Controller
       
         if ($request->low_quality) {
            
-            $quality = $request->low_quality; // expected: 'Low', 'Medium', 'High'
-        //  dd($quality);
-            // Quality thresholds
+            $quality = $request->low_quality; 
+            
             $lowLimit = 5;
             $mediumLimit = 7.5;
             $highLimit = 10;
@@ -886,7 +871,7 @@ class LeadsManageCotroller extends Controller
             // Role-based filtering
             if ($user->hasRole('Administrator')) {
                 // No additional filtering needed
-            } elseif ($user->hasRole('agent')) {
+            } elseif ($user->hasRole('Franchise')) {
                 $agents = DB::table('users')->where('added_by', $user_id)->pluck('id')->toArray();
                 $agents[] = $user_id; // Include own ID
                 $lead_list->whereIn('assigned_to', $agents);
@@ -900,18 +885,19 @@ class LeadsManageCotroller extends Controller
     }
 
 
-
-
     public function lead_list(Request $request, $export = null)
     {
+        
         $lead_list = $this->filterLeads($request);
 
         if ($request->has('export')) {
             return Excel::download(new LeadExport($lead_list->get()), 'leads.xlsx');
         }
         $lead_list = $lead_list->paginate(20);
+        // dd($lead_list);
 
         $countries = Country::where('is_active', 1)->get();
+
         $lead_status = MasterLeadStatus::get();
         if ($request->has('action') && $request->input('action') === 'export') {
             return Excel::download(new LeadExport($lead_list), 'leads.xlsx');
@@ -921,10 +907,12 @@ class LeadsManageCotroller extends Controller
         } else {
             $sub_agents = User::where('admin_type', 'sub_agent')->select('id', 'email', 'name')->where('added_by', Auth::user()->id)->get();
         }
-        $source = Source::select('name', 'id')->get();
 
+        $driver_type = DriverType::select('name', 'id')->get();
+        $driver_cate_status = DriverCategoryStatus::select('name', 'id')->get();
 
-        return view('admin.leads.lead-list', compact('lead_list', 'countries', 'lead_status', 'sub_agents', 'source'));
+        $source=Source::where("status", 1)->orderBy('name', 'ASC')->get();
+        return view('admin.leads.lead-list', compact('lead_list','driver_cate_status', 'source','driver_type','countries', 'lead_status', 'sub_agents'));
     }
 
     public function assigned_leads(Request $request)
@@ -957,15 +945,16 @@ class LeadsManageCotroller extends Controller
         $student_id = $id;
         $masterLeadStatus = MasterLeadStatus::get();
         $master_service = MasterService::select('name', 'id')->get();
+        $driverCtagoryStatus =  DriverCategoryStatus::orderBy('name', 'ASC')->get();
 
 
         $follow_up_list = DB::table('user_follow_up')
-            ->join('student_by_agent', 'user_follow_up.student_id', '=', 'student_by_agent.id')
+            ->join('driver_data', 'user_follow_up.student_id', '=', 'driver_data.id')
             ->where('student_id', $id)
-            ->select('user_follow_up.*', 'student_by_agent.name', 'student_by_agent.email')
+            ->select('user_follow_up.*', 'driver_data.first_name', 'driver_data.email')
             ->latest()
             ->get();
-        return view('admin.leads.manage-leads', compact('studentAgentData', 'master_service', 'student_id', 'masterLeadStatus', 'follow_up_list'));
+        return view('admin.leads.manage-leads', compact('studentAgentData','driverCtagoryStatus', 'master_service', 'student_id', 'masterLeadStatus', 'follow_up_list'));
     }
     public function lead_quality(Request $request, $id)
     {
@@ -979,9 +968,9 @@ class LeadsManageCotroller extends Controller
 
 
         $follow_up_list = DB::table('user_follow_up')
-            ->join('student_by_agent', 'user_follow_up.student_id', '=', 'student_by_agent.id')
+            ->join('driver_data', 'user_follow_up.student_id', '=', 'driver_data.id')
             ->where('student_id', $id)
-            ->select('user_follow_up.*', 'student_by_agent.name', 'student_by_agent.email')
+            ->select('user_follow_up.*', 'driver_data.first_name', 'driver_data.email')
             ->latest()
             ->get();
         return view('admin.leads.leads_quality', compact('studentAgentData', 'lead_quality', 'master_service', 'student_id', 'masterLeadStatus', 'follow_up_list'));
@@ -1020,7 +1009,7 @@ class LeadsManageCotroller extends Controller
     public function add_user_follow_up(Request $request)
     {
 
-        // dd($request->all());
+       
 
         $uniqueId       = $this->uniqidgenrate();
         if ($request->paymentMode == 'Online') {
@@ -1073,12 +1062,14 @@ class LeadsManageCotroller extends Controller
 
             Mail::to($studentdata->email)->send(new PaymentLinkEmail($paymentData, $attachmentPath, $attachmentName));
         }
-
+        // dd($request->all());
         StudentByAgent::where('id', $request->student_id)->update([
             'next_calling_date' => $request->next_calling_date,
-            'lead_status' => $request->lead_status,
-            'intake' => $request->intake,
-            'intake_year' => $request->intake_year,
+            'driver_category_status' => $request->lead_status,
+            // 'lead_status' => $request->lead_status,
+
+            // 'intake' => $request->intake,
+            // 'intake_year' => $request->intake_year,
             'student_comment' => $request->comment,
             'updated_at' => now(),
         ]);
@@ -1093,7 +1084,7 @@ class LeadsManageCotroller extends Controller
                 $amount = $request->amount;
             }
             $email = StudentByAgent::where('id', $request->student_id)->pluck('email')->first();
-            $name = StudentByAgent::where('id', $request->student_id)->pluck('name')->first();
+            $name = StudentByAgent::where('id', $request->student_id)->pluck('first_name')->first();
 
             //  dd(  $email);
 
@@ -1126,7 +1117,7 @@ class LeadsManageCotroller extends Controller
 
             $attachmentName = 'studentPraposel.pdf';
 
-            Mail::to($email)->send(new StudentPraposelMail($studentData, $attachmentPath, $attachmentName));
+            // Mail::to($email)->send(new StudentPraposelMail($studentData, $attachmentPath, $attachmentName));
 
             Payment::create([
                 'payment_id' => $payments->id ?? null,
@@ -1142,15 +1133,18 @@ class LeadsManageCotroller extends Controller
 
             ]);
         }
+       
         $data = [
             'student_id' => $request->student_id,
-            'status' => $request->lead_status ?? null,
+            // 'status' => $request->lead_status ?? null,
+            'driver_category_status' => $request->lead_status ?? null,
+
             'paymentType' => $request->paymentType ?? null,
             'paymentTypeRemarks' => $request->paymentTypeRemarks ?? null,
             'paymentMode' => $request->paymentMode ?? null,
             'paymentModeRemarks' => $request->paymentModeRemarks ?? null,
-            'intake' => $request->intake ?? null,
-            'intake_year' => $request->intake_year ?? null,
+            // 'intake' => $request->intake ?? null,
+            // 'intake_year' => $request->intake_year ?? null,
             'user_id' => Auth::user()->id,
             'comment' => $request->comment ?? null,
             'next_calling_date' => $request->next_calling_date,
@@ -1283,51 +1277,7 @@ class LeadsManageCotroller extends Controller
         }
     }
 
-    // public function oel_360(Request $request)
-    // {
-    //     $studentData = Student::query();
-    //     $user = Auth::user();
-    //     if (Auth::user()->hasRole('Administrator')) {
-    //         $sub_agents = User::where('admin_type', 'sub_agent')->select('id', 'email', 'name')->get();
-    //         $agents = User::where('admin_type', 'agent')->select('id', 'email', 'name')->get();
-
-    //     } else {
-    //         $sub_agents = User::where('admin_type', 'sub_agent')->select('id', 'email', 'name')->where('added_by', Auth::user()->id)->get();
-    //         $agents = User::where('admin_type', 'agent')->select('id', 'email', 'name')->where('added_by', Auth::user()->id)->get();
-
-    //     }
-    //     if (($user->hasRole('agent'))) {
-    //         $studentData->where('assigned_to', $user->id)->orwhere('user_id', $user->id)->orwhere('added_by_agent_id', $user->id)->orwhere('added_by', $user->id);
-
-    //     }
-    //     if (($user->hasRole('sub_agent'))) {
-    //         $studentData->where('assigned_to', $user->id)->orwhere('user_id', $user->id);
-    //     }
-    //     if ($request->first_name) {
-    //         $studentData->where('student.first_name', 'LIKE', "%$request->first_name%");
-    //     }
-    //     if ($request->email) {
-    //         $studentData->where('student.email', 'LIKE', "%$request->email%");
-    //     }
-    //     if ($request->subagent_id) {
-    //         $studentData->where('student.added_by', 'LIKE', "%$request->subagent_id%");
-    //     }
-    //     if ($request->agent_id) {
-    //         $studentData->where('student.added_by', 'LIKE', "%$request->agent_id%");
-    //     }
-    //     // $studentData =$studentData->where('status_threesixty',1)->where('profile_complete',1)->paginate(15);
-    //     $studentData = $studentData->join('users', 'users.id', '=', 'student.added_by')  // Adjust the table name if necessary
-
-    //     ->join('student_by_agent', 'student_by_agent.student_user_id', '=', 'student.user_id')
-
-    //     ->where('student.status_threesixty', 1)
-    //         ->where('profile_complete', 1)
-    //         ->select('student.*', 'users.name as added_by_name')  // Select user details (e.g., 'name' or other fields)
-    //         ->paginate(15);
-    //         $master_service =MasterService::select('name','id')->get();
-
-    //     return view('admin.leads.oel-360', compact('studentData','sub_agents','master_service','agents'));
-    // }
+    
     public function oel_360(Request $request)
     {
         $studentData = Student::query();
@@ -1335,14 +1285,14 @@ class LeadsManageCotroller extends Controller
 
         if (Auth::user()->hasRole('Administrator')) {
             $sub_agents = User::where('admin_type', 'sub_agent')->select('id', 'email', 'name')->get();
-            $agents = User::where('admin_type', 'agent')->select('id', 'email', 'name')->get();
+            $agents = User::where('admin_type', 'Franchise')->select('id', 'email', 'name')->get();
         } else {
             $sub_agents = User::where('admin_type', 'sub_agent')->select('id', 'email', 'name')->where('added_by', Auth::user()->id)->get();
-            $agents = User::where('admin_type', 'agent')->select('id', 'email', 'name')->where('added_by', Auth::user()->id)->get();
+            $agents = User::where('admin_type', 'Franchise')->select('id', 'email', 'name')->where('added_by', Auth::user()->id)->get();
             $visa = User::where('admin_type', 'visa')->select('id', 'email', 'name')->where('added_by', Auth::user()->id)->get();
         }
 
-        if ($user->hasRole('agent')) {
+        if ($user->hasRole('Franchise')) {
             $studentData->where(function ($query) use ($user) {
                 $query->Where('student.added_by_agent_id', $user->id)
                     ->orWhere('student.added_by', $user->id);
@@ -1374,7 +1324,7 @@ class LeadsManageCotroller extends Controller
             // $studentData = Student::query();
             $studentData = $studentData
                 ->join('users', 'users.id', '=', 'student.added_by')
-                ->join('student_by_agent', 'student_by_agent.student_user_id', '=', 'student.user_id')
+                ->join('driver_data', 'driver_data.student_user_id', '=', 'student.user_id')
                 ->join('payments', 'payments.customer_email', '=', 'student.email')
                 ->join('tbl_three_sixtee', 'tbl_three_sixtee.sba_id', '=', 'student.id')
                 ->join('payments_link', 'payments_link.fallowp_unique_id', '=', 'payments.fallowp_unique_id')
@@ -1408,7 +1358,7 @@ class LeadsManageCotroller extends Controller
             // $studentData = Student::query();
             $studentData = $studentData
                 ->join('users', 'users.id', '=', 'student.added_by')
-                ->join('student_by_agent', 'student_by_agent.student_user_id', '=', 'student.user_id')
+                ->join('driver_data', 'driver_data.student_user_id', '=', 'student.user_id')
                 ->join('payments', 'payments.customer_email', '=', 'student.email')
                 ->join('payments_link', 'payments_link.fallowp_unique_id', '=', 'payments.fallowp_unique_id')
                 ->join('tbl_three_sixtee', 'tbl_three_sixtee.sba_id', '=', 'student.id')
@@ -1450,7 +1400,7 @@ class LeadsManageCotroller extends Controller
             // $studentData = Student::query();
             $studentData = $studentData
                 ->join('users', 'users.id', '=', 'student.added_by')
-                ->join('student_by_agent', 'student_by_agent.student_user_id', '=', 'student.user_id')
+                ->join('driver_data', 'driver_data.student_user_id', '=', 'student.user_id')
                 ->join('payments', 'payments.customer_email', '=', 'student.email')
                 ->join('payments_link', 'payments_link.fallowp_unique_id', '=', 'payments.fallowp_unique_id')
                 ->where('student.status_threesixty', 1)
@@ -1484,11 +1434,6 @@ class LeadsManageCotroller extends Controller
     }
 
 
-
-
-
-
-
     public function lead_details(Request $request)
     {
 
@@ -1502,9 +1447,6 @@ class LeadsManageCotroller extends Controller
 
     public function aply_360($id = null)
     {
-
-
-
 
         $user = Auth::user();
         if ($user->hasRole('student')) {
@@ -1581,32 +1523,7 @@ class LeadsManageCotroller extends Controller
 
         $paymentStatusDone = [];
 
-        // foreach ($paymentStatuses as $masterService => $paymentStatus) {
-        //     // Get the student's email based on the user_id
-        //     $student_email = Student::where('user_id', $studentDetails->user_id)->pluck('email')->first();
-
-        //     // Check if there are payments linked to this student and the current master service
-        //     $checkPayment = PaymentsLink::where('email', $student_email)
-        //         ->where('master_service', $paymentStatus)
-        //         ->first();
-
-        //     if ($checkPayment) {
-        //     //    dd($checkPayment->fallowp_unique_id);
-        //         // Retrieve the latest payment record associated with the 'fallowp_unique_id' from the checkPayment
-        //         $paymentDone = Payment::where('customer_email', $student_email)
-        //             ->where('fallowp_unique_id', $checkPayment->fallowp_unique_id)  // Use the 'fallowp_unique_id' from checkPayment
-        //             ->select('payment_status')
-        //             ->latest()  // Get the most recent payment
-        //             ->first();  // Use first() to get the single result (or null if no result)
-
-        //         // Check if the payment status is 'success' and update the payment status array accordingly
-        //         $paymentStatusDone[$masterService] = $paymentDone && $paymentDone->payment_status == 'success' ? 'Done' : 'Fail';
-        //     } else {
-        //         // If no matching payment is found, set the status to 'Fail'
-        //         $paymentStatusDone[$masterService] = 'Fail';
-        //     }
-        // }
-
+      
         foreach ($paymentStatuses as $masterService => $paymentStatus) {
             // Get the student's email based on the user_id
             $student_email = Student::where('user_id', $studentDetails->user_id)->pluck('email')->first();
@@ -2309,7 +2226,7 @@ class LeadsManageCotroller extends Controller
         if ($request->key == 'total-leads') {
             if ($user_type == 'Administrator') {
                 $leads = $leads;
-            } else if ($user_type == 'agent') {
+            } else if ($user_type == 'Franchise') {
                 $leads = $leads->where("added_by_agent_id", $user_id)->orWhere('assigned_to', $user_id);
             } else if ($user_type == 'sub_agent') {
                 $leads = $leads->where("assigned_to", $user_id);
@@ -2319,7 +2236,7 @@ class LeadsManageCotroller extends Controller
         if ($request->key == 'total-cold-leads') {
             if ($user_type == 'Administrator') {
                 $leads = $leads->where('lead_status', 4);
-            } else if ($user_type == 'agent') {
+            } else if ($user_type == 'Franchise') {
                 $leads = $leads->where("added_by_agent_id", $user_id)->orWhere('assigned_to', $user_id)->where('lead_status', 4);
             } else if ($user_type == 'sub_agent') {
                 $leads = $leads->where("assigned_to", $user_id)->where('lead_status', 4);
@@ -2329,7 +2246,7 @@ class LeadsManageCotroller extends Controller
         if ($request->key == 'total-hot-leads') {
             if ($user_type == 'Administrator') {
                 $leads = $leads->where('lead_status', 3);
-            } else if ($user_type == 'agent') {
+            } else if ($user_type == 'Franchise') {
                 $leads = $leads->where("added_by_agent_id", $user_id)->orWhere('assigned_to', $user_id)->where('lead_status', 3);
             } else if ($user_type == 'sub_agent') {
                 $leads = $leads->where("assigned_to", $user_id)->where('lead_status', 3);
@@ -2339,7 +2256,7 @@ class LeadsManageCotroller extends Controller
         if ($request->key == 'total-future-leads') {
             if ($user_type == 'Administrator') {
                 $leads = $leads->where('lead_status', 6);
-            } else if ($user_type == 'agent') {
+            } else if ($user_type == 'Franchise') {
                 $leads = $leads->where("added_by_agent_id", $user_id)->orWhere('assigned_to', $user_id)->where('lead_status', 6);
             } else if ($user_type == 'sub_agent') {
                 $leads = $leads->where("assigned_to", $user_id)->where('lead_status', 6);
@@ -2349,7 +2266,7 @@ class LeadsManageCotroller extends Controller
         if ($request->key == 'total-new-leads') {
             if ($user_type == 'Administrator') {
                 $leads = $leads->where('lead_status', 1);
-            } else if ($user_type == 'agent') {
+            } else if ($user_type == 'Franchise') {
                 $leads = $leads->where("added_by_agent_id", $user_id)->orWhere('assigned_to', $user_id)->where('lead_status', 1);
             } else if ($user_type == 'sub_agent') {
                 $leads = $leads->where("assigned_to", $user_id)->where('lead_status', 1);
@@ -2359,7 +2276,7 @@ class LeadsManageCotroller extends Controller
         if ($request->key == 'total-not-useful-leads') {
             if ($user_type == 'Administrator') {
                 $leads = $leads->where('lead_status', 5);
-            } else if ($user_type == 'agent') {
+            } else if ($user_type == 'Franchise') {
                 $leads = $leads->where("added_by_agent_id", $user_id)->orWhere('assigned_to', $user_id)->where('lead_status', 5);
             } else if ($user_type == 'sub_agent') {
                 $leads = $leads->where("assigned_to", $user_id)->where('lead_status', 5);
@@ -2369,7 +2286,7 @@ class LeadsManageCotroller extends Controller
         if ($request->key == 'total-warms-leads') {
             if ($user_type == 'Administrator') {
                 $leads = $leads->where('lead_status', 2);
-            } else if ($user_type == 'agent') {
+            } else if ($user_type == 'Franchise') {
                 $leads = $leads->where("added_by_agent_id", $user_id)->orWhere('assigned_to', $user_id)->where('lead_status', 2);
             } else if ($user_type == 'sub_agent') {
                 $leads = $leads->where("assigned_to", $user_id)->where('lead_status', 2);
@@ -2379,7 +2296,7 @@ class LeadsManageCotroller extends Controller
         if ($request->key == 'total-closed-leads') {
             if ($user_type == 'Administrator') {
                 $leads = $leads->where('lead_status', 7);
-            } else if ($user_type == 'agent') {
+            } else if ($user_type == 'Franchise') {
                 $leads = $leads->where("added_by_agent_id", $user_id)->orWhere('assigned_to', $user_id)->where('lead_status', 7);
             } else if ($user_type == 'sub_agent') {
                 $leads = $leads->where("assigned_to", $user_id)->where('lead_status', 7);
@@ -2389,7 +2306,7 @@ class LeadsManageCotroller extends Controller
         if ($request->key == 'total-allocated-leads') {
             if ($user_type == 'Administrator') {
                 $leads = $leads->whereNotNull("assigned_to");
-            } else if ($user_type == 'agent' || $user_type == 'sub_agent') {
+            } else if ($user_type == 'Franchise' || $user_type == 'sub_agent') {
                 $leads = $leads->where("assigned_to", $user_id)->whereNotNull('assigned_to');
             }
             $leads_name = 'Total Allocated Leads';
@@ -2397,7 +2314,7 @@ class LeadsManageCotroller extends Controller
         if ($request->key == 'total-non-allocated-leads') {
             if ($user_type == 'Administrator') {
                 $leads = $leads->whereNull("assigned_to");
-            } else if ($user_type == 'agent' || $user_type == 'sub_agent') {
+            } else if ($user_type == 'Franchise' || $user_type == 'sub_agent') {
                 $leads = $leads->where("assigned_to", $user_id)->whereNull('assigned_to');
             }
             $leads_name = 'Total Non-Allocated Leads';
@@ -2416,8 +2333,12 @@ class LeadsManageCotroller extends Controller
         $agent = User::query();
         $user = Auth::user();
         if ($user->hasRole('Administrator')) {
-            $agent->where('admin_type', 'agent')->where('is_active', 1)->where('is_approve', 1);
-        } elseif ($user->hasRole('agent')) {
+            $agent->whereIn('admin_type', ['Franchise', 'Verification'])
+            ->where('is_active', 1)
+            ->where('is_approve', 1);
+
+        } 
+        elseif ($user->hasRole('Franchise')) {
             $agent->where('added_by', $user->id)->where('admin_type', 'sub_agent')->where('is_active', 1)->where('status', 1);
         }
         $agentData = $agent->get();
@@ -2428,13 +2349,9 @@ class LeadsManageCotroller extends Controller
     {
         $users = Auth::user();
         if (!empty($request->leadIds)) {
-            // $std_by_id = DB::table('student_by_agent')->whereIn('id', $request->leadIds)->whereNotNull('zip')->get();
-            // if ($std_by_id->isEmpty()) {
-            //     $data = ['status' => false, 'message' => "You can not assign without Pincode ! "];
-            //     return response()->json($data);
-            // }else{
+          
             $user = User::where('id', $request->agentId)->select('id', 'added_by')->first();
-            //dd($user);
+           
             if ($users->hasRole('Administrator')) {
                 StudentByAgent::whereIn('id', $request->leadIds)->update([
                     'added_by_agent_id' => $request->agentId,
@@ -2447,11 +2364,11 @@ class LeadsManageCotroller extends Controller
                         'user_id' => $franchise_user->name,
                         'message' => " . $count . A Lead has been assigned to you",
                     ];
-                    Mail::to($franchise_user->email)->send(new assignLeadsMail($data));
+                    // Mail::to($franchise_user->email)->send(new assignLeadsMail($data));
                 }
 
                 $data = ['status' => true, 'message' => "Admin  Assigned  to Franchise Successfully ! " . $count . " leads has been assigned to you"];
-            } else if ($users->hasRole('agent')) {
+            } else if ($users->hasRole('Franchise')) {
                 StudentByAgent::whereIn('id', $request->leadIds)->update([
                     'assigned_to' => $request->agentId,
                 ]);
@@ -2539,21 +2456,17 @@ class LeadsManageCotroller extends Controller
 
     public function show_lead($id)
     {
-
-
         $user = auth()->user();
-        $castes = Caste::where("status", 1)->get();
-        $subjects = Program::where('is_approved', 1)
-            ->select('id', 'name')
-            ->get();
-        $countries = Country::where('is_active', 1)->get();
-        $lead_status = MasterLeadStatus::where("status", 1)->orderBy('name', 'ASC')->get();
-        $source = Source::where("status", 1)->orderBy('name', 'ASC')->get();
-        $progLabel = EducationLevel::All();
-        $preproLabel = Fieldsofstudytype::All();
-        $interested = Intrested::WHERE('is_deleted', '0')->get();
-        $studentData = StudentByAgent::with('caste_data', 'state', 'assigned_to_user', 'added_by_user', 'country', 'lead_status_data', 'source')->where('id', $id)->first();
-        return view('admin.leads.show_lead', compact('studentData', 'preproLabel', 'castes', 'interested', 'subjects', 'countries', 'lead_status', 'source', 'progLabel'));
+        
+        
+        $studentData = StudentByAgent::with([
+            'caste_data', 'state', 'assigned_to_user', 'added_by_user',
+            'country', 'lead_status_data', 'source', 
+            'driver_documents' // add this
+        ])
+        ->where('id', $id)
+        ->first();       
+        return view('admin.leads.show_lead', compact('studentData' , 'user'));
     }
 
 
@@ -2609,9 +2522,6 @@ class LeadsManageCotroller extends Controller
     public function getCourses(Request $request)
     {
 
-
-
-
         $threesixtee = DB::table('tbl_three_sixtee')
             ->where('user_id', $request->sba_id)
 
@@ -2629,13 +2539,7 @@ class LeadsManageCotroller extends Controller
 
     public function lead_quality_store(Request $request)
     {
-        //  dd($request->name + $request->phone);
-
-        // $request->validate([            
-        //     'qualities' => 'required|array',
-        // ]);
-
-        // dd($request->all());
+       
 
         $sum = $request->name + $request->phone + $request->father_working +
             $request->mother_working + $request->age + $request->english_efficiency +
@@ -2685,4 +2589,65 @@ class LeadsManageCotroller extends Controller
 
         return response()->json($counts, 200, $counts_quality);
     }
+
+
+
+
+    public function uploadDocument(Request $request)
+    {
+
+        //   dd($request->all());
+    $request->validate([
+        'document_type' => 'required|exists:document_types,id',
+        'document_upload' => 'required|file|max:2048'
+    ]);
+
+
+    $studentAgent = StudentByAgent::where('id', $request->student_id)->first();
+    //dd ($studentAgent);
+    if ($request->hasFile('document_upload')) {
+        $file = $request->file('document_upload');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $uploadPath = 'meradriver/documents/' . $filename;
+    
+        // Move file to public path
+        $file->move(public_path('meradriver/documents/'), $filename);
+    
+        // Check if document already exists
+         $existingDoc = DB::table('driver_documents')
+        ->where('driver_id', $studentAgent->id)
+        ->where('document_type', $request->document_type)
+        ->first();
+    
+        if ($existingDoc) {
+            // Delete old file if it exists
+            $oldPath = public_path($existingDoc->document_path);
+            if (file_exists($oldPath)) {
+                unlink($oldPath);
+            }
+    
+            // Update existing record
+            DB::table('driver_documents')
+                ->where('id', $existingDoc->id)
+                ->update([
+                    'document_path' => $uploadPath,
+                    'updated_at' => now(),
+                ]);
+
+        } else {
+
+            // Insert new document
+            DB::table('driver_documents')->insert([
+                'driver_id' => $studentAgent->id,
+                'document_type' => $request->document_type,
+                'document_path' => $uploadPath,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+    }
+
+    return response()->json(['success' => true]);
+  }
+
 }

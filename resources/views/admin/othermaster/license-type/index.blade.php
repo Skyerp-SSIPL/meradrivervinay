@@ -16,8 +16,8 @@
                 </div>
                 @can('vas_services.create')
                 <div class="col-md-4">
-                    <a href="{{ route('create-visa-document-type') }}" class="btn add-btn float-end">
-                        <i class="las la-plus"></i>Create Licence type</a>
+                    <a href="{{ route('create-license-type') }}" class="btn add-btn float-end">
+                        <i class="las la-plus"></i>Add</a>
                 </div>
                 @endcan
             </div>
@@ -29,7 +29,7 @@
     <div class="card-group mb-3">
         <div class="card">
             <div class="card-body myform">
-                <form id="eudcation" action="{{route('visa-document-type')}}" method="get">
+                <form id="eudcation" action="{{route('license-type')}}" method="get">
                     <div class="d-flex justify-content-start align-items-center">
                         <div class="col-md-5 ps-md-3">
                             <div class="form-floating ">
@@ -42,7 +42,7 @@
                                 <button type="submit" class="btn btn-info w-100 float-end" id="submit" value="1">Search</button>
                             </div>
                             <div class="col ps-2 float-start">
-                                <a href="{{route('visa-document-type')}}" class="btn btn-info w-100">
+                                <a href="{{route('license-type')}}" class="btn btn-info w-100">
                                     Reset
                                 </a>
                             </div>
@@ -83,10 +83,10 @@
                         <td class="text-wrap">{{ $item->name }}</td>
                         <td>{{ $item->status == 1 ? 'Active' : 'Inactive' }}</td>
                         @can('visa_documents_type.update')
-                        <td><a href="{{route('edit-visa-document-type',$item->id)}}" class="btn btn-info"><i class="fa-solid fa-pen"></i></a></td>
+                        <td><a href="{{route('edit-license-type',$item->id)}}" class="btn btn-info"><i class="fa-solid fa-pen"></i></a></td>
                         @endcan
                         @can('visa_documents_type.delete')
-                        <td><a href="{{route('delete-visa-document-type',$item->id)}}" class="btn btn-warning"><i class="fa-solid fa-trash"></i></a></td>
+                        <td><a href="{{route('delete-license-type',$item->id)}}" class="btn btn-warning"><i class="fa-solid fa-trash"></i></a></td>
                         @endcan
                     </tr>
                     @endforeach

@@ -10,14 +10,14 @@
                             <a href="index.php"> Home</a>
                         </li>
                         <li class="breadcrumb-item text-muted">
-                            Student Registratin Fees
+                        Driver Registratin Fees
                         </li>
                     </ol>
                 </div>
                 @can('student_registration_fees.create')
                 <div class="col-md-4">
                     <a href="{{ route('create-student-registration-fees') }}" class="btn add-btn float-end">
-                        <i class="las la-plus"></i>Create Student Registration Fees</a>
+                        <i class="las la-plus"></i>Create Driver Registration Fees</a>
                 </div>
                 @endcan
             </div>

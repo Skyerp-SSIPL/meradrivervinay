@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title mb-0"> Manage  Student Assistance</h4>
+                    <h4 class="card-title mb-0"> Manage  Driver Assistance</h4>
                 </div>
                 <div class="card-body">
                     <div class="wizard">
@@ -13,7 +13,7 @@
                             <div class="tab-pane fade show active" role="tabpanel" id="step1"
                                 aria-labelledby="step1-tab">
                                 <div class="mb-4 title-section-adss">
-                                    <h3>Add  Student Assistance</h3>
+                                    <h3>Add  Driver Assistance</h3>
                                 </div>
                                 @if (session('success'))
                                     <div class="alert alert-success">

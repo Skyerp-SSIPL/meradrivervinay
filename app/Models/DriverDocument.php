@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VisaDocument extends Model
+class DriverDocument extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded =[];
 }

@@ -7,48 +7,28 @@
             "slug": "dashboard",
             "permission":"dashboard.view"
         },
-        {
-            "name": "All Applied job",
-            "icon": "menu-icon tf-icons fas fa-graduation-cap",
-            "slug": "application",
-            "permission":["application.view","learning_franchise.view","learning_agents.view","learning_student.view","oel_360.view"],
-            "submenu": [
-                {
-                    "url": "admin/total-applied-program",
-                    "name": "All Applications",
-                    "slug": "all-application",
-                    "permission":"application.view"
-                },
-
-                {
-                    "url": "/admin/oel-360",
-                    "name": "oel 360",
-                    "slug": "admin-oel-360",
-                    "permission":"oel_360.view"
-                }
-            ]
-        },
+      
                {
-            "name": "Manage Leads",
+            "name": "Manage Drivers",
             "icon": "menu-icon tf-icons la la-user-secret",
             "slug": "admin",
             "permission":["leads_dashboard.view","add_leads.view","bulk_upload.view","pending_lead.view","assigned_lead.view","latest_updated_leads.view","oel_360.view","leads_lists.view"],
             "submenu": [
                 {
                     "url": "/admin/leads-dashboard",
-                    "name": "Leads Dashboard",
+                    "name": "Drivers Dashboard",
                     "slug": "admin-leads-dashboard",
                     "permission":"leads_dashboard.view"
                 },
                 {
                     "url": "/admin/add-leads",
-                    "name": "Add Leads",
+                    "name": "Add Drivers",
                     "slug": "admin-add-leads",
                     "permission":"add_leads.view"
                 },
                 {
                     "url": "/admin/leads-lists",
-                    "name": "Leads List",
+                    "name": "Drivers List",
                     "slug": "admin-leads-lists",
                     "permission":"leads_lists.view"
                 },
@@ -57,66 +37,14 @@
                     "name": "Bulk Upload",
                     "slug": "admin-bulk-upload",
                     "permission":"bulk_upload.view"
-                },
-                {
-                    "url": "/admin/pending-lead",
-                    "name": "Pending Lead",
-                    "slug": "admin-pending-lead",
-                    "permission":"pending_lead.view"
-                },
-                {
-                    "url": "/admin/assigned-lead",
-                    "name": "Assigned Lead",
-                    "slug": "admin-assigned-lead",
-                    "permission":"assigned_lead.view"
                 }
+               
                 
             ]
         },
-        {
-            "name": "Message",
-            "icon": "menu-icon tf-icons las la-sms",
-            "slug": "message",
-            "permission":["message_lead.view","message_franchise.view","message_student.view","outbox.view","trash.view","sms_template.view"],
-            "submenu": [
-                {
-                    "url": "/admin/message-lead",
-                    "name": "Message Lead",
-                    "slug": "admin-message-lead",
-                    "permission":"message_lead.view"
-                },
-                {
-                    "url": "/admin/message-franchise",
-                    "name": "Message Franchise",
-                    "slug": "admin-message-franchise",
-                    "permission":"message_franchise.view"
-                },
-                {
-                    "url": "/admin/message-student",
-                    "name": "Message Student",
-                    "slug": "admin-message-student",
-                    "permission":"message_student.view"
-                },
-                {
-                    "url": "/admin/outbox",
-                    "name": "OutBox",
-                    "slug": "admin-outbox",
-                    "permission":"outbox.view"
-                },
-                {
-                    "url": "/admin/trash",
-                    "name": "Trash",
-                    "slug": "admin-trash",
-                    "permission":"trash.view"
-                },
-                {
-                    "url": "/admin/sms-template",
-                    "name": "Sms Template",
-                    "slug": "admin-sms-template",
-                    "permission":"sms_template.view"
-                }
-            ]
-        },
+
+       
+       
         {
             "url": "/revert-to-admin",
             "name": "Back to Admin login",
@@ -125,247 +53,27 @@
             "permission":"impersonate.view"
         },
         {
-            "name": "Agents",
+            "name": "Franchise",
             "icon": "menu-icon tf-icons las la-handshake",
             "slug": "franchise",
             "permission":["franchise.view","manage_oel_presentation.view","manage_oel_agreement_letter.view","manage_oel_pincode.view"],
             "submenu": [
                 {
                     "url": "/franchise/franchise-list",
-                    "name": "Agents List",
+                    "name": "Franchise List",
                     "slug": "franchise-franchise",
                     "permission":"franchise.view"
-                },
-                {
-                    "url": "/franchise/manage-oel-presentation",
-                    "name": "Manage OEL Presentation",
-                    "slug": "franchise-manage-oel-presentation",
-                    "permission": "manage_oel_presentation.view"
-                },
-                {
-                    "url": "/franchise/manage-oel-agreement-letter",
-                    "name": "Manage OEL Agreement Letter",
-                    "slug": "franchise-manage-oel-agreement",
-                    "permission": "manage_oel_agreement_letter.view"
                 }
+                
                
             ]
-        },  {
-            "name": "Data Operator",
-            "icon": "menu-icon tf-icons las la-user-tie",
-            "slug": "data-operator",
-            "permission":["data_operator.view"],
-            "submenu": [
-                {
-                    "url": "/data-operator/data-operator-list",
-                    "name": "Data Operator List",
-                    "slug": "data-operator",
-                    "permission":"data_operator.view"
-                }
-            ]
-        },
-        {
-            "name": "Driver",
-            "icon": "menu-icon tf-icons fas fa-user-graduate",
-            "slug": "student",
-            "permission":["student.view","student_registration_fees.view","student_apply_question.view","student_assistance.view","student_assistance.view","student_enquiry_log.view","popular_student_guide.view","find_program_log.view"],
-            "submenu": [
-                {
-                    "url": "/admin/student-list",
-                    "name": "Driver List",
-                    "slug": "admin-student-list",
-                    "permission":"student.view"
-                },
-                
-                {
-                    "url": "/admin/student-apply-question",
-                    "name": "Driver Apply Questions",
-                    "slug": "admin-student-apply-question",
-                    "permission":"student_apply_question.view"
-                },
-                {
-                    "url": "/admin/student-assistance",
-                    "name": "Driver Assistance",
-                    "slug": "admin-student-assistance",
-                    "permission":"student_assistance.view"
-                }
-               
-                
-                 
-            ]
-        },
-        {
-            "name": "Jobs Post",
-            "icon": "menu-icon tf-icons lab la-product-hunt",
-            "slug": "programs",
-            "permission":["program_sub_level.view","programs.view","proficiency_level.view","approve_program.approve_program_view",
-            "manage_program.manage_program_view","program_level_details.view","education_level.view","program_subdiscipline.view","documents.view",
-            "program_level.program_level_view","grading_scheme.view","exams.view","field_of_study.view","subject.view_view","manage_recommended_programs.manage_recommended_programs_view"],
-            "submenu": [
-                {
-                    "url": "/admin/approve-program",
-                    "name": "Approve Jobs",
-                    "slug": "admin-approve-program",
-                    "permission":"approve_program.approve_program_view"
-                },
-                {
-                    "url": "/admin/manage-program",
-                    "name": "Manage Jobs",
-                    "slug": "admin-mangee-program",
-                    "permission":"manage_program.manage_program_view"
-                },
-
-                {
-                    "url": "/admin/updation-program",
-                    "name": "Update Jobs",
-                    "slug": "admin-mangee-program",
-                    "permission":"manage_program.manage_program_view"
-                },
-                
-                 {
-                    "url": "/admin/eng-proficiency-level",
-                    "name": "Eng Proficiency Level",
-                    "slug": "admin-proficiency-level",
-                    "permission":"proficiency_level.view"
-                },
-                {
-                    "url": "/admin/program-discipline",
-                    "name": "Jobs Discipline",
-                    "slug": "admin-program-discipline",
-                    "permission":"program_discipline.view"
-                },
-                {
-                    "url": "/admin/program-subdiscipline",
-                    "name": "Jobs SubDiscipline",
-                    "slug": "admin-program-subdiscipline",
-                    "permission":"program_subdiscipline.view"
-                },
-                {
-                    "url": "/admin/program-level",
-                    "name": "Jobs Level",
-                    "slug": "admin-program-level",
-                    "permission":"program_level.program_level_view"
-                },
-                {
-                    "url": "/admin/program-sub-level",
-                    "name": "Jobs Sub Level",
-                    "slug": "admin-program-sub-level",
-                    "permission":"program_sub_level.view"
-                },
-                {
-                    "url": "/admin/education-level",
-                    "name": "Education Level",
-                    "slug": "admin-education-level",
-                    "permission":"education_level.view"
-                },
-                {
-                    "url": "/admin/grading-scheme",
-                    "name": "Grading Scheme",
-                    "slug": "admin-grading-scheme",
-                    "permission":"grading_scheme.view"
-                },{
-                    "url": "/admin/exams",
-                    "name": "Other Exams",
-                    "slug": "admin-exams",
-                    "permission":"exams.view"
-                },
-                {
-                    "url": "/admin/field-of-study-types",
-                    "name": "Degree Type",
-                    "slug": "admin-field-of-study-types",
-                    "permission":"field_of_study.view"
-                },
-               
-                {
-                    "url": "/admin/documents",
-                    "name": "Documents",
-                    "slug": "admin-documents",
-                    "permission":"documents.view"
-                }
-            ]
-        },
-        {
-        "name": "Company",
-        "icon": "menu-icon tf-icons las la-university",
-        "slug": "universities",
-        "permission":["approve_university.approve_university_view","manage_university.manage_university_view","un_approve_university.un_approve_university_view","updation_manage_university.updation_manage_university_view","oel_review.oel_review_view","oel_type.oel_type_view"],
-        "submenu": [
-                {
-                    "url": "/admin/approved-university",
-                    "name": "Approve Company",
-                    "slug": "admin-approved-university",
-                    "permission":"approve_university.approve_university_view"
-                },
-                {
-                    "url": "/admin/manage-university",
-                    "name": "Manage Company",
-                    "slug": "admin-manage-university",
-                    "permission":"manage_university.manage_university_view"
-                },
-                {
-                    "url": "/admin/un-approve-university",
-                    "name": "Un Approve Company",
-                    "slug": "admin-un-approve-university",
-                    "permission":"un_approve_university.un_approve_university_view"
-                },
-                {
-                    "url": "/admin/updation-manage-university",
-                    "name": "Updation Manage Company",
-                    "slug": "admin-updation-manage-university",
-                    "permission":"updation_manage_university.updation_manage_university_view"
-                },
-                {
-                    "url": "/admin/oel-review",
-                    "name": "Oel Review",
-                    "slug": "admin-oel-review",
-                    "permission":"oel_review.oel_review_view"
-                },
-                {
-                    "url": "/admin/university-type",
-                    "name": "Company Type",
-                    "slug": "admin-university-type",
-                    "permission":"oel_type.oel_type_view"
-                }
-            ]
-        },
+        }, 
         
      
-        {
-            "url": "/apply-program",
-            "name": "Apply Program",
-            "icon": "menu-icon tf-icons fa-solid fa-circle-check",
-            "slug": "apply-program",
-            "permission":"apply_program.view"
-        },
-        {
-            "url": "/student/applied-program",
-            "name": "Applied Jobs",
-            "icon": "menu-icon tf-icons lab la-product-hunt",
-            "slug": "applied-program",
-            "permission":"applied_program.view"
-        },
        
-      
-        {
-            "name": "Accounting",
-            "icon": "menu-icon tf-icons las la-briefcase",
-            "slug": "accounting",
-            "permission":["account_dashboard.view","student_amount.view"],
-            "submenu": [
-                {
-                    "url": "/accounting/dashboard",
-                    "name": "Dashboard",
-                    "slug": "accounting-dashboard",
-                    "permission": "account_dashboard.view"
-                },
-                {
-                    "url": "/accounting/student-review",
-                    "name": "Statement",
-                    "slug": "accounting-student-review",
-                    "permission": "student_amount.view"
-                }
-            ]
-        },
+     
+     
+       
         {
             "name": "Master Data",
             "icon": "menu-icon tf-icons las la-tachometer-alt",
@@ -373,42 +81,45 @@
             "permission":["specializations.view","source.view","interested.view","country.view","province.view","visa_type.view"
             ,"faq.view","education_lane.view","manage_blogs.view","vas_services.view","master_service.view","visa_documents_type.view","visa_sub_document_type.view" ,"lead_quality.view"],
             "submenu": [
+
                 {
                     "url": "/admin/source",
-                    "name": "Source Type",
+                    "name": "Source",
+                    "slug": "admin-source",
+                    "permission":"source.view"
+                },
+                {
+                    "url": "/admin/driver-type",
+                    "name": "Drivers Type",
                     "slug": "admin-source",
                     "permission":"source.view"
                 },
 
-                {
-                    "url": "/admin/expectd_salary",
-                    "name": "Expected Salary",
-                    "slug": "admin-source",
-                    "permission":"source.view"
-                },
+                
                 {
                     "url": "/admin/job-type",
                     "name": "Job Type",
                     "slug": "admin-job-type",
                     "permission":"specializations.view"
                 },
+               
                 {
-                    "url": "/admin/visa-type",
-                    "name": "Driver Type",
-                    "slug": "admin-visa-type",
-                    "permission":"visa_type.view"
-                },
-                {
-                    "url": "/admin/visa-document-type",
+                    "url": "/admin/license-type",
                     "name": "License Type",
                     "slug": "admin-visa-document-type",
                     "permission":"visa_documents_type.view"
                 },
                 {
-                    "url": "/admin/interested",
-                    "name": "Vechicle Type",
+                    "url": "/admin/vechicle-type",
+                    "name": "Vehicle Type",
                     "slug": "admin-interested",
                     "permission":"interested.view"
+                },
+                {
+                    "url": "/admin/document-type",
+                    "name": "Document Type",
+                    "slug": "admin-education-lane",
+                    "permission":"education_lane.view"
                 },
                 {
                     "url": "/admin/country",
@@ -418,17 +129,12 @@
                 },
                 {
                     "url": "/admin/province",
-                    "name": "Province",
+                    "name": "State",
                     "slug": "admin-province",
                     "permission":"province.view"
                 },
                
-                {
-                    "url": "/admin/education-lane",
-                    "name": "Document Type",
-                    "slug": "admin-education-lane",
-                    "permission":"education_lane.view"
-                },
+              
                 {
                     "url": "/admin/master-service",
                     "name": "Services",
@@ -446,9 +152,14 @@
                     "name": "FAQs",
                     "slug": "admin-faq",
                     "permission":"faq.view"
+                },
+                
+                {
+                    "url": "/admin/expectd_salary",
+                    "name": "Expected Salary",
+                    "slug": "admin-source",
+                    "permission":"source.view"
                 }
-                
-                
                 
                 
             ]
@@ -468,59 +179,8 @@
             "slug": "edit-profile",
             "permission":"my_profile.update"
         },
-        {
-            "url": "/apply-program",
-            "name": "Apply Jobs",
-            "icon": "menu-icon tf-icons fa-solid fa-circle-check",
-            "slug": "check-eligibility",
-            "permission":"check_eligibility.view"
-        },
-        {
-            "name": "Landing Page",
-            "icon": "menu-icon tf-icons fas fa-home fs-5",
-            "slug": "landing-page",
-            "permission":["ads.view","about_country.view","slider.view","enquiry_email.view","getcountry_campaign.view"],
-            "submenu": [
-                {
-                    "url": "/landing-page/ads",
-                    "name": "Ads",
-                    "slug": "landing-page-ads",
-                    "permission":"ads.view"
-                },
-                {
-                    "url": "/landing-page/country-university",
-                    "name": "About Country",
-                    "slug": "landing-page-country-university",
-                    "permission":"about_country.view"
-                },
-                {
-                    "url": "/landing-page/getSlider",
-                    "name": "Slider",
-                    "slug": "landing-page-slider",
-                    "permission":"slider.view"
-                },
-                {
-                    "url": "/landing-page/emailData",
-                    "name": "Enquiry Email",
-                    "slug": "landing-page-emailData",
-                    "permission":"enquiry_email.view"
-                },
-                {
-                    "url": "/landing-page/contact-us",
-                    "name": "Contact Us & User Query",
-                    "slug": "landing-page-contact-us",
-                    "permission":"enquiry_email.view"
-                },
-                {
-                    "url": "/landing-page/country-campaign",
-                    "name": "Country Campaign",
-                    "slug": "landing-page-country-campaign",
-                    "permission":"enquiry_email.view"
-                }
-                
-            ]
-        },
-
+      
+       
         
         {
             "name": "CMS",

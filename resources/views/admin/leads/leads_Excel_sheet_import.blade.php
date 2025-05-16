@@ -21,9 +21,7 @@
   <div class="row px-0">
     <div class="card card-stretch-full mx-0 px-0 mt-0 pt-0">
       <div class="card-body px-0 pt-0">
-        <div class="card-header table_heading mx-0 mt-0">
-          <h5 class="card-title text-white py-0"> Add Lead</h5>
-        </div>
+      
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}

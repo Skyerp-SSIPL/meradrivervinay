@@ -93,7 +93,7 @@ $users=Auth::user();
             <!-- <td>
 
               @if(!empty($item->assigned_to))
-                  @if(($users->hasRole('Administrator')) || ($users->hasRole('agent')))
+                  @if(($users->hasRole('Administrator')) || ($users->hasRole('Franchise')))
                           @if($item->assigned_to == $item->added_by_agent_id)
                               {{$frenchise ?? ''}} <br>
                           @else
@@ -142,7 +142,7 @@ $users=Auth::user();
             <td class="txt-oflo">
               @if ($user && $user->email !== null && $user->password !== null)
               @if(!(Session::has('admin_user')))
-              @if ($users->hasRole('Administrator') || $users->hasRole('visa') || $users->hasRole('agent') || $users->hasRole('sub_agent') || $users->hasRole('Application Punching'))
+              @if ($users->hasRole('Administrator') || $users->hasRole('visa') || $users->hasRole('Franchise') || $users->hasRole('sub_agent') || $users->hasRole('Application Punching'))
               <a class="btn btn-info" data-toggle="tooltip" title="Login as Student" href="{{ route('impersonate', $user) }}" style="margin-top: 5px;">
                 <i class="fa fa-sign-in-alt"></i>
               </a>

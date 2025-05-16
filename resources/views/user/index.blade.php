@@ -106,7 +106,7 @@
             <th>Email</th>
             <th>Account Type</th>
             <th>Status</th>
-            <th>Approval Status</th>
+            <!-- <th>Approval Status</th> -->
             <th class="text-end">Action</th>
           </tr>
         </thead>
@@ -147,7 +147,7 @@
               </div>
               @endif
             </td>
-            <td>
+            <!-- <td>
               @if ($user->hasRole('Administrator'))
               <select class="form-control approve text-center" name="approvevalue" data-id="{{$user->id}}" disabled>
                 <option value="">--Select--</option>
@@ -161,7 +161,7 @@
                 <option class="badge text-bg-danger" value="0" {{$user->is_approve == 0 ? 'selected' : ''}}>Unapprove</option>
               </select>
               @endif
-            </td>
+            </td> -->
 
 
             @php

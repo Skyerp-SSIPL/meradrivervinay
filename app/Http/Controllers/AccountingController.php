@@ -29,7 +29,7 @@ class AccountingController extends Controller
         }
 
         $userId = $user->id;
-        if ($user->hasRole('agent')) {
+        if ($user->hasRole('Franchise')) {
             $usersId = User::where('added_by', $userId)
                 ->whereNotIn('admin_type', ['student'])
                 ->pluck('id')
@@ -75,7 +75,7 @@ class AccountingController extends Controller
             return $query->sum('amount');
         }
         $userId = $user->id;
-        if ($user->hasRole('agent')) {
+        if ($user->hasRole('Franchise')) {
             $usersId = User::where('added_by', $userId)
                 ->whereNotIn('admin_type', ['student'])
                 ->pluck('id')
@@ -150,7 +150,7 @@ class AccountingController extends Controller
         $queryn = Payment::query();
         $user = Auth::user();
 
-        if ($user->hasRole('agent')) {
+        if ($user->hasRole('Franchise')) {
             $queryn->where(function ($query) use ($user) {
                 $query->Where('student.added_by_agent_id', $user->added_by)
                     ->orWhere('student.added_by', $user->id);

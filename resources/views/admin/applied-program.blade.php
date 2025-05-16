@@ -49,11 +49,11 @@
                                           $users = App\Models\User::where('id', $user->id)->first();
                                           @endphp
                                           <th>Application Id</th>
-                                          @if(($users->hasRole('Administrator')) || ($users->hasRole('agent')))
+                                          @if(($users->hasRole('Administrator')) || ($users->hasRole('Franchise')))
                                           <th>Applied On</th>
                                           @endif
 
-                                          @if(($users->hasRole('Administrator')) || ($users->hasRole('agent')))
+                                          @if(($users->hasRole('Administrator')) || ($users->hasRole('Franchise')))
                                           <th>Created By</th>
                                           @endif                
                                           <th>Student Name</th>
@@ -69,7 +69,7 @@
                                     
                                        <tr>
                                           <td><a href="">{{$item->app_id}}</a></td>
-                                          @if(($users->hasRole('Administrator')) || ($users->hasRole('agent')))
+                                          @if(($users->hasRole('Administrator')) || ($users->hasRole('Franchise')))
                                           <td>{{$item->created_at}}</td>
                                           @endif
                                           @php
@@ -78,10 +78,10 @@
                                           $frenchise = App\Models\User::where('id',$item->added_by_agent_id)->pluck('email')->first();
                                           @endphp
 
-                                          @if (($users->hasRole('agent')) || ($users->hasRole('Administrator')))
+                                          @if (($users->hasRole('Franchise')) || ($users->hasRole('Administrator')))
                                           <td>
                                              @if(!empty($item->assigned_to))
-                                             @if(($users->hasRole('Administrator')) || ($users->hasRole('agent')))
+                                             @if(($users->hasRole('Administrator')) || ($users->hasRole('Franchise')))
                                              @if($item->assigned_to == $item->added_by_agent_id)
                                              {{$frenchise ?? ''}} <br>
                                              @else

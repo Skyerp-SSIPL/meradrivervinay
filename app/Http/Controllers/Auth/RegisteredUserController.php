@@ -151,13 +151,13 @@ class RegisteredUserController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'admin_type' => 'agent',
+                'admin_type' => 'Franchise',
                 'phone_number' => $request->phone,
                 'status' => 1,
                 'is_active' => 1,
                 'password' => Hash::make($request->password),
             ]);
-            $role = Role::where('name','agent')->first();
+            $role = Role::where('name','Franchise')->first();
             if ($role) {
                 $user->assignRole([$role->id]);
             }

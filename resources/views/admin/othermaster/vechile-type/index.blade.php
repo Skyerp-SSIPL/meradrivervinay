@@ -10,14 +10,14 @@
                             <a href="index.php"> Home</a>
                         </li>
                         <li class="breadcrumb-item text-muted">
-                            Manage vechicle type
+                            Manage vehicle type
                         </li>
                     </ol>
                 </div>
                 @can('interest.create')
                 <div class="col-md-4">
-                    <a href="{{ route('create-interested') }}" class="btn add-btn float-end">
-                        <i class="las la-plus"></i>Create New vechicle type</a>
+                    <a href="{{ route('create-vechicle-type') }}" class="btn add-btn float-end">
+                        <i class="las la-plus"></i>Add</a>
                 </div>
                 @endcan
             </div>
@@ -29,7 +29,7 @@
     <div class="card-group">
         <div class="card">
             <div class="card-body myform">
-                <form id="eudcation" action="{{route('interested')}}" method="get">
+                <form id="eudcation" action="{{route('vechicle-type')}}" method="get">
                     <div class="row d-flex justify-content-start align-items-center">
                         <div class="col-md-5 ps-3">
                             <div class="form-floating ">
@@ -42,7 +42,7 @@
                                 <button type="submit" class="btn btn-info w-100 float-end" id="submit" value="1">Search</button>
                             </div>
                             <div class="col px-2">
-                                <a href="{{route('interested')}}" class="btn btn-info w-100">
+                                <a href="{{route('vechicle-type')}}" class="btn btn-info w-100">
                                     Reset
                                 </a>
                             </div>
@@ -85,12 +85,12 @@
                         <td>{{ $item->status == 1 ? 'Active' : 'Inactive' }}</td>
                         @can('interest.update')
                         <td>
-                            <a href="{{route('edit-interested',$item->id)}}" class="btn btn-info"><i class="fa-solid fa-pen"></i></a>
+                            <a href="{{route('edit-vechicle-type',$item->id)}}" class="btn btn-info"><i class="fa-solid fa-pen"></i></a>
                         </td>
                         @endcan
                         @can('interest.delete')
                         <td>
-                            <a href="{{route('delete-interested',$item->id)}}" class="btn btn-warning"><i class="fa-solid fa-trash"></i></a>
+                            <a href="{{route('delete-vechicle-type',$item->id)}}" class="btn btn-warning"><i class="fa-solid fa-trash"></i></a>
                         </td>
                         @endcan
                     </tr>

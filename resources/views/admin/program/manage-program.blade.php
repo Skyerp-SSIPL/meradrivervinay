@@ -40,13 +40,13 @@ td[data-tooltip] {
                             <li class="breadcrumb-item">
                                 <a href="index.php"> Home</a>
                             </li>
-                            <li class="breadcrumb-item text-muted">Manage Program / Courses</li>
+                            <li class="breadcrumb-item text-muted">Manage jobs</li>
                         </ol>
                     </div>
                     @can('programs.create')
                     <div class="col-md-2">
                         <a href="{{ route('add-program') }}" class="btn add-btn">
-                            <i class="las la-university"></i>Add Program </a>
+                            <i class="las la-university"></i>Add jobs </a>
                     </div>
                     @endcan
                 </div>
@@ -69,10 +69,10 @@ td[data-tooltip] {
               <form id="program_filter" action="{{route('program-filter')}}" method="get">
                 <div class="row">
                   <div class="col-md-4">
-                    <input type="text" class="form-control formmrgin" name="program_name" id="program_name" placeholder="Search By Program Name">
+                    <input type="text" class="form-control formmrgin" name="program_name" id="program_name" placeholder="Search By job Name">
                   </div>
                   <div class="col-md-4">
-                    <input type="text" class="form-control formmrgin" name="univerisity_name" id="university_name" placeholder="Search By University Name">
+                    <input type="text" class="form-control formmrgin" name="univerisity_name" id="university_name" placeholder="Search By company Name">
                   </div>
                   <div class="col-md-4">
                     <select name="approve_status" class="form-control formmrgin" id="approve">
@@ -101,8 +101,8 @@ td[data-tooltip] {
                     <thead>
                         <tr>
                             <th>S.N</th>
-                            <th>ProgramName </th>
-                            <th>UniversityName </th>
+                            <th>JobName </th>
+                            <th>CompanyName </th>
                             {{-- <th>MinimumLevelOfEducationRequired</th> --}}
                             <th>ProgramLevel</th>
                             <th>ApproveStatus</th>
@@ -112,11 +112,11 @@ td[data-tooltip] {
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                        @foreach ($program as $item)
+                        @foreach ($job as $item)
                         <tr>
                             <td>{{ $loop->index + (($program->currentPage() - 1) * $program->perPage()) + 1 }}</td>
-                            <td data-tooltip="{{ $item->name }}"> {{ implode(' ', array_slice(explode(' ', $item->name), 0, 6)) }}</td>
-                            <td>{{$item->school->university_name ?? null}}</td>
+                            <td data-tooltip="{{ $item->name }}"> {{ implode(' ', array_slice(explode(' ', $item->title), 0, 6)) }}</td>
+                            <td>{{$item->company_name    ?? null}}</td>
                             <td>{{$item->programLevel->name ?? null}}</td>
                             {{-- <td>
                                 @if($item->grading_scheme_id == 1)

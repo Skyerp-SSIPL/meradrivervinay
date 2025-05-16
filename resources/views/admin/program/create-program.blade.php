@@ -55,9 +55,9 @@
                             <div class="container">
                                 <h2 class="mb-4">Post a Driver Job</h2>
 
-                                <form action="" method="POST">
-                                    @csrf
-
+                                <form action="{{route('store-program')}}" method="POST">
+                                @csrf
+                                @method('post')
                                     <!-- Basic Job Information -->
                                     <div class="mb-3">
                                         <label class="form-label">Job Title</label>

@@ -190,7 +190,7 @@
                 <table class="table table-striped custom-table mb-0">
                     <thead>
                         <tr>
-                            @if (($users->hasRole('agent')) || ($users->hasRole('Administrator')))
+                            @if (($users->hasRole('Franchise')) || ($users->hasRole('Administrator')))
                             <th><input type="checkbox" class="checked_all_lead"> R.F</th>
                             @endif
                             <th>S.N</th>
@@ -219,7 +219,7 @@
                                     $user = App\Models\User::where('id',$data->assigned_to)->pluck('email')->first();
                                     $frenchise = App\Models\User::where('id',$data->added_by_agent_id)->pluck('email')->first();
                                 @endphp
-                                @if (($users->hasRole('agent')) || ($users->hasRole('Administrator')))
+                                @if (($users->hasRole('Franchise')) || ($users->hasRole('Administrator')))
                                     <td>
                                         <input type="checkbox" class="assigned_lead" id = "{{$data->id}}">
                                         <a class="frenchise-details" href="#" data-bs-toggle="offcanvas"  lead-id="{{$data->id}}" data-bs-target="#viewlead" aria-controls="viewlead">
@@ -227,7 +227,7 @@
                                             <i class="las la-hands-helping"></i>
                                         </a><br>
                                         @if(!empty($data->assigned_to))
-                                            @if(($users->hasRole('Administrator')) || ($users->hasRole('agent')))
+                                            @if(($users->hasRole('Administrator')) || ($users->hasRole('Franchise')))
                                                     @if($data->assigned_to == $data->added_by_agent_id)
                                                        {{$frenchise ?? ''}} <br>
                                                     @else

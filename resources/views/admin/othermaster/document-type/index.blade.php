@@ -16,8 +16,8 @@
                 </div>
                 @can('education_lane.create')
                 <div class="col-md-4">
-                    <a href="{{ route('create-education-lane') }}" class="btn add-btn float-end">
-                        <i class="las la-plus"></i>Create ducument type</a>
+                    <a href="{{ route('create-document-type') }}" class="btn add-btn float-end">
+                        <i class="las la-plus"></i>Add</a>
                 </div>
                 @endcan
             </div>
@@ -29,7 +29,7 @@
     <div class="card-group">
       <div class="card">
         <div class="card-body myform">
-          <form id="eudcation" action="{{route('education-lane')}}" method="get">
+          <form id="eudcation" action="{{route('document-type')}}" method="get">
             <div class="d-flex justify-content-start align-items-center">
             <div class="col-md-5 ps-md-3">
                 <div class="form-floating ">
@@ -42,7 +42,7 @@
               <button type="submit" class="btn btn-info w-100 float-end" id="submit" value="1">Search</button>
             </div>
             <div class="col ps-2 float-start">
-                <a href="{{route('education-lane')}}" class="btn btn-info w-100">
+                <a href="{{route('document-type')}}" class="btn btn-info w-100">
                     Reset
                 </a>
             </div>
@@ -79,10 +79,10 @@
                         <td class="text-wrap">{{ $item->name }}</td>
                         <td class="text-wrap">{!! $item->details !!}</td>
                         @can('education_lane.update')
-                        <td><a  href="{{route('edit-education-lane',$item->id)}}" class="btn btn-info"><i class="fa-solid fa-pen"></i></a></td>
+                        <td><a  href="{{route('edit-document-type',$item->id)}}" class="btn btn-info"><i class="fa-solid fa-pen"></i></a></td>
                         @endcan
                         @can('education_lane.delete')
-                        <td><a href="{{route('delete-education-lane',$item->id)}}" class="btn btn-warning"><i class="fa-solid fa-trash"></i></a></td>
+                        <td><a href="{{route('delete-document-type',$item->id)}}" class="btn btn-warning"><i class="fa-solid fa-trash"></i></a></td>
                         @endcan
                     </tr>
                     @endforeach

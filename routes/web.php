@@ -73,7 +73,7 @@
     Route::get('accommodation', function () {
         return view('frontend.global.acommodation');
     });
-    Route::get('home', [MeraDriverController::class, 'home'])->name('home');
+    Route::get('/', [MeraDriverController::class, 'home'])->name('home');
     Route::get('company', [MeraDriverController::class, 'company'])->name('company');
     Route::get('jobs', [MeraDriverController::class, 'jobs'])->name('jobs');
     Route::get('blog', [MeraDriverController::class, 'blog'])->name('blog');
@@ -83,7 +83,7 @@
     Route::get('price', [MeraDriverController::class, 'price'])->name('price');
 
 
-    Route::get('', [FrontendController::class, 'index'])->name('index');
+    Route::get('home', [FrontendController::class, 'index'])->name('index');
     Route::post('/query_submit', [FrontendController::class, 'user_query'])->name('query');
     Route::get('/apply-program', [FrontendController::class, 'course_university'])->name('check-eligible');
     Route::post('/get-country-flags', [FrontendController::class, 'get_country'])->name('get-country-flags');
@@ -165,6 +165,9 @@
             Route::get('/roles-permissions/delete/{id}', [RolesController::class, 'destroy'])->name('roles-permissions.delete');
         });
         Route::prefix('admin')->group(function () {
+
+            Route::post('/student/upload-document', [LeadsManageCotroller::class, 'uploadDocument'])->name('student.upload.document');
+
             Route::get('leads-dashboard', [LeadsManageCotroller::class, 'leadsDashboard']);
             Route::get('add-leads', [LeadsManageCotroller::class, 'create_new_lead'])->name('admin.create_new_lead');
             Route::post('add-leadData-tab', [LeadsManageCotroller::class, 'add_lead_data'])->name('add-leadData-tab');
@@ -440,13 +443,15 @@
             // specilization(
             Route::get('job-type', [OtherMasterDataController::class, 'job_type'])->name('job-type');
             Route::get('specilization-filter', [OtherMasterDataController::class, 'specializations'])->name('specilization-filter');
-            Route::get('create-specilization', [OtherMasterDataController::class, 'specializations_create'])->name('create-specilization');
-            Route::get('edit-specilization/{id?}', [OtherMasterDataController::class, 'specializations_edit'])->name('edit-specilization');
-            Route::get('delete-specilization/{id?}', [OtherMasterDataController::class, 'specializations_delete'])->name('delete-specilization');
-            Route::post('update-specilization/{id?}', [OtherMasterDataController::class, 'specializations_update'])->name('update-specilization');
-            Route::post('store-specilization', [OtherMasterDataController::class, 'specializations_store'])->name('store-specilization');
-            Route::get('delete-specilization/{id?}', [OtherMasterDataController::class, 'specializations_delete'])->name('delete-specilization');
-            // source   (
+            Route::get('create-job-type', [OtherMasterDataController::class, 'job_type_create'])->name('create-job-type');
+            Route::get('edit-job-type/{id?}', [OtherMasterDataController::class, 'job_type_edit'])->name('edit-job-type');
+            Route::get('delete-job-type/{id?}', [OtherMasterDataController::class, 'job_type_delete'])->name('delete-job-type');
+            Route::post('update-job-type/{id?}', [OtherMasterDataController::class, 'job_type_update'])->name('update-job-type');
+            Route::post('store-job-type', [OtherMasterDataController::class, 'job_type_store'])->name('store-job-type');
+            Route::get('delete-job-type/{id?}', [OtherMasterDataController::class, 'job_type_delete'])->name('delete-job-type');
+           
+           /// driver source 
+
             Route::get('source', [OtherMasterDataController::class, 'source'])->name('source');
             Route::get('source-filter', [OtherMasterDataController::class, 'source'])->name('source-filter');
             Route::get('create-source', [OtherMasterDataController::class, 'source_create'])->name('create-source');
@@ -454,6 +459,16 @@
             Route::get('delete-source/{id?}', [OtherMasterDataController::class, 'source_delete'])->name('delete-source');
             Route::post('update-source/{id?}', [OtherMasterDataController::class, 'source_update'])->name('update-source');
             Route::post('store-source', [OtherMasterDataController::class, 'source_store'])->name('store-source');
+         
+           
+            // driver-type   (
+            Route::get('driver-type', [OtherMasterDataController::class, 'driver_type'])->name('driver-type');
+            Route::get('source-filter', [OtherMasterDataController::class, 'source'])->name('source-filter');
+            Route::get('create-driver-type', [OtherMasterDataController::class, 'driver_create'])->name('create-driver-type');
+            Route::get('edit-driver-type/{id?}', [OtherMasterDataController::class, 'driver_edit'])->name('edit-driver-type');
+            Route::get('delete-driver-type/{id?}', [OtherMasterDataController::class, 'driver_delete'])->name('delete-driver-type');
+            Route::post('update-driver-type/{id?}', [OtherMasterDataController::class, 'driver_update'])->name('update-driver-type');
+            Route::post('store-driver-type', [OtherMasterDataController::class, 'driver_store'])->name('store-driver-type');
             // Route::get('delete-source/{id?}', [OtherMasterDataController::class, 'source_delete'])->name('delete-source');
            
            // expectd-salary
@@ -477,15 +492,24 @@
             Route::get('lead_quality_delete/{id?}', [OtherMasterDataController::class, 'lead_quality_delete'])->name('lead_quality_delete');
 
 
+            // vechicle type
+            Route::get('vechicle-type', [OtherMasterDataController::class, 'vechicle_type'])->name('vechicle-type');
+            Route::get('source-filter', [OtherMasterDataController::class, 'vechicle_type'])->name('source-filter');
+            Route::get('create-vechicle-type', [OtherMasterDataController::class, 'vechicle_type_create'])->name('create-vechicle-type');
+            Route::get('edit-vechicle-type/{id?}', [OtherMasterDataController::class, 'vechicle_type_edit'])->name('edit-vechicle-type');
+            Route::get('delete-vechicle-type/{id?}', [OtherMasterDataController::class, 'vechicle_type_delete'])->name('delete-vechicle-type');
+            Route::post('update-vechicle-type/{id?}', [OtherMasterDataController::class, 'vechicle_type_update'])->name('update-vechicle-type');
+            Route::post('store-vechicle-type', [OtherMasterDataController::class, 'vechicle_type_store'])->name('store-vechicle-type');
+
             // interested
-            Route::get('interested', [OtherMasterDataController::class, 'interested'])->name('interested');
-            Route::get('interested-filter', [OtherMasterDataController::class, 'interested'])->name('interested-filter');
-            Route::get('create-interested', [OtherMasterDataController::class, 'interested_create'])->name('create-interested');
-            Route::get('edit-interested/{id?}', [OtherMasterDataController::class, 'interested_edit'])->name('edit-interested');
-            Route::get('delete-interested/{id?}', [OtherMasterDataController::class, 'interested_delete'])->name('delete-interested');
-            Route::post('update-interested/{id?}', [OtherMasterDataController::class, 'interested_update'])->name('update-interested');
-            Route::post('store-interested', [OtherMasterDataController::class, 'interested_store'])->name('store-interested');
-            Route::get('delete-interested/{id?}', [OtherMasterDataController::class, 'interested_delete'])->name('delete-interested');
+            // Route::get('interested', [OtherMasterDataController::class, 'interested'])->name('interested');
+            // Route::get('interested-filter', [OtherMasterDataController::class, 'interested'])->name('interested-filter');
+            // Route::get('create-interested', [OtherMasterDataController::class, 'interested_create'])->name('create-interested');
+            // Route::get('edit-interested/{id?}', [OtherMasterDataController::class, 'interested_edit'])->name('edit-interested');
+            // Route::get('delete-interested/{id?}', [OtherMasterDataController::class, 'interested_delete'])->name('delete-interested');
+            // Route::post('update-interested/{id?}', [OtherMasterDataController::class, 'interested_update'])->name('update-interested');
+            // Route::post('store-interested', [OtherMasterDataController::class, 'interested_store'])->name('store-interested');
+            // Route::get('delete-interested/{id?}', [OtherMasterDataController::class, 'interested_delete'])->name('delete-interested');
 
             // country
             Route::get('country', [OtherMasterDataController::class, 'country'])->name('country');
@@ -534,16 +558,16 @@
             Route::post('store-vas-service', [OtherMasterDataController::class, 'vas_service_store'])->name('store-vas-service');
             Route::get('delete-vas-service/{id?}', [OtherMasterDataController::class, 'vas_service_delete'])->name('delete-vas-service');
 
-            //  other document type
+            //  license type
 
-            Route::get('visa-document-type', [OtherMasterDataController::class, 'visa_document_type'])->name('visa-document-type');
-            Route::get('visa-document-type-filter', [OtherMasterDataController::class, 'visa_document_type'])->name('visa-document-type-filter');
-            Route::get('create-visa-document-type', [OtherMasterDataController::class, 'visa_document_type_create'])->name('create-visa-document-type');
-            Route::get('edit-visa-document-type/{id?}', [OtherMasterDataController::class, 'visa_document_type_edit'])->name('edit-visa-document-type');
-            Route::get('delete-visa-document-type/{id?}', [OtherMasterDataController::class, 'visa_document_type_delete'])->name('delete-visa-document-type');
-            Route::post('update-visa-document-type/{id?}', [OtherMasterDataController::class, 'visa_document_type_update'])->name('update-visa-document-type');
-            Route::post('store-visa-document-type', [OtherMasterDataController::class, 'visa_document_type_store'])->name('store-visa-document-type');
-            Route::get('delete-visa-document-type/{id?}', [OtherMasterDataController::class, 'visa_document_type_delete'])->name('delete-visa-document-type');
+            Route::get('license-type', [OtherMasterDataController::class, 'license_type'])->name('license-type');
+            Route::get('visa-document-type-filter', [OtherMasterDataController::class, 'license_type'])->name('visa-document-type-filter');
+            Route::get('create-license-type', [OtherMasterDataController::class, 'license_type_create'])->name('create-license-type');
+            Route::get('edit-license-type/{id?}', [OtherMasterDataController::class, 'license_type_edit'])->name('edit-license-type');
+            Route::get('delete-license-type/{id?}', [OtherMasterDataController::class, 'license_type_delete'])->name('delete-license-type');
+            Route::post('update-license-type/{id?}', [OtherMasterDataController::class, 'license_type_update'])->name('update-license-type');
+            Route::post('store-license-type', [OtherMasterDataController::class, 'license_type_store'])->name('store-license-type');
+            Route::get('delete-license-type/{id?}', [OtherMasterDataController::class, 'license_type_delete'])->name('delete-license-type');
 
 
             Route::get('visa-sub-document-type', [OtherMasterDataController::class, 'visa_sub_document_type'])->name('visa-sub-document-type');
@@ -556,15 +580,26 @@
             Route::get('delete-visa-sub-document-type/{id?}', [OtherMasterDataController::class, 'visa_sub_document_type_delete'])->name('delete-visa-sub-document-type');
 
 
-            // Education Lane
-            Route::get('education-lane', [OtherMasterDataController::class, 'education_lane'])->name('education-lane');
-            Route::get('education-lane-filter', [OtherMasterDataController::class, 'education_lane'])->name('education-lane-filter');
-            Route::get('create-education-lane', [OtherMasterDataController::class, 'education_lane_create'])->name('create-education-lane');
-            Route::get('edit-education-lane/{id?}', [OtherMasterDataController::class, 'education_lane_edit'])->name('edit-education-lane');
-            Route::get('delete-education-lane/{id?}', [OtherMasterDataController::class, 'education_lane_delete'])->name('delete-education-lane');
-            Route::post('update-education-lane/{id?}', [OtherMasterDataController::class, 'education_lane_update'])->name('update-education-lane');
-            Route::post('store-education-lane', [OtherMasterDataController::class, 'education_lane_store'])->name('store-education-lane');
-            Route::get('delete-education-lane/{id?}', [OtherMasterDataController::class, 'education_lane_delete'])->name('delete-education-lane');
+            // document type
+
+            Route::get('document-type', [OtherMasterDataController::class, 'document_type'])->name('document-type');
+            Route::get('document-type-filter', [OtherMasterDataController::class, 'document_type'])->name('document-type-filter');
+            Route::get('create-document-type', [OtherMasterDataController::class, 'document_type_create'])->name('create-document-type');
+            Route::get('edit-document-type/{id?}', [OtherMasterDataController::class, 'document_type_edit'])->name('edit-document-type');
+            Route::get('delete-document-type/{id?}', [OtherMasterDataController::class, 'document_type_delete'])->name('delete-document-type');
+            Route::post('update-document-type/{id?}', [OtherMasterDataController::class, 'document_type_update'])->name('update-document-type');
+            Route::post('store-document-type', [OtherMasterDataController::class, 'document_type_store'])->name('store-document-type');
+          
+            
+            // education lane
+            // Route::get('education-lane', [OtherMasterDataController::class, 'education_lane'])->name('education-lane');
+            // Route::get('education-lane-filter', [OtherMasterDataController::class, 'education_lane'])->name('education-lane-filter');
+            // Route::get('create-education-lane', [OtherMasterDataController::class, 'education_lane_create'])->name('create-education-lane');
+            // Route::get('edit-education-lane/{id?}', [OtherMasterDataController::class, 'education_lane_edit'])->name('edit-education-lane');
+            // Route::get('delete-education-lane/{id?}', [OtherMasterDataController::class, 'education_lane_delete'])->name('delete-education-lane');
+            // Route::post('update-education-lane/{id?}', [OtherMasterDataController::class, 'education_lane_update'])->name('update-education-lane');
+            // Route::post('store-education-lane', [OtherMasterDataController::class, 'education_lane_store'])->name('store-education-lane');
+            // Route::get('delete-education-lane/{id?}', [OtherMasterDataController::class, 'education_lane_delete'])->name('delete-education-lane');
 
             // scholorship
             Route::get('scholarship/{id?}', [StudentController::class, 'scholarship'])->name('scholarship');

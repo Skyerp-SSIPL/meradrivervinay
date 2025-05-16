@@ -4,9 +4,10 @@
    <!-- #header -->
    <!-- start banner Area -->
    <section class="banner-area relative" id="home">
-      <video autoplay muted controls loop playsinline width="100%">
+      <!-- <video autoplay muted controls loop playsinline width="100%">
          <source src="{{asset('meradriver')}}/img/video.mp4" type="video/mp4">
-      </video>
+      </video> -->
+      <img src="{{asset('meradriver')}}/img/banner.png" alt="banner">
       <!-- <div class="overlay overlay-bg"></div> -->
       <div class="container">
          <div class="row  d-flex align-items-center justify-content-center">
@@ -17,11 +18,11 @@
                <p class="mt-3">5 lakh+ jobs for you to explore</p>
                <form action="search.html" class="serach-form-area">
                   <div class="row justify-content-center form-wrap">
-                     <div class="col-lg-4 form-cols">
+                     <div class="col-lg-5 form-cols">
                         <input type="text" class="form-control" name="search"
-                           placeholder="Enter Skills/Desigation/Companies">
+                           placeholder="Skills/Desigation/Companies">
                      </div>
-                     <div class="col-lg-3 form-cols">
+                     <!-- <div class="col-lg-3 form-cols">
                         <div class="default-select form-control" id="default-selects">
                            <select>
                               <option value="1">Select Experienced</option>
@@ -32,14 +33,14 @@
                               <option value="5">4 Year</option>
                            </select>
                         </div>
-                     </div>
-                     <div class="col-lg-3 form-cols">
+                     </div> -->
+                     <div class="col-lg-4 form-cols">
                         <div class="default-select" id="default-selects2">
                            <input type="text" class="form-control" name="location" placeholder="Enter Location">
                            
                         </div>
                      </div>
-                     <div class="col-lg-2 form-cols">
+                     <div class="col-lg-3 form-cols">
                         <button type="button" class="btn btn-info">
                            <span class="lnr lnr-magnifier"></span> Search
                         </button>
@@ -1640,7 +1641,7 @@
                                                    </p>
                                              </div>
 
-</div>
+                                     </div>
                                        </div>
                                     </div>
                                  </div>
@@ -1862,20 +1863,7 @@
       </div>
    </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-   <section>
+   <!-- <section>
       <div class="min-sms-recieved">
          <div class="container">
             <div id="mainSection.inventory-8" data-inventory-name="inventory-8" data-inventory-index="13">
@@ -1939,5 +1927,64 @@
             </div>
          </div>
       </div>
-   </section>
+   </section> -->
+
+   <section>
+  <div class="faq-container container mt-5 text-center col-lg-9">
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        What is Mera Driver?
+        <span class="toggle-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        VITIB is a technology and innovation free zone located in Côte d’Ivoire that promotes investment and digital industry growth.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        What are the tax advantages?
+        <span class="toggle-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        VITIB companies enjoy tax exemptions for several years, reduced customs duties, and other fiscal incentives.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Where is max Price?
+        <span class="toggle-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        VITIB is located in Grand-Bassam, approximately 20 minutes from Abidjan, Côte d’Ivoire.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+   <script>
+  const faqQuestions = document.querySelectorAll('.faq-question');
+
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      const answer = question.nextElementSibling;
+      const icon = question.querySelector('.toggle-icon');
+
+      const isVisible = answer.style.display === 'block';
+
+      // Hide all answers
+      document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+      document.querySelectorAll('.toggle-icon').forEach(i => i.textContent = '+');
+
+      if (!isVisible) {
+        answer.style.display = 'block';
+        icon.textContent = '–';
+      }
+    });
+  });
+</script>
    @endsection

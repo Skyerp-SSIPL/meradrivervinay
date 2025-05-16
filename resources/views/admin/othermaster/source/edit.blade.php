@@ -12,10 +12,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" role="tabpanel" id="step1"
                                 aria-labelledby="step1-tab">
-                                <div class="mb-4">
-                                    <h3>
-                                        Edit Source</h3>
-                                </div>
+                               
                                 @if (session('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') }}

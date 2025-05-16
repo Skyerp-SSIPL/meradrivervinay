@@ -901,7 +901,7 @@
 @section('javascript_section')
     <script type="text/javascript">
         var account_type = '{{ Session::get('account_type') }}';
-        if (account_type == 'agent') {
+        if (account_type == 'Franchise') {
             $('#tab2').click();
         } else if (account_type == 'sub_agent') {
             $('#tab4').click();
@@ -2317,7 +2317,7 @@
     </div>
     <script type="text/javascript">
         var account_type = '{{ Session::get('account_type') }}';
-        if (account_type == 'agent') {
+        if (account_type == 'Franchise') {
             $('#tab2').click();
         } else if (account_type == 'sub_agent') {
             $('#tab4').click();

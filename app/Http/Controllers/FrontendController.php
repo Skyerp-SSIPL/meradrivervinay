@@ -417,6 +417,7 @@ public function home()
     public function send_otp(Request $request)
     {
 
+        // dd($request->all());
 
         $validator = Validator::make($request->all(), [
             'email' => [
@@ -445,6 +446,7 @@ public function home()
             'otp' => $otp
         ];
 
+       
         $data = VerificationOtp::create(['email' => $email, 'phone_number' => request()->input('phone_number'), 'email_otp' => $otp, 'type' => 'login']);
         if ($email) {
             try {
@@ -461,6 +463,7 @@ public function home()
             $this->send_otp_job($items); // Attempt to send OTP
             session()->put('WithdrawEmailOtp', $otp); // Store OTP in session
             return response()->json(['message' => 'OTP sent successfully.', 'success' => true]);
+             dd($items);
         } catch (\Exception $e) {
             // Log the exception if needed
             Log::error('Error sending OTP: ' . $e->getMessage());
@@ -487,7 +490,7 @@ public function home()
                 'email',
                 'unique:users,email',
                 'unique:student,email',
-                'unique:student_by_agent,email',
+                'unique:driver_data,email',
             ],
         ]);
         if ($validator->fails()) {

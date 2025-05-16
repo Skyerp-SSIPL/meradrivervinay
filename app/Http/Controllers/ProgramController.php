@@ -24,6 +24,7 @@ use App\Models\{
     StudentByAgent,
     Agent,
     user,
+    job,
     ProgramEnglishRequired
 };
 use Illuminate\Http\Request;
@@ -56,7 +57,9 @@ class ProgramController extends Controller
         }
         $program = $program->paginate(12);
         $eng_proficiency_level = EngProficiencyLevel::get();
-        return view('admin.program.manage-program', compact('program', 'eng_proficiency_level'));
+        $job = job::get();
+
+        return view('admin.program.manage-program', compact('program', 'eng_proficiency_level', 'job'));
     }
 
     public function approve_program(Request $request)
@@ -82,12 +85,9 @@ class ProgramController extends Controller
     public function add_program(Request $request)
     {
         $user = Auth::user();
-        // if ($user->hasRole('Administrator')) {
+       
         $universities = University::get();
-        // } else {
-        //     $universities = University::where('user_id', $user->id)->get();
-        // }
-        // $program_category=DB::table('tbl_program_category')->get();
+       
         $program_discipline = ProgramDiscipline::select('name', 'id')->where('status', '1')->get();
         $all_subject = Subject::where('status', '1')->get();
         $filed_of_study = Fieldsofstudytype::where('status', '1')->get();
@@ -100,69 +100,42 @@ class ProgramController extends Controller
 
     public function store_program(Request $request)
     {
-        $request->validate([
-            'school_id' => 'required|max:200',
-            'name' => 'required|max:200',
-            'length' => 'required|max:200',
-            'programType' => 'required|max:200',
-            'programCampus' => 'required|max:200',
-            'lang_spec_for_program' => 'required|max:200',
-            'application_fee' => 'required|max:200',
-            'application_apply_date' => 'required|max:200',
-            'application_closing_date' => 'required|max:200',
-            'tution_fee' => 'required|max:200',
-            'currency' => 'required|max:200',
-            'intake' => 'required|max:200',
-            'year' => 'required|max:200',
-            'program_discipline' => 'required',
-            'work_experience' => 'required|max:200',
+        $validated = $request->validate([
+            'title' => 'required',
+            'company_name' => 'required',
+            'location' => 'required',
+            'job_type' => 'required',
+            'email' => 'nullable|email',
+            'phone' => 'nullable',
+            // Add more validation as needed
         ]);
-        // $sub_type = gettype($request->subject_id_input);
-        // if($sub_type == "string"){
-        //     $subject_id_input = $request->subject_id_input;
-        // } else {
-        //     if(isset($request->subject_id_input)){
-        //         $subject_id_input = implode(",",$request->subject_id_input);
-        //     } else {
-        //         $subject_id_input = "";
-        //     }
-        // }
-        $programSave = DB::table('program')
-            ->insert([
-                'user_id' => Auth::user()->id,
-                'school_id' => $request->school_id ?? null,
-                'name' => $request->name  ?? null,
-                'length' => $request->length  ?? null,
-                'programType' => $request->programType  ?? null,
-                'programCampus' => $request->programCampus  ?? null,
-                'grading_number' => $request->grading_number  ?? null,
-                'description' => $request->details  ?? null,
-                'grading_scheme_id' => $request->grading_scheme_id  ?? null,
-                'application_fee' => $request->application_fee  ?? null,
-                'application_apply_date' => $request->application_apply_date  ?? null,
-                'application_closing_date' => $request->application_closing_date  ?? null,
-                'lang_spec_for_program' => $request->lang_spec_for_program  ?? null,
-                'program_level_id' => $request->program_level  ?? null,
-                'program_sub_level' => $request->program_sub_level  ?? null,
-                'education_level_id' => $request->education_level  ?? null,
-                'program_discipline' => $request->program_discipline ?? null,
-                'program_subdiscipline' => $request->program_subdiscipline ?? null,
-                'tution_fee' => $request->tution_fee  ?? null,
-                'currency' => $request->currency  ?? null,
-                'intake' => $request->intake  ?? null,
-                'year' => $request->year  ?? null,
-                'min_gpa' => $request->min_gpa  ?? null,
-                'other_exam' => $request->other_exam,
-                'other_requirements' => $request->other_requirements  ?? null,
-                'extra_notes' => $request->extra_notes  ?? null,
-                'work_experience' => $request->work_experience ?? null,
-                // 'tags' => $request->tags ?? null,
-                'priority' => $request->priority ?? null,
-                'cost_of_living_fee' => '00.00',
-                'cost_of_living' => '00.00',
-                'is_approved' => '1',
-            ]);
-        return redirect()->route('manage-program')->with('success', 'Program Added Successfully');
+    
+        $job = Job::create([
+            'title' => $request->title,
+            'company_name' => $request->company_name,
+            'location' => $request->location,
+            'job_type' => $request->job_type,
+            'salary' => $request->salary,
+            'license_type' => $request->license_type,
+            'experience' => $request->experience,
+            'age_requirement' => $request->age_requirement,
+            'languages' => $request->languages,
+            'education_level' => $request->education_level,
+            'vehicle_provided' => $request->vehicle_provided,
+            'vehicle_type' => $request->vehicle_type,
+            'shift_timing' => $request->shift_timing,
+            'description' => $request->description,
+            'route_type' => $request->route_type,
+            'working_hours' => $request->working_hours,
+            'benefits' => $request->benefits,
+            'contact_person' => $request->contact_person,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'deadline' => $request->deadline,
+            'how_to_apply' => $request->how_to_apply,
+        ]);
+    
+        return response()->json(['message' => 'Job created!', 'job' => $job]);
     }
 
     public function edit_program($id)
@@ -1194,7 +1167,7 @@ class ProgramController extends Controller
             $total_student_id = Student::pluck('user_id');
         } else {
             $authuser = Auth::user();
-            if (($authuser->hasRole('agent'))) {
+            if (($authuser->hasRole('Franchise'))) {
                 $userId = Auth::id();
 
                 $usersId = User::where('added_by', $userId)->whereNotIn('admin_type', ['student'])
@@ -1288,36 +1261,36 @@ class ProgramController extends Controller
                     'program.university_name:id,university_name',
                     'payments'
                 ])
-                ->whereIn('payments_link.user_id', $total_student_id)
-                ->where(function ($q) {
-                    $q->where('payment_type_remarks', 'applied_program')
-                      ->orWhere('payment_type_remarks', 'applied_program_pay_later');
-                })
-                ->join('users', 'users.id', '=', 'payments_link.user_id')
-                ->join('student_by_agent', 'student_by_agent.email', '=', 'payments_link.email')
-                ->groupBy(
-                    'payments_link.program_id',
-                    'student_by_agent.assigned_to',
-                    'student_by_agent.added_by_agent_id',
-                    'users.name'
-                )
-                ->select(
-                    'student_by_agent.assigned_to',
-                    'student_by_agent.added_by_agent_id',
-                    'users.name',
-                    \DB::raw('MAX(payments_link.id) as id'),
-                    \DB::raw('MAX(payments_link.program_id) as program_id'),
-                    \DB::raw('MAX(payments_link.payment_type) as payment_type'),
-                    \DB::raw('MAX(payments_link.payment_type_remarks) as payment_type_remarks'),
-                    \DB::raw('MAX(payments_link.payment_date) as payment_date'),
-                    \DB::raw('MAX(payments_link.app_id) as app_id'),
-                    \DB::raw('MAX(payments_link.status) as status'),
-                    \DB::raw('MAX(payments_link.user_id) as user_id'),
-                    \DB::raw('MAX(payments_link.fallowp_unique_id) as fallowp_unique_id'),
-                    \DB::raw('MAX(payments_link.email) as email'),
-                    \DB::raw('MAX(payments_link.created_at) as latest_payment_date'),
-                    \DB::raw('MAX(payments_link.created_at) as created_at')
-                );
+                ->whereIn('payments_link.user_id', $total_student_id);
+                // ->where(function ($q) {
+                //     $q->where('payment_type_remarks', 'applied_program')
+                //       ->orWhere('payment_type_remarks', 'applied_program_pay_later');
+                // })
+                // ->join('users', 'users.id', '=', 'payments_link.user_id')
+                // ->join('driver_data', 'driver_data.email', '=', 'payments_link.email')
+                // ->groupBy(
+                //     'payments_link.program_id',
+                //     'driver_data.assigned_to',
+                //     'driver_data.added_by_agent_id',
+                //     'users.name'
+                // )
+                // ->select(
+                //     'driver_data.assigned_to',
+                //     'driver_data.added_by_agent_id',
+                //     'users.name',
+                //     \DB::raw('MAX(payments_link.id) as id'),
+                //     \DB::raw('MAX(payments_link.program_id) as program_id'),
+                //     \DB::raw('MAX(payments_link.payment_type) as payment_type'),
+                //     \DB::raw('MAX(payments_link.payment_type_remarks) as payment_type_remarks'),
+                //     \DB::raw('MAX(payments_link.payment_date) as payment_date'),
+                //     \DB::raw('MAX(payments_link.app_id) as app_id'),
+                //     \DB::raw('MAX(payments_link.status) as status'),
+                //     \DB::raw('MAX(payments_link.user_id) as user_id'),
+                //     \DB::raw('MAX(payments_link.fallowp_unique_id) as fallowp_unique_id'),
+                //     \DB::raw('MAX(payments_link.email) as email'),
+                //     \DB::raw('MAX(payments_link.created_at) as latest_payment_date'),
+                //     \DB::raw('MAX(payments_link.created_at) as created_at')
+                // );
         
                 // Apply optional filters only on this query
                 if ($request->first_name) {

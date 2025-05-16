@@ -12,16 +12,13 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" role="tabpanel" id="step1"
                                 aria-labelledby="step1-tab">
-                                <div class="mb-4">
-                                    <h3>
-                                        Edit ducument type</h3>
-                                </div>
+                                
                                 @if (session('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <form class="row g-4" action="{{ route('update-education-lane', $education_lane->id) }}" method="POST">
+                                <form class="row g-4" action="{{ route('update-document-type', $education_lane->id) }}" method="POST">
                                 @csrf
                                 <div class="col-12">
                                     <label>Name<span class="text-danger">*</span></label>

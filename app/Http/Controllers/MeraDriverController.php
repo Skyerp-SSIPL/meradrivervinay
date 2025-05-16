@@ -480,7 +480,7 @@ class MeraDriverController extends Controller
                 'email',
                 'unique:users,email',
                 'unique:student,email',
-                'unique:student_by_agent,email',
+                'unique:driver_data,email',
             ],
         ]);
         if ($validator->fails()) {

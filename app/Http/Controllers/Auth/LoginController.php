@@ -83,4 +83,44 @@ class LoginController extends Controller
 
         return $this->sendFailedLoginResponse($request);
     }
+
+
+    public function requestOtp(Request $request)
+{
+    $request->validate(['email' => 'required|email']);
+
+    // Generate and send OTP (e.g., via email or SMS)
+    $otp = rand(100000, 999999);
+    Cache::put('otp_' . $request->email, $otp, now()->addMinutes(10));
+
+    // Send email logic here
+    Mail::to($request->email)->send(new SendOtpMail($otp));
+
+    return back()->with('message', 'OTP sent to your email.');
+}
+
+public function verifyOtp(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'otp' => 'required|numeric',
+    ]);
+
+    $cachedOtp = Cache::get('otp_' . $request->email);
+
+    if ($cachedOtp && $cachedOtp == $request->otp) {
+        // Log the user in
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+            Auth::login($user);
+            return redirect()->intended('dashboard');
+        } else {
+            return back()->withErrors(['email' => 'User not found.']);
+        }
+    }
+
+    return back()->withErrors(['otp' => 'Invalid or expired OTP.']);
+}
+
 }

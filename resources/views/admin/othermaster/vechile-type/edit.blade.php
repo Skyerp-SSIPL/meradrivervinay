@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title mb-0"> vechicle type</h4>
+                    <h4 class="card-title mb-0"> vehicle type</h4>
                 </div>
                 <div class="card-body">
                     <div class="wizard">
@@ -13,14 +13,14 @@
                             <div class="tab-pane fade show active" role="tabpanel" id="step1"
                                 aria-labelledby="step1-tab">
                                 <div class="mb-4 input-group-adss">
-                                    <h3>Edit vechicle type</h3>
+                                    <h3>Edit vehicle type</h3>
                                 </div>
                                 @if (session('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <form class="row " action="{{ route('update-interested',$interested->id) }}" method="POST"
+                                <form class="row " action="{{ route('update-vechicle-type',$interested->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('post')

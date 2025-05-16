@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title mb-0"> Manage   Popular Student Guide</h4>
+                    <h4 class="card-title mb-0"> Manage   Popular Driver Guide</h4>
                 </div>
                 <div class="card-body">
                     <div class="wizard">
@@ -14,7 +14,7 @@
                                 aria-labelledby="step1-tab">
                                 <div class="mb-4">
                                     <h3>
-                                        Edit   Popular Student Guide</h3>
+                                        Edit   Popular Driver Guide</h3>
                                 </div>
                                 @if (session('success'))
                                     <div class="alert alert-success">

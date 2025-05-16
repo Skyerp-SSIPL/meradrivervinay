@@ -77,7 +77,7 @@ class UserController extends Controller
         $user = Auth::user();
         if (!($user->hasRole('Administrator'))) {
             $role = array_filter($role, function ($name) {
-                return !in_array($name, ['Administrator', 'agent']);
+                return !in_array($name, ['Administrator', 'Franchise']);
             });
         }
         return view('user.create',compact('role'));
@@ -85,6 +85,7 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
+        // dd($request->all());
         $input = $request->only('name', 'email', 'status', 'password');
         $checkUserExist = User::where('email', trim($input['email']))->exists();
         if ($checkUserExist) {
@@ -122,11 +123,55 @@ class UserController extends Controller
             'users' => $users
         ]);
     }
+
+    public function update(UserRequest $request, $id)
+{
+    $user = User::findOrFail($id);
+
+    $input = $request->only('name', 'email', 'status');
+    
+    // Check if email is being changed to one that already exists (excluding current user)
+    $emailExists = User::where('email', trim($input['email']))
+                        ->where('id', '!=', $user->id)
+                        ->exists();
+                        
+    if ($emailExists) {
+        throw ValidationException::withMessages([
+            'email' => [__('This Email has already been taken.')],
+        ]);
+    }
+
+    $input['is_active'] = $request->filled('status') ? 1 : 0;
+    $input['phone_number'] = $request->phone_number;
+
+    // Update password if it's provided
+    if ($request->filled('password')) {
+        $input['password'] = Hash::make($request->password);
+    }
+
+    // Update admin type based on role
+    $role = Role::find($request->role);
+    if ($role) {
+        $input['admin_type'] = $role->name;
+    }
+
+    // Update user
+    $user->update($input);
+
+    // Sync roles
+    if ($request->filled('role') && $role) {
+        $user->syncRoles([$role->id]);
+    }
+
+    return redirect()->route('users.index')->with('success', $user->firstname . ' User Updated Successfully');
+}
+
     /**
      * Update the user's profile information.
      */
-    public function update(UserRequest $request, $id)
+    public function update1(UserRequest $request, $id)
     {
+        
       
         $input = $request->only('name', 'email', 'status');
         if($request->missing('status')){
@@ -145,7 +190,7 @@ class UserController extends Controller
             $role = Role::find($request->get('role'));
             $input['admin_type'] = $role->name;
         }
-        if($role->name == 'agent' || $role->name == 'sub_agent'){
+        if($role->name == 'Franchise' || $role->name == 'sub_agent'){
             $data=Agent::updateOrCreate([
                 'user_id' => $user->id
             ], [
@@ -161,6 +206,24 @@ class UserController extends Controller
                 $student->delete();
             }
         }
+        else {
+            $data=User::updateOrCreate([
+                'user_id' => $user->id
+            ], [
+                'first_name' => $request->name ?? '',
+                'zip' => $user->zip ?? '',
+                'is_active' => $input['is_active'] ?? '',
+                'email' => $request->email ?? '',
+                'phone_number' => $request->phone ?? '',
+                'password' => $user->password ?? '',
+            ]);
+            $agent = Agent::where('email', $user->email)->first();
+            if($agent){
+                $agent->delete();
+            }
+        }
+
+        
         if($role->name == 'student'){
             Student::updateOrCreate([
                 'user_id' => $user->id
@@ -185,6 +248,8 @@ class UserController extends Controller
             }
         }
         return redirect()->route('users.index')->with('success', $user->firstname . ' User Updated Successfully');
+       
+       
         // return redirect()->back()->with('success', $user->firstname.'User Updated Successfully');
     }
 
@@ -236,14 +301,14 @@ class UserController extends Controller
 
     public function impersonate(User $user)
     {
-        if (Auth::user()->hasRole('Administrator') || Auth::user()->hasRole('Data oprator') || Auth::user()->hasRole('Sub Data-Operator')   || Auth::user()->hasRole('agent') || Auth::user()->hasRole('sub_agent') || Auth::user()->hasRole('visa') || Auth::user()->hasRole('Application Punching')) {
+        if (Auth::user()->hasRole('Administrator') || Auth::user()->hasRole('Data oprator') || Auth::user()->hasRole('Sub Data-Operator')   || Auth::user()->hasRole('Franchise') || Auth::user()->hasRole('sub_agent') || Auth::user()->hasRole('visa') || Auth::user()->hasRole('Application Punching')) {
             $adminUser = Auth::user();
             Auth::login($user);
             Session::put('admin_user', $adminUser);
-            if ($user->admin_type == 'agent' || $user->admin_type == 'sub_agent') {
+            if ($user->admin_type == 'Franchise' || $user->admin_type == 'sub_agent') {
                 $frenchise = DB::table('agents')->where('email', $user->email)->first();
                 if (!empty($frenchise)) {
-                    if ($user->admin_type == 'agent' && $frenchise->is_active == 1 && $frenchise->is_approve == 1 && $frenchise->profile_completed == 1) {
+                    if ($user->admin_type == 'Franchise' && $frenchise->is_active == 1 && $frenchise->is_approve == 1 && $frenchise->profile_completed == 1) {
                         return redirect()->route('dashboard');
                     } else {
                         return redirect()->route('frenchise-edit', $frenchise->id);
@@ -271,7 +336,7 @@ class UserController extends Controller
         $dataOperator = DataOperator::find($request->id);
         $userrole = User::where('id', $dataOperator->user_id ?? $request->id)->first();
 
-        if($userrole->admin_type == 'agent' || $userrole->admin_type == 'sub_agent'){
+        if($userrole->admin_type == 'Franchise' || $userrole->admin_type == 'sub_agent'){
             DB::table('agents')->where('email', $userrole->email)->update(['is_active' => $request->status]);
         }elseif($userrole->admin_type == 'Data oprator' || $userrole->admin_type == 'Sub Data-Operator'){
            $data= DB::table('data_operators')->where('email', $userrole->email)->update(['status' => $request->status]);
@@ -284,7 +349,7 @@ class UserController extends Controller
     {
         $Id = $request->userId;
         $userrole =User::where('id',$Id)->first();
-        if($userrole->admin_type == 'agent' || $userrole->admin_type == 'sub_agent'){
+        if($userrole->admin_type == 'Franchise' || $userrole->admin_type == 'sub_agent'){
             DB::table('agents')->where('email', $userrole->email)->update(['is_approve' => $request->selectedValue]);
             User::where('id',$Id)->update(['is_approve' => $request->selectedValue]);
         }

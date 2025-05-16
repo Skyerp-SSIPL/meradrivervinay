@@ -2,15 +2,16 @@
 $user = Auth::user();
 $frenchise = DB::table('agents')->where('email',$user->email)->first();
 @endphp
-@if($user->hasRole('agent') && $user->is_approve == 0 && $user->is_active == 0 && $frenchise->profile_completed == 0)
+
+@if($user->hasRole('Franchise') && $user->is_approve == 0 && $user->is_active == 0 && $frenchise->profile_completed == 0)
     @php
         $make_link_unclickable = 'disabled_link';
     @endphp
     <style>
         .disabled_link {
-        pointer-events: none; /* Prevents clicks */
-        color: gray; /* Change text color to indicate disabled state */
-        cursor: not-allowed; /* Change cursor to indicate the link is not clickable */
+        pointer-events: none;     /* Prevents clicks */
+        color: gray;             /* Change text color to indicate disabled state */
+        cursor: not-allowed;    /* Change cursor to indicate the link is not clickable */
         text-decoration: none; /* Remove underline */
     }
     </style>

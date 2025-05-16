@@ -21,7 +21,7 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <form class="row g-4" action="{{ route('update-specilization',$specialization->id) }}" method="POST"
+                                <form class="row g-4" action="{{ route('update-job-type',$specialization->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('post')

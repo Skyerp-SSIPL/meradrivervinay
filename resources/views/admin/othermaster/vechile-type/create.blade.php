@@ -12,16 +12,13 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" role="tabpanel" id="step1"
                                 aria-labelledby="step1-tab">
-                                <div class="mb-4 title-section-adss">
-                                    <h3>
-                                        Add vechicle type</h3>
-                                </div>
+                               
                                 @if (session('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <form class="row" action="{{ route('store-interested') }}" method="POST"
+                                <form class="row" action="{{ route('store-vechicle-type') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('post')

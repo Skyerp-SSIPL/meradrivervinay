@@ -7,14 +7,14 @@
                 <div class="col-md-8">
                     <ol class="breadcrumb text-muted mb-0">
                         <li class="breadcrumb-item">
-                            <a href="{{route('student-guide')}}"> Student Guide</a>
+                            <a href="{{route('student-guide')}}"> Driver Guide</a>
                         </li>
                     </ol>
                 </div>
                 @can('popular_student_guide.update')
                     <div class="col-md-4">
                         <a href="{{ route('create-student-guide') }}" class="btn add-btn float-end">
-                            <i class="las la-plus"></i>Create Student  Guide</a>
+                            <i class="las la-plus"></i>Create Driver  Guide</a>
                     </div>
                  @endcan
             </div>

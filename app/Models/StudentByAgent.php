@@ -7,7 +7,7 @@ use Mockery\Matcher\Subset;
 
 class StudentByAgent extends Model
 {
-    protected $table = 'student_by_agent';
+    protected $table = 'driver_data';
     // protected $fillable = [
     //     'student_user_id', 'added_by_agent_id', 'name', 'email', 'phone_number', 'student_comment', 'lead_status', 'next_calling_date', 'profile_created', 'preferred_country_id', 'interested_in', 'assigned_to', 'zip', 'source', 'father_name', 'caste', 'subject', 'stream', 'province_id', 'school', 'country_id', 'course', 'mail_count',
     //     'sms_count','intake','intake_year'
@@ -59,8 +59,20 @@ class StudentByAgent extends Model
     // }
 
     public function leadStatusQuality()
-{
-    return $this->hasOne(LeadStatusQuality::class, 'student_id', 'id');
-}
+        {
+            return $this->hasOne(LeadStatusQuality::class, 'student_id', 'id');
+        }
+
+        public function driver_documents()
+        {
+            return $this->hasMany(DriverDocument::class, 'driver_id', 'id');
+        }
+
+        public function document_type_name()
+                {
+                    return $this->belongsTo(EducationLane::class, 'document_type');
+                }
+
+
 }
 

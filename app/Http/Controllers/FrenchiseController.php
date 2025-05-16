@@ -36,7 +36,7 @@ class FrenchiseController extends Controller
         $frenchise = Agent::query();
         $user = Auth::user();
         $user_id = $user->id;
-        if (($user->hasRole('agent'))) {
+        if (($user->hasRole('Franchise'))) {
             
             $frenchise->where('user_id',$user->id);
         }
@@ -407,7 +407,7 @@ class FrenchiseController extends Controller
             $input['zip'] = $frenchise->zip;
             $user =Auth::user();
             if($user->hasRole('Administrator') || $user->email == $frenchise->email){
-                $input['admin_type'] = 'agent';
+                $input['admin_type'] = 'Franchise';
             }else{
                 $input['admin_type'] = 'sub_agent';
             }
@@ -420,7 +420,7 @@ class FrenchiseController extends Controller
             );
             if($user->hasRole('Administrator')){
                 return response()->json(['success'=>'Frenchise Created Successfully','status'=>true]);
-            }elseif($user->hasRole('agent')){
+            }elseif($user->hasRole('Franchise')){
                 return response()->json(['success'=>'Frenchise Created Successfully','status'=>true,'frenchise_id'=>$request->franchise_id]);
             }
         }

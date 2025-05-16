@@ -60,7 +60,7 @@
       @php
       $user = auth()->user();
       @endphp
-      @if(($user->hasRole('Administrator')) || ($user->hasRole('Data oprator')) || ($user->hasRole('agent')))
+      @if(($user->hasRole('Administrator')) || ($user->hasRole('Data oprator')) || ($user->hasRole('Franchise')))
       <a href="{{ route('update-university') }}" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
         <i class="fa-regular fa-bell"></i>
         <span class="badge rounded-pill">

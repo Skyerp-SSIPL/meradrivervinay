@@ -5,23 +5,20 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title mb-0"> Visa Licence type</h4>
+                    <h4 class="card-title mb-0"> Licence type</h4>
                 </div>
                 <div class="card-body">
                     <div class="wizard">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" role="tabpanel" id="step1"
                                 aria-labelledby="step1-tab">
-                                <div class="mb-4 title-section-adss">
-                                    <h3>
-                                        Edit Licence type</h3>
-                                </div>
+                                
                                 @if (session('success'))
                                     <div class="alert alert-success">
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <form class="row " action="{{ route('update-visa-document-type', $visa_document_type->id) }}" method="POST"
+                                <form class="row " action="{{ route('update-license-type', $visa_document_type->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                     @csrf
                                     @method('post')

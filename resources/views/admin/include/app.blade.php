@@ -28,7 +28,7 @@
    
     @yield('style')
   </head>
-  <body>
+  <body class="mini-sidebar">
     <!-- Main Wrapper -->
     <div class="main-wrapper">
       @include('admin.include.header')

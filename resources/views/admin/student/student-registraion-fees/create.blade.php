@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title mb-0"> Manage Student Registration Fees</h4>
+                    <h4 class="card-title mb-0"> Manage Driver Registration Fees</h4>
                 </div>
                 <div class="card-body">
                     <div class="wizard">
@@ -14,7 +14,7 @@
                                 aria-labelledby="step1-tab">
                                 <div class="mb-4">
                                     <h3>
-                                        Add Student Registration Fees</h3>
+                                        Add Driver Registration Fees</h3>
                                 </div>
                                 @if (session('success'))
                                     <div class="alert alert-success">

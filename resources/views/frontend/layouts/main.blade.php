@@ -211,11 +211,14 @@
                         <h6>Â© {{date('Y')}} Copyright <span>Overseas Education Lane</span> All Rights Reserved.</h6>
                     </div>
                     <div class="sub-left">
+
                         <a href="https://www.facebook.com/overseaseducationlane.oel/" style="color:white"> <i class="fa-brands fa-facebook-f mx-1"></i></a>
                         <a href="https://in.linkedin.com/in/overseaseducationlane?trk=public_profile_samename-profile" style="color:white"> <i class="fa-brands fa-linkedin-in mx-1"></i></a>
                         <a href="https://www.youtube.com/@OverseasEducationLane1" style="color:white"><i class="fa-brands fa-youtube mx-1"></i></a>
-                        <a href="https://www.instagram.com/overseaseducation_lane/" style="color:white"> <i class="fa-brands fa-instagram mx-1"></i></a>
+                        <a href="https://www.instagram.com/overseaseducation_lane/" style="color:white"><i class="fa-brands fa-instagram mx-1"></i></a>
                         <a href="https://twitter.com/LaneEducation" style="color:white"> <i class="fa-brands fa-twitter mx-1"></i> </a>
+                   
+                   
                     </div>
                 </div>
             </div>

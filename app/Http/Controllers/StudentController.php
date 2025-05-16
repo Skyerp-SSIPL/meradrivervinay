@@ -79,7 +79,7 @@ class StudentController extends Controller
             // Visa officer sees filtered joined data
             $query = Student::query()
                 ->join('users', 'users.id', '=', 'student.added_by')
-                ->join('student_by_agent', 'student_by_agent.student_user_id', '=', 'student.user_id')
+                ->join('driver_data', 'driver_data.student_user_id', '=', 'student.user_id')
                 ->join('payments', 'payments.customer_email', '=', 'student.email')
                 ->join('tbl_three_sixtee', 'tbl_three_sixtee.sba_id', '=', 'student.id')
                 ->join('payments_link', 'payments_link.fallowp_unique_id', '=', 'payments.fallowp_unique_id')
@@ -120,7 +120,7 @@ class StudentController extends Controller
            
               $query = Student::query()
               ->join('users', 'users.id', '=', 'student.added_by')
-              ->join('student_by_agent', 'student_by_agent.student_user_id', '=', 'student.user_id')
+              ->join('driver_data', 'driver_data.student_user_id', '=', 'student.user_id')
               ->join('payments', 'payments.customer_email', '=', 'student.email')
               ->join('tbl_three_sixtee', 'tbl_three_sixtee.sba_id', '=', 'student.id')
               ->join('payments_link', 'payments_link.fallowp_unique_id', '=', 'payments.fallowp_unique_id')
@@ -158,7 +158,7 @@ class StudentController extends Controller
         
         } else {
             // Agent or other role
-            if ($user->hasRole('agent')) {
+            if ($user->hasRole('Franchise')) {
                 $userId = Auth::id();
                 $usersId = User::where('added_by', $userId)
                     ->whereNotIn('admin_type', ['student'])
@@ -297,7 +297,7 @@ class StudentController extends Controller
             ]);
 
             $student_email = Auth::user()->email;
-            DB::table('student_by_agent')
+            DB::table('driver_data')
                 ->Where('email', $student_email)
                 ->update([
                     'status_threesixty' => '1',
@@ -436,7 +436,7 @@ class StudentController extends Controller
                 }
             }
             $student_email = Auth::user()->email;
-            DB::table('student_by_agent')
+            DB::table('driver_data')
                 ->Where('email', $student_email)
                 ->update([
                     'status_threesixty' => '1',

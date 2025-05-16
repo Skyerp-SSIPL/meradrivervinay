@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Specialisations extends Model
+class JobType extends Model
 {
-     protected $table ='specialisations';
+     protected $table ='job_types';
      protected $primaryKey ='id';
      public $timestamps = true;
      protected $fillable = [

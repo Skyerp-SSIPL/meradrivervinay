@@ -10,14 +10,14 @@
                             <a href="index.php"> Home</a>
                         </li>
                         <li class="breadcrumb-item text-muted">
-                            Manage job type
+                            Manage Job Type
                         </li>
                     </ol>
                 </div>
                 @can('specializations.create')
                 <div class="col-md-4">
-                    <a href="{{ route('create-specilization') }}" class="btn add-btn float-end">
-                        <i class="las la-plus"></i>Create New job type</a>
+                    <a href="{{ route('create-job-type') }}" class="btn add-btn float-end">
+                        <i class="las la-plus"></i>Add</a>
                 </div>
                 @endcan
             </div>
@@ -85,10 +85,10 @@
                         <td class="text-wrap">{{ $item->name }}</td>
                         <td>{{ $item->status == 1 ? 'Active' : 'Inactive' }}</td>
                         @can('specializations.update')
-                        <td><a href="{{route('edit-specilization',$item->id)}}" class="btn btn-info"><i class="fa-solid fa-pen"></i></a></td>
+                        <td><a href="{{route('edit-job-type',$item->id)}}" class="btn btn-info"><i class="fa-solid fa-pen"></i></a></td>
                         @endcan
                         @can('specializations.delete')
-                        <td><a href="{{route('delete-specilization',$item->id)}}" class="btn btn-warning"><i class="fa-solid fa-trash"></i></a></td>
+                        <td><a href="{{route('delete-job-type',$item->id)}}" class="btn btn-warning"><i class="fa-solid fa-trash"></i></a></td>
                         @endcan
                     </tr>
                     @endforeach

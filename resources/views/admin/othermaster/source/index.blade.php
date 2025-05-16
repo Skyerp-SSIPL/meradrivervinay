@@ -17,7 +17,7 @@
                 @can('source.create')
                 <div class="col-md-4">
                     <a href="{{ route('create-source') }}" class="btn add-btn float-end">
-                        <i class="las la-plus"></i>Create New Source</a>
+                        <i class="las la-plus"></i>Add</a>
                 </div>
                 @endcan
             </div>

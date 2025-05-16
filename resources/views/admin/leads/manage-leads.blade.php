@@ -10,7 +10,7 @@
                     <div class="col-md-10">
                         <ol class="breadcrumb text-muted mb-0">
                             <li class="breadcrumb-item">
-                                <a href="index.php"> Home</a>
+                                <a href=""> Home</a>
                             </li>
                             <li class="breadcrumb-item text-muted"> Manage Leads</li>
                         </ol>
@@ -27,19 +27,19 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="student_section leads-student-info">
                                 <div class="col-md-12">
-                                    <h3 class= "leads-section-header" style="margin-bottom: 20px;">Student Details</h3>
+                                    <h3 class= "leads-section-header" style="margin-bottom: 20px;">Driver Details</h3>
                                 </div>
-                                <p><label>Name</label>: {{ $studentAgentData->name  ?? null}}</p>
+                                <p><label>Name</label>: {{ $studentAgentData->first_name  ?? null}}</p>
                                 <p><label>Email</label>: {{ $studentAgentData->email ?? null }} </p>
                                 <p><label>Address</label>: , {{ $studentAgentData->zip ?? null }},
                                     {{ $studentAgentData->country->name ?? null }}</p>
-                                <p><label>Preferred Country</label>: {{ $studentAgentData->country->name ?? null }}</p>
-                                <p><label>Interested In</label>: {{ $studentAgentData->interested_in ?? null }} </p>
+                                <!-- <p><label>Preferred Country</label>: {{ $studentAgentData->country->name ?? null }}</p> -->
+                                <!-- <p><label>Interested In</label>: {{ $studentAgentData->interested_in ?? null }} </p> -->
                                 <p><label>Phone Number</label>: {{ $studentAgentData->phone_number ?? null }}</p>
 
-                                <p><label>Allocated Franchise</label>:{{ $studentAgentData->email ?? null }}</p>
-                                <p><label>Lead Status</label>: {{ $studentAgentData->lead_status ?? null }}</p>
-                                <p><label>Next Calling Date</label>: {{ $studentAgentData->next_calling_date ?? null }}</p>
+                                <!-- <p><label>Allocated Franchise</label>:{{ $studentAgentData->email ?? null }}</p> -->
+                                <!-- <p><label>Lead Status</label>: {{ $studentAgentData->lead_status ?? null }}</p> -->
+                                <!-- <p><label>Next Calling Date</label>: {{ $studentAgentData->next_calling_date ?? null }}</p> -->
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12">
@@ -57,10 +57,12 @@
                                         <span class="text-danger next_calling_date"></span>
                                     </div>
                                     <div class="col-md-6 mb-md-3">
-                                        <label>Lead Status<span class="text-danger">*</span></label>
+                                        <label>Driver Category Status<span class="text-danger">*</span></label>
                                         <select name="lead_status" id="lead_status" class="form-control leads-select">
-                                            <option value="" >--Select Lead Status--</option>
-                                            @foreach ($masterLeadStatus as $data)
+                                            <option value="" >--Select Driver Category Status--</option>
+
+                                         
+                                            @foreach ($driverCtagoryStatus as $data)
                                               <option value="{{$data->id}}">{{$data->name}}</option>
                                             @endforeach
                                         </select>
@@ -137,21 +139,7 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="col-md-12 vsb payment" style="display: none;">
-                                    <label>Payment Type <span class="text-danger">*</span></label>
-                                     <select name="paymentType" id="paymentType" class="form-control ">
-                                   @foreach ($master_service as $data)
-                                            <option value="{{$data->name}}">{{$data->name}}</option>
-                                        @endforeach
-                                            </select>
-                                    <span class="text-danger payment_type_error"></span>
-                                    <br>
-                                    <div class="paymentTypeRemarks " style="display:none;">
-                                        <input type="text" name="paymentTypeRemarks" id="paymentTypeRemarks" class="form-control "
-                                            placeholder="Enter Details Here">
-                                        <div class="payment_type_remarks_error text-danger"></div>
-                                    </div>
-                                </div> --}}
+                               
                                 <div class="col-md-12 vsb payment" style="display: none;">
                                     <label>Payment Mode<span class="text-danger">*</span></label>
                                     <select name="paymentMode" class="form-control " id="paymentMode">
@@ -185,16 +173,12 @@
                                     </div>
                                     {{-- end bank details  --}}
                                 </div>
-                                {{-- <div class="col-md-12 vsb payment" style="display: none;">
-                                    <label>Amount (With gst)<span class="text-danger">*</span></label>
-                                    <input type="number" name="amount" id="amount" min="0" class="form-control ">
-                                    <div class="amount-error text-danger"></div>
-                                </div> --}}
-                                <div class="row">
+                               
+                                <!-- <div class="row">
                                     <div class="col-md-6 col-sm-6 col-lg-6 col-sm-6">
-                                        <label>Intake<span class="text-danger">*</span></label>
+                                        <label>joining month<span class="text-danger">*</span></label>
                                         <select class="form-control sidfrmintake " name="intake" id="intake" >
-                                            <option value="">Please select Intake</option>
+                                            <option value="">Please select joining</option>
                                             <option value="01">January</option>
                                             <option value="02">February</option>
                                             <option value="03">March</option>
@@ -211,9 +195,9 @@
                                         <span class="text-danger intake-error"></span>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label>Intake Year<span class="text-danger">*</span></label>
+                                        <label>joining Year<span class="text-danger">*</span></label>
                                         <select class="form-control " name="intake_year" id="intake_year" >
-                                            <option value="">Please select intake Year</option>
+                                            <option value="">Please select joining Year</option>
                                             @php
                                             $currentYear = date('Y');
                                             $startYear = $currentYear +10; // Adjust this if you want a different range
@@ -224,7 +208,7 @@
                                         </select>
                                         <span class="text-danger intake-year-error"></span>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label>Comment</label>
@@ -254,173 +238,7 @@
                             </form>
                         </div>
 
-                        <div class="col-md-12 col-sm-12">
-                        <div class="container">
-                            <div class="main-container">
-                                <form action="{{ route('lead-quality-store') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="student_id" value="{{ $studentAgentData->id }}">
-
-                                    <div class="container p-4 bg-white shadow-sm rounded">
-                                        <h3 class="mb-3 text-center">Select Lead Quality</h3>
-
-                                        <div class="row d-flex justify-content-center">
-                                            <div class="col-md-12">
-
-                                                <!-- Name -->
-                                                <div class="d-flex align-items-center gap-4">
-                                                    <label class="fw-bold w-50 text-start">Name:</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="name" value="1" id="nameYes">
-                                                        <label class="form-check-label" for="nameYes">Yes</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="name" value="0" id="nameNo">
-                                                        <label class="form-check-label" for="nameNo">No</label>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Phone -->
-                                                <div class="d-flex align-items-center gap-4 mt-2">
-                                                    <label class="fw-bold w-50 text-start">Phone:</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="phone" value="1" id="phoneYes">
-                                                        <label class="form-check-label" for="phoneYes">Yes</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="phone" value="0" id="phoneNo">
-                                                        <label class="form-check-label" for="phoneNo">No</label>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Father Working -->
-                                                <div class="d-flex align-items-center gap-4 mt-2">
-                                                    <label class="fw-bold w-50 text-start">Previous Working:</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="father_working" value="1" id="fatherYes">
-                                                        <label class="form-check-label" for="fatherYes">Yes</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="father_working" value="0" id="fatherNo">
-                                                        <label class="form-check-label" for="fatherNo">No</label>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Mother Working -->
-                                                <div class="d-flex align-items-center gap-4 mt-2">
-                                                    <label class="fw-bold w-50 text-start">Service Fee:</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="mother_working" value="1" id="motherYes">
-                                                        <label class="form-check-label" for="motherYes">Yes</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="mother_working" value="0" id="motherNo">
-                                                        <label class="form-check-label" for="motherNo">No</label>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Age -->
-                                                <div class="d-flex align-items-center gap-4 mt-2">
-                                                    <label class="fw-bold w-50 text-start">Age:</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="age" value="0.25" id="age18_25">
-                                                        <label class="form-check-label" for="age18_25">18-25</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="age" value="0.50" id="age26_35">
-                                                        <label class="form-check-label" for="age26_35">26-35</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="age" value="0.75" id="age36_45">
-                                                        <label class="form-check-label" for="age36_45">36-45</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="age" value="1" id="age46_55">
-                                                        <label class="form-check-label" for="age46_55">46-55</label>
-                                                    </div>
-                                                </div>
-
-                                                <!-- English Efficiency -->
-                                                <div class="d-flex align-items-center gap-4 mt-2">
-                                                    <label class="fw-bold w-50 text-start">Drivering Experience:</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="english_efficiency" value="0.25" id="engBad">
-                                                        <label class="form-check-label" for="engBad">Bad</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="english_efficiency" value="0.50" id="engGood">
-                                                        <label class="form-check-label" for="engGood">Good</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="english_efficiency" value="0.75" id="engIntermediate">
-                                                        <label class="form-check-label" for="engIntermediate">Intermediate</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="english_efficiency" value="1" id="engAdvanced">
-                                                        <label class="form-check-label" for="engAdvanced">Advanced</label>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Sibling -->
-                                                <div class="d-flex align-items-center gap-4 mt-2">
-                                                    <label class="fw-bold w-50 text-start">Sibling:</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="sibling" value="1" id="siblingYes">
-                                                        <label class="form-check-label" for="siblingYes">Yes</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="sibling" value="0" id="siblingNo">
-                                                        <label class="form-check-label" for="siblingNo">No</label>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Financial Conditions -->
-                                                <div class="d-flex align-items-center gap-4 mt-2">
-                                                    <label class="fw-bold w-50 text-start">Valid driver's license:</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="financial_condition" value="1" id="financialYes">
-                                                        <label class="form-check-label" for="financialYes">Yes</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="financial_condition" value="0" id="financialNo">
-                                                        <label class="form-check-label" for="financialNo">No</label>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center gap-4 mt-2">
-                                                    <label class="fw-bold w-50 text-start">Smartphone compatible with app:</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="education" value="1" id="educationYes">
-                                                        <label class="form-check-label" for="educationYes">Yes</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="education" value="0" id="educationNo">
-                                                        <label class="form-check-label" for="educationNo">No</label>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center gap-4 mt-2">
-                                                    <label class="fw-bold w-50 text-start">Intrested:</label>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="intrested" value="1" id="intrestedYes">
-                                                        <label class="form-check-label" for="intrestedYes">Yes</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="intrested" value="0" id="intrestedNo">
-                                                        <label class="form-check-label" for="intrestedNo">No</label>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="text-center mt-4">
-                                            <button type="submit" class="btn btn-primary">Save</button>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
+                      
                     </div>
                 </div>
             </div>
@@ -438,18 +256,15 @@
                             <th>User</th>
                             <th>Comment</th>
                             <th>Next Calling Date</th>
-                            <th>Lead Status	</th>
+                            <th>Driver Category Status	</th>
                             <th>Payment Mode</th>
                             <th>Amount</th>
                             <th>Discount</th>
-
-
                             <th>Recieved</th>
                             <th>Payment Status</th>
                             <th>Pending</th>
                             <th>Due Date</th>
 
-                             <!-- <th>Delete</th> -->
                         </tr>
                     </thead>
                     <tbody id="tableBody">
@@ -484,7 +299,7 @@
                             </td>
                             <td>{{$item->next_calling_date}}</td>
                             @php
-                                $leadstatus = App\Models\MasterLeadStatus::where('id',$item->status)->first();
+                                $leadstatus = App\Models\DriverCategoryStatus::where('id',$item->driver_category_status)->first();
                                 $payment_status = App\Models\Payment::where('fallowp_unique_id',$item->fallowp_unique_id)->latest()->first();
 
                             @endphp
@@ -717,18 +532,18 @@
                 }
             }
 
-            var intake = $('#intake').val();
-            if(!intake){
-                $('.intake-error').html('Intake Field Required');
-                $('.btnDiv').removeClass('disabled');
-                return;
-            }
-            var intake_year = $('#intake_year').val();
-            if(!intake_year){
-                $('.intake-year-error').html('Intake Year Field Required');
-                $('.btnDiv').removeClass('disabled');
-                return;
-            }
+            // var intake = $('#intake').val();
+            // if(!intake){
+            //     $('.intake-error').html('Intake Field Required');
+            //     $('.btnDiv').removeClass('disabled');
+            //     return;
+            // }
+            // var intake_year = $('#intake_year').val();
+            // if(!intake_year){
+            //     $('.intake-year-error').html('Intake Year Field Required');
+            //     $('.btnDiv').removeClass('disabled');
+            //     return;
+            // }
             var comment = $('#comment').val();
             $.ajaxSetup({
                 headers: {
@@ -753,8 +568,8 @@
                     due_date:due_date,
 
                     amount:amount,
-                    intake:intake,
-                    intake_year:intake_year,
+                    // intake:intake,
+                    // intake_year:intake_year,
                     bankName:bankName,
                     accountNo:accountNo,
                     ifscCode:ifscCode,
