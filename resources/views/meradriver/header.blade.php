@@ -41,10 +41,13 @@
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
                         <li class="menu-active"><a href="{{route('jobs')}}">Job</a></li>
-                        <li><a href="{{route('company')}}">Driver</a></li>
+                        <li ><a href="{{route('contact')}}">Contact</a></li>
+
+                        <li><label for="toggle-login" class="ticker-btn-login" id="cta" style="cursor: pointer;">Driver</label></li>
+
+                        <li><label for="toggle-login" class="ticker-btn-login" id="cta" style="cursor: pointer;">Customer</label></li>
                        
-                        <li><a href="{{route('price')}}">Customer</a></li>
-                        <li><a href="{{route('contact')}}">Contact</a></li>
+                        <!-- <li><a href="" >Customer</a></li> -->
                                              
                         <!-- <li><label for="toggle-register" class="ticker-btn" style="cursor: pointer;">Register</label></li> -->
                         <li><label for="toggle-login" class="ticker-btn-login" style="cursor: pointer;">Login / Sign Up</label></li>

@@ -301,8 +301,10 @@ class UserController extends Controller
 
     public function impersonate(User $user)
     {
-        if (Auth::user()->hasRole('Administrator') || Auth::user()->hasRole('Data oprator') || Auth::user()->hasRole('Sub Data-Operator')   || Auth::user()->hasRole('Franchise') || Auth::user()->hasRole('sub_agent') || Auth::user()->hasRole('visa') || Auth::user()->hasRole('Application Punching')) {
+        // dd($user);
+        if (Auth::user()->hasRole('Administrator') || Auth::user()->hasRole('Data oprator') || Auth::user()->hasRole('Sub Data-Operator')   || Auth::user()->hasRole('Franchise') || Auth::user()->hasRole('sub_agent') || Auth::user()->hasRole('Sales') || Auth::user()->hasRole('Application Punching')) {
             $adminUser = Auth::user();
+            
             Auth::login($user);
             Session::put('admin_user', $adminUser);
             if ($user->admin_type == 'Franchise' || $user->admin_type == 'sub_agent') {

@@ -1380,9 +1380,7 @@
                                                 class="feature-card-image" alt="feature-card" height="" width="">
                                              <div class="feature-card-image-overlay"></div>
                                              <div class="feature-card-date-rewards-container">
-                                                <!-- <div class="feature-card-date-label">Entry closes by 29
-                                                   Apr
-                                                </div> -->
+                                              
                                                 <div class="ribbon-2">
                                                    <p class="rewards-label">Hiring</p>
                                                 </div>
@@ -1473,11 +1471,7 @@
                                                 <p class="feature-card-date-label">Your service was really awesome.
                                                    I’m so happy with that.</p>
                                              </div>
-                                             <!-- <div class="registered-user-container">
-                                                <img src="https://static.naukimg.com/s/0/0/i/Events/icons/user-ot.svg"
-                                                   class="naukicon-user" alt="User icon" height="" width="">
-                                                <p class="registered-count-label">899 Enrolled</p>
-                                             </div> -->
+                                            
                                           </div>
                                        </div>
                                        <div class="feature-card-footer">
@@ -1488,10 +1482,7 @@
                                           </div>
                                           <div class="feature-card-footer-container">
                                              <div class="feature-card-type-tag-container">
-                                                <!-- <img
-                                                   src="https://static.naukimg.com/s/0/0/i/Events/icons/ot-briefcase.svg"
-                                                   class="feature-card-type-icon" alt="feature-card-type-icon" height=""
-                                                   width="" iserrored="true"> -->
+                                               
                                                    <p class="feature-card-type-label">
                                                       <i class="fa fa-star" aria-hidden="true"></i>
                                                       <i class="fa fa-star" aria-hidden="true"></i>
@@ -1500,10 +1491,7 @@
                                                       <i class="fa fa-star" aria-hidden="true"></i>
                                                    </p>
                                              </div>
-                                             <!-- <div class="cta-container"><a class="cta-link"
-                                                   href="">View
-                                                   details</a>
-                                             </div> -->
+                                            
                                           </div>
                                        </div>
                                     </div>

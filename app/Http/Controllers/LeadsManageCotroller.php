@@ -2333,7 +2333,7 @@ class LeadsManageCotroller extends Controller
         $agent = User::query();
         $user = Auth::user();
         if ($user->hasRole('Administrator')) {
-            $agent->whereIn('admin_type', ['Franchise', 'Verification'])
+            $agent->whereIn('admin_type', ['Verification','Sales','Digital Marketing'])
             ->where('is_active', 1)
             ->where('is_approve', 1);
 

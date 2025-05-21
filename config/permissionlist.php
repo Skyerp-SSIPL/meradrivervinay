@@ -6,7 +6,7 @@ return [
             'dashboard.view',
             'total_member.total_member_view',
             'total_student.total_student_view',
-            // 'total_school_manager.total_school_manager_view',
+           
             'total_franchise.total_franchise_view',
             'active_franchise.active_franchise_view',
             'inactive_franchise.inactive_franchise_view',

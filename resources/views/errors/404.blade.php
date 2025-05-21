@@ -1,82 +1,58 @@
-@extends('frontend.layouts.main')
-@section('title', 'About Oel')
+@extends('meradriver.app')
+@section('title', 'Page Not Found')
 @section('content')
-  <style>
-    #oopss {
-      background: linear-gradient(-45deg, #fff300, #efe400);
-      /* position: fixed; */
-      /* left: 0px; */
-      /* top: 0; */
-      width: 100%;
-      /* height: 100%; */
-      /* line-height: 1.5em; */
-      /* z-index: 9999; */
-      margin-bottom: 20px;
-    }
-    #oopss #error-text {
-      font-size: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-family: 'Shabnam', Tahoma, sans-serif;
-      color: #000;
-      direction: rtl;
-    }
-    #oopss #error-text img {
-      margin: 85px auto 20px;
-      height: 342px;
-    }
-    #oopss #error-text span {
-      position: relative;
-      font-size: 3.3em;
-      font-weight: 900;
-      margin-bottom: 50px;
-    }
-    #oopss #error-text p.p-a {
-      font-size: 19px;
-      margin: 30px 0 15px 0;
-    }
-    #oopss #error-text p.p-b {
-      font-size: 15px;
-    }
-    #oopss #error-text .back {
-      background: #fff;
-      color: #000;
-      font-size: 30px;
-      text-decoration: none;
-      margin: 2em auto 0;
-      padding: .7em 2em;
-      border-radius: 500px;
-      box-shadow: 0 20px 70px 4px rgba(0, 0, 0, 0.1), inset 7px 33px 0 0px #fff300;
-      font-weight: 900;
-      transition: all 300ms ease;
-    }
-    #oopss #error-text .back:hover {
-      -webkit-transform: translateY(-13px);
-              transform: translateY(-13px);
-      box-shadow: 0 35px 90px 4px rgba(0, 0, 0, 0.3), inset 0px 0 0 3px #000;
-    }
-    @font-face {
-      font-family: Shabnam;
-      src: url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam-Bold.eot");
-      src: url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam-Bold.eot?#iefix") format("embedded-opentype"), url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam-Bold.woff") format("woff"), url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam-Bold.woff2") format("woff2"), url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam-Bold.ttf") format("truetype");
-      font-weight: bold;
-    }
-    @font-face {
-      font-family: Shabnam;
-      src: url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam.eot");
-      src: url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam.eot?#iefix") format("embedded-opentype"), url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam.woff") format("woff"), url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam.woff2") format("woff2"), url("https://cdn.rawgit.com/ahmedhosna95/upload/ba6564f8/fonts/Shabnam/Shabnam.ttf") format("truetype");
-      font-weight: normal;
-    }
-</style>
-        <div id='oopss'>
-            <div id='error-text'>
-                <img src="https://cdn.rawgit.com/ahmedhosna95/upload/1731955f/sad404.svg" alt="404">
-                <span>404 PAGE</span>
-                <p class="p-a">
-                . The page you were looking for could not be found</p>
-                <a href='{{url()->previous()}}' class=" btn btn-primary" >... Back to previous page</a>
-            </div>
-        </div>
-@endsection
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+  #error-page {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #007BFF, #00BFFF);
+    width: 100%;
+    padding: 60px 20px;
+    text-align: center;
+    color: #fff;
+  }
+
+  #error-page img {
+    width: 250px;
+    margin: 40px 0;
+  }
+
+  #error-page h1 {
+    font-size: 72px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  #error-page p {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+
+  #error-page a.back-button {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #007BFF;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0px 8px 20px rgba(0, 123, 255, 0.3);
+  }
+
+  #error-page a.back-button:hover {
+    background-color: #e6f0ff;
+    box-shadow: 0px 10px 25px rgba(0, 123, 255, 0.4);
+    transform: translateY(-5px);
+  }
+</style>
+
+<div id="error-page">
+  <img src="https://cdn-icons-png.flaticon.com/512/2748/2748558.png" alt="404 Error Icon">
+  <h1>404</h1>
+  <p>Oops! The page you're looking for doesn't exist.</p>
+  <a href="{{ url()->previous() }}" class="back-button">← Go Back</a>
+</div>
+@endsection

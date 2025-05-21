@@ -60,7 +60,7 @@
                         <div class="col-md-4 col-sm-4">
                             <select name="driver_category" class="form-control  formmrgin">
                                 <option value="">--Select Driver Category--</option>
-                               
+
                                 @foreach ($driver_cate_status as $status)
                                 <option value="{{ $status->id }}" {{ request()->get('driver_category') == $status->id ? 'selected' : '' }}>
 
@@ -127,35 +127,37 @@
         $users =Auth::user();
         @endphp
         <div class="table-responsive">
-        <table class="table table-striped custom-table mb-0">
-        <thead>
-            <tr>
-                @if (($users->hasRole('Franchise')) || ($users->hasRole('Administrator')))
-                    <th><input type="checkbox" class="checked_all_lead"> <small>R.F</small></th>
-                @endif
-                <th><small>Date</small></th>
-                <th><small>Driver Type</small></th>
-                <th><small>Category</small></th>
-                <th><small>Name</small></th>
-                <th><small>Phone</small></th>
-                <th><small>Email</small></th>
-                <th><small>Action</small></th>
-            </tr>
-        </thead>
+            <table class="table table-striped custom-table mb-0">
+                <thead>
+                    <tr>
+                        @if (($users->hasRole('Franchise')) || ($users->hasRole('Administrator')))
+                        <th><input type="checkbox" class="checked_all_lead"> <small>R.U</small></th>
+                        @endif
+                        <th><small>Date</small></th>
+                        <th><small>Driver Type</small></th>
+                        <th><small>Category</small></th>
+                        <th><small>Name</small></th>
+                        <th><small>Phone</small></th>
+                        <th><small>Email</small></th>
+                        <th><small>Action</small></th>
+                    </tr>
+                </thead>
 
-        <tbody id="lead-list">
-            @php
-                $i = ($lead_list->currentPage() - 1) * $lead_list->perPage() + 2;
-            @endphp
-            @foreach ($lead_list as $data)
-                @php
+                <tbody id="lead-list">
+                    @php
+                    $i = ($lead_list->currentPage() - 1) * $lead_list->perPage() + 2;
+                    @endphp
+                    @foreach ($lead_list as $data)
+                    @php
                     $users = Auth::user();
                     $userEmail = App\Models\User::where('id', $data->assigned_to)->value('email');
                     $franchiseEmail = App\Models\User::where('id', $data->added_by_agent_id)->value('name');
+                    $admin_type = App\Models\User::where('id', $data->added_by_agent_id)->value('admin_type');
+
                     $lead_status = App\Models\DriverCategoryStatus::find($data->driver_category_status);
-                @endphp
-                <tr>
-                    @if (($users->hasRole('Franchise')) || ($users->hasRole('Administrator')))
+                    @endphp
+                    <tr>
+                        @if (($users->hasRole('Franchise')) || ($users->hasRole('Administrator')))
                         <td>
                             <input type="checkbox" class="assigned_lead" id="{{ $data->id }}">
                             <a class="frenchise-details" href="#" data-bs-toggle="offcanvas" data-bs-target="#viewlead" lead-id="{{ $data->id }}">
@@ -163,77 +165,77 @@
                             </a><br>
 
                             @if (!empty($data->assigned_to))
-                                    @if ($data->assigned_to == $data->added_by_agent_id)
-                                     <span class="fw-bold">{{ $franchiseEmail ?? '' }}</span><br>
-                              
-                                    @else
-                                    Franchise: <span class="fw-bold">{{ $franchiseEmail ?? '' }}</span><br>
-                                    Sub Agent: <span class="fw-bold">{{ $userEmail ?? '' }}</span>
-                                @endif
+                            @if ($data->assigned_to == $data->added_by_agent_id)
+                            <span class="fw-bold">{{$admin_type}}-{{ $franchiseEmail ?? '' }}</span><br>
+
+                            @else
+                            Franchise: <span class="fw-bold">{{ $franchiseEmail ?? '' }}</span><br>
+                            Sub Agent: <span class="fw-bold">{{ $userEmail ?? '' }}</span>
+                            @endif
                             @endif
                         </td>
-                    @endif
-                    <td><a href="#"><span>{{ $data->created_at->format('Y-m-d') }}</span></a></td>
-                    <td>{{ Str::limit($data->driver_type, 12, '...') }}</td>
-                    <td>{{ $lead_status->name ?? '' }}</td>
-                    <td>
-                        <a href="{{ route('view-lead', $data->id) }}">
-                            <span >{{ Str::limit($data->first_name, 12, '...') }}</span>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="tel:{{ $data->phone_number }}">
-                            <span class="badge bg-success fw-bold"><i class="la la-phone"></i> {{ Str::limit($data->phone_number, 12, '...') }}</span>
-                        </a>
-                    </td>
-                    <td><span >{{ Str::limit($data->email, 18, '...') }}</span></td>
-                    <td class="text-end">
-                        <div class="dropdown dropdown-action">
-                            <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="material-icons">more_vert</i>
+                        @endif
+                        <td><a href="#"><span>{{ $data->created_at->format('Y-m-d') }}</span></a></td>
+                        <td>{{ Str::limit($data->driver_type, 12, '...') }}</td>
+                        <td>{{ $lead_status->name ?? '' }}</td>
+                        <td>
+                            <a href="{{ route('view-lead', $data->id) }}">
+                                <span>{{ Str::limit($data->first_name, 12, '...') }}</span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="{{ route('manage-lead', $data->id) }}">
-                                    <i class="fa-solid fa-users me-1"></i> Manage Lead
+                        </td>
+                        <td>
+                            <a href="tel:{{ $data->phone_number }}">
+                                <span class="badge bg-success fw-bold"><i class="la la-phone"></i> {{ Str::limit($data->phone_number, 12, '...') }}</span>
+                            </a>
+                        </td>
+                        <td><span>{{ Str::limit($data->email, 18, '...') }}</span></td>
+                        <td class="text-end">
+                            <div class="dropdown dropdown-action">
+                                <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
                                 </a>
-                                <a class="dropdown-item" href="{{ route('edit-lead', $data->id) }}">
-                                    <i class="fa-solid fa-pencil me-1"></i> Edit
-                                </a>
-                                <a class="dropdown-item" href="{{ route('view-lead', $data->id) }}">
-                                    <i class="fa-solid fa-eye me-1"></i> View
-                                </a>
-                                @php $existingUser = App\Models\User::where('email', $data->email)->first(); @endphp
-                                @if ($existingUser)
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a class="dropdown-item" href="{{ route('manage-lead', $data->id) }}">
+                                        <i class="fa-solid fa-users me-1"></i> Manage Lead
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('edit-lead', $data->id) }}">
+                                        <i class="fa-solid fa-pencil me-1"></i> Edit
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('view-lead', $data->id) }}">
+                                        <i class="fa-solid fa-eye me-1"></i> View
+                                    </a>
+                                    @php $existingUser = App\Models\User::where('email', $data->email)->first(); @endphp
+                                    @if ($existingUser)
                                     <a class="dropdown-item" href="{{ route('impersonate', $existingUser) }}">
                                         <i class="fa-solid fa-user me-1"></i> Login to {{ Str::limit($data->first_name, 8) }}
                                     </a>
-                                @elseif(!empty($data->email))
+                                    @elseif(!empty($data->email))
                                     <a class="dropdown-item" href="{{ route('create-student-profile', $data->id) }}">
                                         <i class="fa-solid fa-user me-1"></i> Create Profile
                                     </a>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                @php $i++; @endphp
-            @endforeach
-        </tbody>
-    </table>
+                        </td>
+                    </tr>
+                    @php $i++; @endphp
+                    @endforeach
+                </tbody>
+            </table>
 
-    <div class="row mt-3">
-        <div class="col-12">
-            <div class="dataTables_paginate paging_simple_numbers">
-                {{ $lead_list->withQueryString()->links() }}
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                        {{ $lead_list->withQueryString()->links() }}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
         <div class="offcanvas offcanvas-end border-0 " tabindex="-1" id="viewlead">
             <div class="sidebar-headerset" style="  box-shadow: 0 1.6rem 3rem rgba(0,0,0,.1);">
                 <div class="sidebar-headersets">
-                    <h5> Reallocated Franchise</h5>
+                    <h5> Reallocated Users</h5>
                 </div>
 
                 <div class="sidebar-headerclose">
@@ -242,20 +244,13 @@
                     </a>
                 </div>
             </div>
-            <div class="error-message">
 
-            </div>
             <div class="offcanvas-body">
                 <div class="row">
                     <div class="card card-stretch-full">
                         <div class="card-body card-body-scrollable table-responsive ">
                             <table class="table table-modern table-hover">
-                                <thead>
-                                    <tr>
-                                        <th width="140"></th>
-                                        <th>Franchise</th>
-                                    </tr>
-                                </thead>
+                                
                                 <tbody id="agent-details-table">
                                 </tbody>
                             </table>
@@ -265,7 +260,10 @@
             </div>
         </div>
 
-        @endsection
+
+    </div>
+</div>
+@endsection
 @section('scripts')
 <script src="{{ asset('assets/js/jquery-3.7.1.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>

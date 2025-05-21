@@ -53,11 +53,13 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('role_or_permission:dashboard.view', ['only' => ['index']]);
+       
         view()->share('page_title', 'Dashboard');
     }
 
     public function index( Request $request)
     {
+        
         $id = Auth::user()->id;
         $users = User::WHERE('id', $id)->first();
         $user_type = $users->admin_type;
@@ -168,7 +170,7 @@ class DashboardController extends Controller
      
         }
 
-        if($user_type == 'student') {
+        if($user_type == 'Driver') {
             $student_user =Auth::user();
             $student_id=Student::where('user_id',$student_user->id)->first();
             if(empty($student_id)) {
@@ -231,15 +233,9 @@ class DashboardController extends Controller
             "total_operational" =>  $total_operational,
 
 
-
-            // "complete360" => $complete360
-
         );
 
 
-    // dd($data);
-
-      
         return view('dashboard', compact('data'));
     }
     public function dashboard_data(Request $request)
